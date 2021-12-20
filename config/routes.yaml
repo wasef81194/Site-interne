@@ -1,0 +1,3 @@
+depot:
+  path: /
+  controller: App\Controller\DepotController::depot

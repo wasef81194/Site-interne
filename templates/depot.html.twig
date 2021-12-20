@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Formulaire de dépôt  {% endblock %}
+{% block body %}
+
+   <h1>Formulaire de dépôt d’appareils informatiques</h1>
+<div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
+   <h2>Informations clients</h2>
+   {{ form_start(form,{ 'attr': { 'class' : 'form-material' } })}} 
+    <div class="form-group"> 
+   {% for child in form.client.personne %}
+       
+                <div class="form-check" >
+                   {{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
+                     <label class="form-check-label" style='margin-right : 10px !important'>{{form_label(child)}}</span>
+                 </div>
+    
+    {% endfor %}
+      </div>
+   
+   
+   <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.client.nom , { 'attr': { 'class' : 'form-control rounded-1', 'id':'nom' } })}}
+            <label for="nom">Nom</label>
+        </div>
+        <div class="form-field ">
+            {{form_widget(form.client.prenom , { 'attr': {  'class' : 'form-control rounded-1', 'id':'prenom' } })}}
+             <label for="pernom">Prénom</label>
+         </div>
+    </div>
+    <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.client.mail , {'attr': {  'class' : 'form-control rounded-1', 'id':'mail' }})}}
+            <label for="mail">Mail</label>
+        </div>
+        <div class="form-field ">
+            {{form_widget(form.client.tel , {'attr': {  'class' : 'form-control rounded-1', 'id':'tel' } })}}
+            <label for="tel">Téléphone</label>
+         </div>
+    </div>
+    <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.client.rue , {'attr': {  'class' : 'form-control rounded-1', 'id':'rue' } })}}
+            <label for="rue">Rue</label>
+        </div>
+        <div class="form-field">
+            {{form_widget(form.client.ville , {'attr': {  'class' : 'form-control rounded-1', 'id':'ville' } })}}
+            <label for="ville">Ville</label>
+         </div>
+    </div>
+    <div class="grix xs1 sm2">
+        <div class="form-field ">
+            {{form_widget(form.client.cp , {'attr': {  'class' : 'form-control rounded-1', 'id':'cp' } })}}
+            <label for="cp">Code Postal</label>
+        </div>
+        <div class="form-field ">
+            
+         </div>
+    </div>
+    <h2>Informations de l'appareil</h2>
+   <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.appareil.marque , {'attr': {  'class' : 'form-control rounded-1', 'id':'marque' } })}}
+            <label for="marque">Marque</label>
+        </div>
+        <div class="form-field">
+            {{form_widget(form.appareil.modele , { 'attr': {  'class' : 'form-control rounded-1', 'id':'modele' }})}}
+            <label for="modele">Modele</label>
+         </div>
+      </div>
+      <div class="grix xs1 sm2">
+         <div class="form-field">
+            {{form_widget(form.appareil.ns , { 'attr': {  'class' : 'form-control rounded-1', 'id':'ns' } })}}
+            <label for="ns">Numéro de série</label>
+         </div>
+         <div class="form-field">
+            {{form_widget(form.appareil.mdp , { 'attr': {  'class' : 'form-control rounded-1', 'id':'mdp' } })}}
+            <label for="mdp">Mot de Passe</label>
+         </div>
+      </div>
+      <div class="grix ">
+        <div class="form-field">
+            {{form_widget(form.appareil.prblm , { 'attr': {  'class' : 'form-control rounded-1', 'id':'prblm' } })}}
+            <label for="prblm">Problème rencontré</label>
+        </div>
+      </div>
+        <div class="form-group">
+            <div class="form-check">
+            
+            {{form_widget(form.appareil.chargeur )}}
+            {{form_label(form.appareil.chargeur )}}
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+               
+               {{form_widget(form.appareil.cu)}}
+               {{form_label(form.appareil.cu,null,{ 'label': 'Accepter les conditions de prise en charge'})}} 
+
+            </div>
+        </div>
+        <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-info btn-depot">Valider</button>
+        </div>
+        {% for message in app.flashes('message')%}
+            <div class="alert alert-success" role="alert">
+            {{message}}
+            </div>
+        {% endfor %}
+    </div>
+    
+    {{ form_end(form) }}
+ 
+    
+    
+    
+</div>
+{% endblock %}

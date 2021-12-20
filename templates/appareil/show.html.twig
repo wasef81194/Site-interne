@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appareil{% endblock %}
+
+{% block body %}
+    <h1>Appareil</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appareil.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ appareil.marque }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ appareil.modele }}</td>
+            </tr>
+            <tr>
+                <th>Ns</th>
+                <td>{{ appareil.ns }}</td>
+            </tr>
+            <tr>
+                <th>Mdp</th>
+                <td>{{ appareil.mdp }}</td>
+            </tr>
+            <tr>
+                <th>Prblm</th>
+                <td>{{ appareil.prblm }}</td>
+            </tr>
+            <tr>
+                <th>Chargeur</th>
+                <td>{{ appareil.chargeur ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Cu</th>
+                <td>{{ appareil.cu ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('appareil_index') }}">back to list</a>
+
+    <a href="{{ path('appareil_edit', {'id': appareil.id}) }}">edit</a>
+
+    {{ include('appareil/_delete_form.html.twig') }}
+{% endblock %}
