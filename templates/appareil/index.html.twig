@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appareil index{% endblock %}
+
+{% block body %}
+    <h1>Appareil index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marque</th>
+                <th>Modele</th>
+                <th>Ns</th>
+                <th>Mdp</th>
+                <th>Prblm</th>
+                <th>Chargeur</th>
+                <th>Cu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appareil in appareils %}
+            <tr>
+                <td>{{ appareil.id }}</td>
+                <td>{{ appareil.marque }}</td>
+                <td>{{ appareil.modele }}</td>
+                <td>{{ appareil.ns }}</td>
+                <td>{{ appareil.mdp }}</td>
+                <td>{{ appareil.prblm }}</td>
+                <td>{{ appareil.chargeur ? 'Yes' : 'No' }}</td>
+                <td>{{ appareil.cu ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('appareil_show', {'id': appareil.id}) }}">show</a>
+                    <a href="{{ path('appareil_edit', {'id': appareil.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('appareil_new') }}">Create new</a>
+{% endblock %}
