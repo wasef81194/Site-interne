@@ -18,6 +18,7 @@ class FormEditeur extends AbstractType
     {
         $builder
             ->add('date',HiddenType::class)
+            
             ->add('user', EntityType::class,[
                 'class' => User::class,
                 'choice_label' => 'login',

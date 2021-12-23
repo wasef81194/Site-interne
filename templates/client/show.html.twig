@@ -6,8 +6,17 @@
  <a  href="{{ path('client_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
 
     <h1 class='title_client' style="margin-top: 45px !important;" >Informations client</h1>
-    <div   style="text-align:center">
-        <table class="table inline" style="padding-right:5%">
+    
+    <div style="padding-bottom: 80px !important; text-align:center" class="btns">
+        <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
+         <a class="btn btn-dark" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-add-entretien.png')}}"/></a>
+        {{ include('client/_delete_form.html.twig') }}
+       
+        
+    </div>
+
+    <div style="text-align:center">
+        <table class="table inline" >
             <thead>
                 <tr class='table_head'>
                     <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('/images/icon-user.png')}}"/> Client</th>
@@ -53,9 +62,7 @@
             </tbody>
         </table>
 
-    
-
-        <table class="table inline"  style="width:40% ; padding-right:5%">
+        <table class="table inline" >
             <thead>
                 <tr class='table_head thead_red'>
                     <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('/images/icon-pc.png')}}"/> Appareil</th>
@@ -87,13 +94,13 @@
                     {% endif %}
                 </tr>
                 <tr class=' tr_color  select'>
-                    <th>Problème rencontré</th>
+                    <th>Problème</th>
                     <td>{{ appareil.prblm }}</td>
                 </tr>
             </tbody>
         </table>
         
-            <table class="table inline"  style="width:40%">
+            <table class="table inline"  >
                 <thead>
                     <tr class='table_head thead_dark_green '>
                         <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('/images/icon-statut.png')}}"/> Statut</th>
@@ -110,7 +117,7 @@
                     </tr>
                     <tr class='tr_color select'>
                         <th>Etat</th>
-                        {% if etat.statut is defined %}
+                        {% if (etat.statut is defined) and (etat.statut is not empty) %}
                             <td>{{ etat.statut }}</td>
                         {% else %}
                             <td> Non définie </td>
@@ -118,7 +125,7 @@
                     </tr>
                     <tr class='tr_no_color select'>
                         <th>Editeur</th>
-                        {% if user.id is defined %}
+                        {% if (user.id is defined) and (user.login is not empty)  %}
                             <td>{{ user.login }}</td>
                         {% else %}
                             <td> Non définie </td>
@@ -156,18 +163,46 @@
                 </tbody>
             </table>
 
-
-          
+            <table class="table inline" >
+                <thead>
+                    <tr class='table_head thead_black'>
+                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('/images/icon-entretien.png')}}"/> Procédure</th>
+                    </tr>
+                </thead>
+                {% if taches is not empty %}
+                    {% for tache in taches | sort((a, b) => b.date <=> a.date) %}
+                    <tbody class='tache' style=' border-color:black;'>
+                        <tr class='tr_color select'>
+                            <th>Date</th>
+                            <td>{{tache.date|date('d-m-Y H:i:s ')}}</td>
+                        </tr>
+                        <tr class='tr_no_color  select'>
+                            <th>Personne</th>
+                            <td>{{tache.user.login}}</td>
+                        </tr>
+                        <tr  class=' tr_no_color select'>
+                            <th>Desctiption</th>
+                            <td>{{tache.description}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                {% else %}
+                    <tbody class='tache' style=' border-color:black;'>
+                        <tr class='tr_no_color select'>
+                            <th></th>
+                            <td>En attente d'ajout de tache...</td>
+                        </tr>
+                    </tbody>
+                {% endif %}
+            </table>
+         
        
 
 
     </div>
-    
+    <footer style='padding-top: 80px'>
+    </footer>
 
-<div style="padding-top: 80px !important; text-align:center" class="btns">
-    <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
-    {{ include('client/_delete_form.html.twig') }}
-</div>
 
 
 

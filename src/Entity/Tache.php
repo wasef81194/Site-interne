@@ -18,12 +18,12 @@ class Tache
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="taches")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="taches")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=appareil::class, inversedBy="taches")
+     * @ORM\ManyToOne(targetEntity=Appareil::class, inversedBy="taches")
      */
     private $appareil;
 
@@ -32,29 +32,34 @@ class Tache
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getAppareil(): ?appareil
+    public function getAppareil(): ?Appareil
     {
         return $this->appareil;
     }
 
-    public function setAppareil(?appareil $appareil): self
+    public function setAppareil(?Appareil $appareil): self
     {
         $this->appareil = $appareil;
 
@@ -69,6 +74,18 @@ class Tache
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

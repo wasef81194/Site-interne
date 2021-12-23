@@ -26,11 +26,13 @@ body{
 }
 .inline{
 	display: inline !important;
-	
 }
 .width-s{
 	max-width:30px;
 }
 .btn-sm{
 	width: 10px !important;
+}
+.inline-block{
+	display: inline-block !important;
 }

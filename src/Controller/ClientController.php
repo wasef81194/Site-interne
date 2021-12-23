@@ -94,6 +94,7 @@ class ClientController extends AbstractController
         $editeur = new Editeur();
         $etat = $client->getAppareil()->getEditeur()->getEtat();
         $user = $client->getAppareil()->getEditeur()->getUser();
+        $taches = $appareil->getTaches();
         $formEdit = $this->createForm(FormEditeur::class, $editeur);
         $formEdit->handleRequest($request);
 
@@ -122,6 +123,7 @@ class ClientController extends AbstractController
             'user' => $user,
             'editeur' =>$appareil->getEditeur(),
             'form' => $formEdit,
+            'taches'=> $taches,
             //client.appareil.editeur.etat.statut
         ]);
     }
@@ -199,7 +201,7 @@ class ClientController extends AbstractController
             'client' => $client,
             'form' => $form,
         ]);
-    } 
+    }
     /**
      * @Route("/{id}", name="client_delete", methods={"POST"})
      */
@@ -208,6 +210,11 @@ class ClientController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($client);
+            $entityManager->remove($client->getAppareil());
+            $taches = $client->getAppareil()->getTaches();
+            foreach($taches as $tache){
+                $entityManager->remove($tache);
+            }
             $entityManager->flush();
         }
 

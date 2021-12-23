@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Appareil;
+use App\Entity\User;
 
 /**
  * @Route("/tache")
@@ -26,25 +28,29 @@ class TacheController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="tache_new", methods={"GET","POST"})
+     * @Route("/appareil/{id}/new", name="tache_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,Appareil $appareil): Response
     {
         $tache = new Tache();
         $form = $this->createForm(TacheType::class, $tache);
         $form->handleRequest($request);
+        $client = $appareil->getClient();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $tache->setDate(new \DateTime());
+            $tache->setAppareil($appareil);
             $entityManager->persist($tache);
             $entityManager->flush();
-
-            return $this->redirectToRoute('tache_index', [], Response::HTTP_SEE_OTHER);
+            $client = $tache->getAppareil()->getClient();
+            return $this->redirectToRoute('client_show', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tache/new.html.twig', [
             'tache' => $tache,
             'form' => $form,
+            'client'=>$client
         ]);
     }
 

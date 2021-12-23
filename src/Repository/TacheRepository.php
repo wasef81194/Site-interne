@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Tache;
+use App\Entity\Appareil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +48,7 @@ class TacheRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function delAllTachesOfThisAppareil(Appareil $appareil){
+
+    }
 }

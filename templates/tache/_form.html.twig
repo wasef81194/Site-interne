@@ -1,4 +1,18 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
+    {{ form_start(form) }}
+    <h2 class='center' style='text-align:center; margin-bottom:20px;'>Formulaire de tâche</h2>
+        <div class="">
+            <div class="form-field">
+                <label for="technicien">Téchnicien</label>
+				{{form_widget(form.user , { 'attr': { 'class' : 'form-control rounded-1', 'id':'technicien' } })}}
+			</div>
+            <div class="form-field">
+                    <label for="tache">Tâche effectuer</label>
+                    {{form_widget(form.description , { 'attr': {  'class' : 'form-control rounded-1', 'id':'tache' } })}}
+            </div>
+		</div>
+        <div class="mb-3 text-center" style='margin-top:20px;'>
+			<button type="submit" class="btn btn-dark">Valider</button>
+		</div>
+    {{ form_end(form) }}
+</div>

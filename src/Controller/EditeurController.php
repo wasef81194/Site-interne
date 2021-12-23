@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Editeur;
-use App\Form\Editeur1Type;
+use App\Form\FormEditeur;
 use App\Repository\EditeurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class EditeurController extends AbstractController
     public function new(Request $request): Response
     {
         $editeur = new Editeur();
-        $form = $this->createForm(Editeur1Type::class, $editeur);
+        $form = $this->createForm(FormEditeur::class, $editeur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

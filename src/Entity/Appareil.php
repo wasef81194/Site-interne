@@ -70,7 +70,6 @@ class Appareil
         $this->taches = new ArrayCollection();
     }
 
-
     public function getId(): ?int
     {
         return $this->id;

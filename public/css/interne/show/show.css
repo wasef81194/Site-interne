@@ -12,6 +12,15 @@
 .thead_dark_green ,.thead_green{
 	background-color: #106825 !important;
 }
+.tache .tr_no_color{
+	color:#000000 !important;
+}
+.tache .tr_color{
+	background-color:#424242 ;
+}
+.thead_black{
+	background-color:#000000  !important;
+}
 
 .etat .tr_no_color, .form .tr_no_color{
 	color:rgb(23, 155, 23) !important;
@@ -23,7 +32,7 @@
 	color: white;
 }
 .select:hover {
-	background-color: #494343da;
+	background-color: #1b1b1bbd;
 	color:white !important;
 }
 
@@ -35,4 +44,7 @@ button.btn.btn-success.btn-form{
 	background-color:rgb(23, 155, 23) ;
 	font-size:15px;
 	padding:5px;
+}
+.table td,.table th{
+	max-width: 300px !important;
 }
