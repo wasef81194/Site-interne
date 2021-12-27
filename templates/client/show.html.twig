@@ -9,7 +9,7 @@
     
     <div style="padding-bottom: 80px !important; text-align:center" class="btns">
         <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
-         <a class="btn btn-dark" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-add-entretien.png')}}"/></a>
+        <a class="btn btn-dark" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-add-entretien.png')}}"/></a>
         {{ include('client/_delete_form.html.twig') }}
        
         
@@ -178,7 +178,11 @@
                         </tr>
                         <tr class='tr_no_color  select'>
                             <th>Personne</th>
-                            <td>{{tache.user.login}}</td>
+                            {% if tache.user is not null %}
+                                <td>{{tache.user.login}}</td>
+                            {% else %}
+                                 <td>Non definie</td>
+                            {% endif %}
                         </tr>
                         <tr  class=' tr_no_color select'>
                             <th>Desctiption</th>

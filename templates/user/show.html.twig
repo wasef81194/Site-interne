@@ -1,34 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Membre{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<a  href="{{ path('user_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+    <h1>Profil du membre</h1>
+    <div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
+        <img class='check' style="width: 10%; margin : auto; " src="{{asset('/images/icon-membre.gif')}}"/>
+        <table class="table">
+            <tbody>
+                <tr class='select profil'>
+                    <th>Login</th>
+                    <td>{{ user.login }}</td>
+                </tr>
+                <tr class='select profil'>
+                    <th>Roles</th>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                </tr>
+                <tr class='select profil'>
+                    <th>Password</th>
+                    <td>{{ user.password }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="padding-top: 50px !important; text-align:center" class="btns">
+            <a class="btn btn-primary" href="{{ path('user_edit', {'id': user.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
+        
+            {{ include('user/_delete_form.html.twig') }}
+        
+            
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Login</th>
-                <td>{{ user.login }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+   
 {% endblock %}

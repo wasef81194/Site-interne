@@ -69,13 +69,17 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $password = $passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -93,6 +97,15 @@ class UserController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            $editeurs = $user->getEditeurs();
+            foreach($editeurs as $editeur){
+                $user->removeEditeur($editeur);
+            }
+            $taches = $user->getTaches();
+            foreach($taches as $tache){
+                $user->removeTach($tache);
+            }
+            
             $entityManager->remove($user);
             $entityManager->flush();
         }

@@ -20,7 +20,8 @@ body{
 .select{
 	color: white;
 }
-.select:hover {
+
+.select:hover{
 	background-color: #494343da;
 	color:white !important;
 }

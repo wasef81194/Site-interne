@@ -1,7 +1,11 @@
 /*interne*/
 @import url("interne/interne.css");
-	/*show*/
-	@import url("interne/show/show.css");
+	/*client*/
+		/*show*/
+		@import url("interne/client/show.css");
+	/*user*/
+		/*show*/
+		@import url("interne/user/show.css");
 /*public*/
 @import url("public/index.css");
 /*base*/

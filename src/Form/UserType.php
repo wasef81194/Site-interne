@@ -28,11 +28,16 @@ class UserType extends AbstractType
                 'type' => PasswordType::class,
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'Mot de passe'
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'class' => 'form-control rounded-1'
+                    ]
                     ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
-                    ],
+                    'label' => 'Confirmation du mot de passe',
+                    'attr' => [
+                        'class' => 'form-control rounded-1'
+                    ]],
             ])
             ->add('role',ChoiceType::class,
             [
