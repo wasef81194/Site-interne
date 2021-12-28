@@ -48,7 +48,4 @@ class TacheRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function delAllTachesOfThisAppareil(Appareil $appareil){
-
-    }
 }
