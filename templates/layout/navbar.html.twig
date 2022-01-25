@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('client_index') }}">Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('client_show_all') }}">Historiques</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('prioritaire_index') }}">Prioritaires</a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('user_index') }}"> Utilisateurs </a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav  d-flex" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+        {% if app.user %}
+          <a class="nav-link" href="{{ path('user_show', {'id':  app.user.id} )}}"><img src="{{ asset('/images/icon-user.png') }}" width="30"/></a>
+        {% endif %}
+        </li>
+        {% if app.user %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout')}}"><img src="{{ asset('/images/layout/icon-deconnexion.png') }}" width="28"/></a>
+          </li>
+        {% endif %}
+      {#<li class="nav-item">
+          <a class="nav-link" href="{{ path('panier') }}"><img src="{{ asset('/images/navbar/icon-caddie.png') }}" width="20"/></a>
+        </li>#}
+      </ul>
+    
+    </div>
+  </div>
+</nav>

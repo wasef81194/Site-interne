@@ -22,7 +22,7 @@ class FormAppareilType extends AbstractType
             ->add('modele')
             ->add('ns')
             ->add('mdp')
-            ->add('prblm',TextareaType::class)
+            ->add('prblm',TextareaType::class, [ 'required' => false])
             ->add('chargeur')
             //->add('cu', null,[ 'required' => true])
             

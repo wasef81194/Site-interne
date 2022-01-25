@@ -3,42 +3,46 @@
 {% block title %}Membres{% endblock %}
 
 {% block body %}
-    <h1>Membres</h1>
-
-    <table class="table">
-        <thead>
-            <tr  class='table_head'>
-                <th></th>
-                <th>Login</th>
-                <th>Roles</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            {% if user.login is not empty %}
-             {% set counter = ( counter | default(0) ) + 1 %}
-                {% if counter % 2 %}
-                    <tr class='tr_no_color select'>
+{% include 'layout/navbar.html.twig' %}
+    <div class="container mb-100">
+        <h1>Membres</h1>
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                    <tr  class='table_head'>
+                        <th></th>
+                        <th>Login</th>
+                        <th>Roles</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    {% if user.login is not empty %}
+                    {% set counter = ( counter | default(0) ) + 1 %}
+                        {% if counter % 2 %}
+                            <tr class='tr_no_color select'>
+                        {% else %}
+                            <tr class='tr_color  select'>
+                        {% endif %}
+                            <td></td>
+                            <td>{{ user.login }}</td>
+                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td>
+                            <a class="btn btn-success" href="{{ path('user_show', {'id': user.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
+                            {{ include('user/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% else %}
-                    <tr class='tr_color  select'>
-                {% endif %}
-                    <td></td>
-                    <td>{{ user.login }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                    <td>
-                    <a class="btn btn-success" href="{{ path('user_show', {'id': user.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
-                    {{ include('user/_delete_form.html.twig') }}
-                    </td>
-                </tr>
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun Utilisateur</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <a  class="btn btn-success" href="{{ path('user_new') }}"><img class="new" width='28px' src="{{asset('/images/icon-add.png')}}"/></a>
-
+                    <tr>
+                        <td colspan="5">Aucun Utilisateur</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a  class="btn btn-success" href="{{ path('user_new') }}"><img class="new" width='28px' src="{{asset('/images/icon-add.png')}}"/></a>
+        </div>
+    </div>
+    {% include 'layout/footer.html.twig' %}as
 {% endblock %}

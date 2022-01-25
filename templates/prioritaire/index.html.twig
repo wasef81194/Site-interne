@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prioritaire{% endblock %}
+
+{% block body %}
+{% include 'layout/navbar.html.twig' %}
+    <div class="container mb-100">
+            <h1>Clients Prioritaire</h1>
+           
+            <table class="table">
+                <thead>
+                    <tr class='table_head'>
+                        <th>Date</th>
+                        <th>Personne</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Télephone</th>
+                        <th>Marque</th>
+                        <th>Modele</th>
+                        <th>Numero de serie</th>
+                        <th>Mot de passe</th>
+                        <th>Chargeur</th>
+                        <th>Etat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
+                {% for prioritaire in prioritaires  %}
+                    {% set counter = ( counter | default(0) ) + 1 %}
+                    {% if counter % 2 %}
+                        <tr class='tr_no_color select'>
+                    {% else %}
+                        <tr class='tr_color  select'>
+                    {% endif %}
+                         <td>{{ prioritaire.appareil.client.date|date('d-m-Y H:i:s ') }}</td>
+                         <td>{{ prioritaire.appareil.client.personne }}</td>
+                        <td>{{ prioritaire.appareil.client.nom }}</td>
+                        <td>{{ prioritaire.appareil.client.prenom }}</td>
+                        <td>{{ prioritaire.appareil.client.tel }} </td>
+                        <td>{{ prioritaire.appareil.marque }} </td>
+                        <td>{{ prioritaire.appareil.modele }} </td>
+                        <td>{{ prioritaire.appareil.ns }} </td>
+                        <td>{{ prioritaire.appareil.mdp }} </td>
+                        {% if prioritaire.appareil.chargeur == 1 %}
+                        <td> <img  class='check' src="{{asset('/images/check.png')}}"/></td>
+                        {% else %}
+                        <td>  <img  class='cross' src="{{asset('/images/cross.png')}}"/></td>
+                        {% endif %}
+                        {% if prioritaire.appareil.editeur.etat.statut is defined %}
+                        <td>{{ prioritaire.appareil.editeur.etat.statut}}</td>
+                        {% else %}
+                        <td>  </td>
+                        {% endif %}
+                        <td>
+                            <a class="btn btn-success"href="{{ path('client_show', {'id': prioritaire.appareil.client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
+                            <a class="btn btn-secondary"href="{{ path('client_edit', {'id': prioritaire.appareil.client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12" class='white'>En attente de clients...</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            
+            <a  class="btn btn-success" href="{{ path('client_new') }}"><img class="delete" width='28px' src="{{asset('/images/icon-add.png')}}"/></a>
+        </div>
+        {% include 'layout/footer.html.twig' %}
+
+{% endblock %}

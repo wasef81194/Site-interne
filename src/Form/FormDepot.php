@@ -23,7 +23,10 @@ class FormDepot extends AbstractType
             ->add('appareil', FormAppareilType::class,[ 
                 'label'=> false
             ])
-            ->add('cu', CheckboxType::class,[ 'required' => true, 'mapped'=>false]);
+            ->add('cu', CheckboxType::class,[ 
+                'required' => true, 
+                'mapped'=>false, 
+            ]);
             ;
             
         

@@ -14,6 +14,7 @@ use App\Repository\AppareilRepository;
 use App\Form\FormEditeur;
 use App\Form\FormDepot;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\DateInterval;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\Loader\ArrayLoader;
 date_default_timezone_set('Europe/Paris');
 /**
  * @Route("/client")
@@ -37,11 +40,69 @@ date_default_timezone_set('Europe/Paris');
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/", name="client_index", methods={"GET"})
+     * @Route("/index/{month}/{year}/{method}", name="client_index", methods={"GET"})
      */
-    public function index(ClientRepository $clientRepository, AppareilRepository $appareilRepository): Response
+    public function index( $month = null, $year = null , $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository): Response
     {
+        
+        if($month != null && $year != null ){
+            $date = new \DateTime($year.'-'.$month.'-01' );
+            $month = $date->format('m');
+            $year =  $date->format('Y');   
+            $monthLetter = $date->format('F');
+            if($method == 'suivant'){
+                $date = new \DateTime($year.'-'.$month.'-01');
+                $date->modify('+1 month');
+                $month = $date->format('m');
+                $year = $date->format('Y');
+                $monthLetter = $date->format('F');
+            }
+            elseif($method == 'precedent'){
+                $date = new \DateTime($year.'-'.$month.'-01');
+                $date->modify('-1 month');
+                $month = $date->format('m');
+                $year = $date->format('Y');
+                $monthLetter = $date->format('F');
+            }
+        }
+        else{
+            $date = new \DateTime();
+            $month = $date->format('m');
+            $year = $date->format('Y');
+            $monthLetter = $date->format('F');
+        }
+        $translator = new Translator('fr_FR');
+        $translator->addLoader('array', new ArrayLoader());
+        $translator->addResource('array', [
+            'January' => 'Janvier',
+            'February' => 'Février',
+            'March' => 'Mars',
+            'April' => 'Avril',
+            'May'=>'Mai',
+            'June'=>'Juin',
+            'July'=>'Juillet',
+            'August'=>'Août',
+            'September'=>'Septembre',
+            'October'=>'Octobre',
+            'November'=>'Novembre',
+            'December'=>'Décembre',
+        ], 'fr_FR');
+        
+
         return $this->render('client/index.html.twig', [
+            'clients' => $clientRepository->findClientsFromThisDate($month,$year),
+            'appareils' => $appareilRepository->findAll(),
+            'month' => $month,
+            'year'=>$year,
+            'titleMonth' => $translator->trans($monthLetter)
+        ]);
+    }
+    /**
+     * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
+     */
+    public function show_all(ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    {
+        return $this->render('client/show_all.html.twig', [
             'clients' => $clientRepository->findAll(),
             'appareils' => $appareilRepository->findAll(),
         ]);
@@ -126,7 +187,9 @@ class ClientController extends AbstractController
             'taches'=> $taches,
             //client.appareil.editeur.etat.statut
         ]);
+        
     }
+    
     /**
      * @Route("/{id}/mail", name="client_mail",methods={"GET","POST"})
      */

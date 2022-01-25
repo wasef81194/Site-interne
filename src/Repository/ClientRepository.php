@@ -23,13 +23,15 @@ class ClientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Client::class);
     }
-    public function findClientsFromTheDate($beginDate,$endDate)
+    //composer require beberlei/DoctrineExtensions
+    //SELECT * FROM `client` WHERE MONTH(`date`)=12 AND YEAR(`date`)=2021
+    public function findClientsFromThisDate($month,$year)
     {
         return $this->createQueryBuilder('client')
-        ->where("client.date > ?1")
-        ->andWhere("client.date < ?2")
-        ->setParameter(1, $beginDate)
-        ->setParameter(2, $endDate)
+        ->where("MONTH(client.date) = :month")
+        ->setParameter('month', $month)
+        ->andWhere("YEAR(client.date) = :year")
+        ->setParameter('year', $year)
         ->getQuery()
         ->getResult()
         ;

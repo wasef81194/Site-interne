@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block body %}
-	<body class='body'>
+	<div class="container-fluid mb-100">
+		<a  href="{{ relative_path('http://azertyfrance.fr') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
 		<h1>Formulaire de dépôt d’appareils informatiques</h1>
 		<div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
 			<h2>Informations clients</h2>
-		{{ form_start(form,{ 'attr': { 'class' : 'form-material' } })}}
+		{{ form_start(form,{ 'attr': { 'class' : 'form-material form' } })}}
 			<div class="form-group">
 				{% for child in form.client.personne %}
 
@@ -24,37 +25,37 @@
 
 			<div class="grix xs1 sm2">
 				<div class="form-field">
-					{{form_widget(form.client.nom , { 'attr': { 'class' : 'form-control rounded-1', 'id':'nom' } })}}
+					{{form_widget(form.client.nom , { 'attr': { 'class' : 'form-control rounded-1 required', 'id':'nom' } })}}
 					<label for="nom">Nom</label>
 				</div>
 				<div class="form-field ">
-					{{form_widget(form.client.prenom , { 'attr': {  'class' : 'form-control rounded-1', 'id':'prenom' } })}}
+					{{form_widget(form.client.prenom , { 'attr': {  'class' : 'form-control rounded-1 required', 'id':'prenom' } })}}
 					<label for="pernom">Prénom</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field">
-					{{form_widget(form.client.mail , {'attr': {  'class' : 'form-control rounded-1', 'id':'mail' }})}}
+					{{form_widget(form.client.mail , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'mail' }})}}
 					<label for="mail">Mail</label>
 				</div>
 				<div class="form-field ">
-					{{form_widget(form.client.tel , {'attr': {  'class' : 'form-control rounded-1', 'id':'tel' } })}}
+					{{form_widget(form.client.tel , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'tel' } })}}
 					<label for="tel">Téléphone</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field">
-					{{form_widget(form.client.rue , {'attr': {  'class' : 'form-control rounded-1', 'id':'rue' } })}}
+					{{form_widget(form.client.rue , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'rue' } })}}
 					<label for="rue">Rue</label>
 				</div>
 				<div class="form-field">
-					{{form_widget(form.client.ville , {'attr': {  'class' : 'form-control rounded-1', 'id':'ville' } })}}
+					{{form_widget(form.client.ville , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'ville' } })}}
 					<label for="ville">Ville</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field ">
-					{{form_widget(form.client.cp , {'attr': {  'class' : 'form-control rounded-1', 'id':'cp' } })}}
+					{{form_widget(form.client.cp , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'cp' } })}}
 					<label for="cp">Code Postal</label>
 				</div>
 				<div class="form-field "></div>
@@ -62,7 +63,7 @@
 			<h2>Informations de l'appareil</h2>
 			<div class="grix xs1 sm2">
 				<div class="form-field">
-					{{form_widget(form.appareil.marque , {'attr': {  'class' : 'form-control rounded-1', 'id':'marque' } })}}
+					{{form_widget(form.appareil.marque , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'marque' } })}}
 					<label for="marque">Marque</label>
 				</div>
 				<div class="form-field">
@@ -98,24 +99,34 @@
 				<div class="form-check">
 
 					{{form_widget(form.cu)}}
-					{{form_label(form.cu,null,{ 'label': 'Accepter les conditions de prise en charge'})}}
+					{{form_label(form.cu,null,{ 'label': 'Accepter les conditions de prise en charge ','attr': {  'class' : 'form-control rounded-1 cu required'} })}}
 
 				</div>
 			</div>
 			<div class="mb-3 text-center">
-				<button type="submit" class="btn btn-info btn-depot">Valider</button>
+				<button type="submit" class="btn btn-dark btn-depot submit" >Valider</button>
 			</div>
 			{% for message in app.flashes('message')%}
 				<div class="alert alert-success" role="alert">
 					{{message}}
 				</div>
 			{% endfor %}
+			
 		</div>
 
 		{{ form_end(form) }}
-
+		
 
 	</div>
-</body>
+	</div>
+	<div class="loading" id="loading">
+		<div class="loadingio-spinner-bean-eater-9bccoyxbzpc">
+			<div class="ldio-rd9g19yom4p">
+				<div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
+			</div>
+		</div>
+	</div>
+	{% include 'layout/footer.html.twig' %}
+
 {% endblock %}
 

@@ -31,15 +31,15 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function new(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $passwordHasher->hashPassword($user, $user->getPassword());
-            $user->setPassword($password);
+            $hash = $encoder->hashPassword($user , $user->getPassword());
+            $user ->setPassword($hash);
             //$user->setIsActive(true);
             $role = $form->get('role')->getData();
             $user->setRoles([$role]);

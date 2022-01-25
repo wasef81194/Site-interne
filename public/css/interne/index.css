@@ -1,5 +1,9 @@
 body{
-	background-color: #334a62;
+	background-color: #343438 !important;
+	margin: 0;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 .title_client{
 	color: #d6dcf1;
@@ -20,7 +24,6 @@ body{
 .select{
 	color: white;
 }
-
 .select:hover{
 	background-color: #494343da;
 	color:white !important;
@@ -36,4 +39,16 @@ body{
 }
 .inline-block{
 	display: inline-block !important;
+}
+.right{
+	float: right !important;
+}
+.white{
+    color: white !important;
+}
+.mt-100{
+	margin-top: 100px !important;
+}
+.mb-100{
+	margin-bottom: 100px !important;
 }

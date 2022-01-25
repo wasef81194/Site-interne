@@ -228,7 +228,5 @@ class DepotController extends AbstractController
             }
             return $this->render('depot/index.html.twig', [ 'client'=>$client, 'appareil'=>$appareil,'form' => $form->createView()]);
         }
-        
-
    
 }

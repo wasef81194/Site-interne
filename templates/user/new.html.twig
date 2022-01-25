@@ -3,9 +3,13 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-<a  href="{{ path('user_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
-    <h1>Créer un nouveau membres</h1>
-    <div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
-        {{ include('user/_form.html.twig') }}
+    {% include 'layout/navbar.html.twig' %}
+    <div class="container-fluid mb-100">
+        <a  href="{{ path('user_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+            <h1>Créer un nouveau membres</h1>
+            <div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
+                {{ include('user/_form.html.twig') }}
+            </div>
     </div>
+   {% include 'layout/footer.html.twig' %}
 {% endblock %}
