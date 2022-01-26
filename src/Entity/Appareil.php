@@ -65,6 +65,11 @@ class Appareil
      */
     private $taches;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Prioritaire::class, mappedBy="appareil", cascade={"persist", "remove"})
+     */
+    private $prioritaire;
+
     public function __construct()
     {
         $this->taches = new ArrayCollection();
@@ -197,6 +202,28 @@ class Appareil
                 $tach->setAppareil(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrioritaire(): ?Prioritaire
+    {
+        return $this->prioritaire;
+    }
+
+    public function setPrioritaire(?Prioritaire $prioritaire): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($prioritaire === null && $this->prioritaire !== null) {
+            $this->prioritaire->setAppareil(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($prioritaire !== null && $prioritaire->getAppareil() !== $this) {
+            $prioritaire->setAppareil($this);
+        }
+
+        $this->prioritaire = $prioritaire;
 
         return $this;
     }

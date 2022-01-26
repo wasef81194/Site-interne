@@ -9,8 +9,9 @@
 		<a  href="{{ relative_path('http://azertyfrance.fr') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
 		<h1>Formulaire de dépôt d’appareils informatiques</h1>
 		<div class="card" style="width: 60%; margin:auto;margin-bottom:150px; padding : 30px;">
-			<h2>Informations clients</h2>
-		{{ form_start(form,{ 'attr': { 'class' : 'form-material form' } })}}
+			
+		{{ form_start(form,{ 'attr': { 'class' : 'form-material form cacher' } })}}
+		<h2>Informations clients</h2>
 			<div class="form-group">
 				{% for child in form.client.personne %}
 
@@ -106,16 +107,24 @@
 			<div class="mb-3 text-center">
 				<button type="submit" class="btn btn-dark btn-depot submit" >Valider</button>
 			</div>
-			{% for message in app.flashes('message')%}
-				<div class="alert alert-success" role="alert">
-					{{message}}
-				</div>
-			{% endfor %}
 			
-		</div>
+			
+		
 
 		{{ form_end(form) }}
-		
+		{% for message in app.flashes('message')%}
+				<div class="wrapper"> 
+					<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+						<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+					<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+					</svg>
+				</div>
+				{#<img src="{{asset('/images/checkmarker.svg')}}"/>#}
+				<div class="alert alert-success center" role="alert" id="sucess">
+					<span>{{message}}<span>
+				</div>
+			{% endfor %}
+		</div>
 
 	</div>
 	</div>

@@ -5,7 +5,7 @@
 {% block body %}
 {% include 'layout/navbar.html.twig' %}
     <div class="container mb-100">
-            <h1>Clients Prioritaire</h1>
+            <h1>Clients Prioritaires</h1>
            
             <table class="table">
                 <thead>
@@ -52,9 +52,10 @@
                         {% else %}
                         <td>  </td>
                         {% endif %}
-                        <td>
+                        <td class="td-button">
+                            {{ include('prioritaire/_delete_form.html.twig') }}
+                            
                             <a class="btn btn-success"href="{{ path('client_show', {'id': prioritaire.appareil.client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
-                            <a class="btn btn-secondary"href="{{ path('client_edit', {'id': prioritaire.appareil.client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
                         </td>
                     </tr>
                 {% else %}

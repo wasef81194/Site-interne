@@ -53,9 +53,9 @@
                         {% endif %}
                         
 
-                        <td>
+                        <td class="td-button">
                             <a class="btn btn-success"href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
-                            <a class="btn btn-secondary"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a></br>
+                            <a class="btn btn-secondary"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
                             <a class="btn btn-info"href="{{ path('client_clone', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-cloner.png')}}"/></a>
                             {{ include('client/_delete_form.html.twig') }}
                         </td>

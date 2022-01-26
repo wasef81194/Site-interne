@@ -20,7 +20,7 @@ class Prioritaire
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Appareil::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Appareil::class, inversedBy="prioritaire", cascade={"persist", "remove"})
      */
     private $appareil;
 
@@ -45,5 +45,4 @@ class Prioritaire
 
         return $this;
     }
-
 }

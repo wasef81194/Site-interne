@@ -29,14 +29,24 @@ class PrioritaireController extends AbstractController
     /**
      * @Route("/{id}/new", name="prioritaire_new", methods={"GET","POST"})
      */
-    public function new(Appareil $appareil,Request $request): Response
+    public function new(Appareil $appareil,Request $request,PrioritaireRepository $prioritaireRepository): Response
     {
-        $prioritaire = new Prioritaire();
-        $prioritaire->setAppareil($appareil);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($prioritaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('prioritaire_index', [], Response::HTTP_SEE_OTHER);
+        if($prioritaireRepository->findOneBy(['appareil' => $appareil])){
+            
+            $this->addFlash('error', 'Ce client est déjà dans la liste des prioritaires');               
+           
+        }
+        else{
+            $prioritaire = new Prioritaire();
+            $prioritaire->setAppareil($appareil);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($prioritaire);
+            $entityManager->flush();
+            $this->addFlash('sucess', 'Ce client à été ajouté dans la liste des prioritaires');               
+
+        }
+        return $this->redirectToRoute('client_show', ['id'=>$appareil->getClient()->getId()], Response::HTTP_SEE_OTHER);
+        
     }
 
     /**
@@ -78,6 +88,7 @@ class PrioritaireController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($prioritaire);
             $entityManager->flush();
+            $this->addFlash('sucess', 'Ce client à été retiré de la liste des prioritaires');
         }
 
         return $this->redirectToRoute('prioritaire_index', [], Response::HTTP_SEE_OTHER);

@@ -52,3 +52,7 @@ body{
 .mb-100{
 	margin-bottom: 100px !important;
 }
+.td-button{
+	width:180px !important;
+	text-align: right !important;
+}

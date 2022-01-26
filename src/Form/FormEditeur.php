@@ -30,9 +30,7 @@ class FormEditeur extends AbstractType
             ->add('mail', CheckboxType::class, [
                 'mapped'=>false,
                 'required'=>false,
-                'label_attr' => [
-                    'class' => 'checkbox-switch',
-                ],
+                'label' => false
             ]);
             ;
            // ->add('etat')

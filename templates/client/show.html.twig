@@ -4,8 +4,23 @@
 
 {% block body %}
 {% include 'layout/navbar.html.twig' %}
+    {% for message in app.flashes('error')%}
+        <div class="alert close_alert container alert-warning alert-dismissible fade show inline" style='margin-bottom:-55px;' role="alert">
+            <strong> Attention !</strong> {{message}}
+        </div>
+    {% endfor %}
+     {% for message in app.flashes('sucess')%}
+        <div class="alert close_alert container alert-success alert-dismissible fade show inline" style='margin-bottom:-55px;' role="alert">
+            <strong> Bravo !</strong> {{message}}
+        </div>
+    {% endfor %}
 <div class="container-fluid mb-100"> 
-    <a  href="{{ path('client_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+    <a   href="{{ path('client_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+    {% for message in app.flashes('error')%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> Attention !</strong> {{message}}
+        </div>
+    {% endfor %}
     <h1 style="margin-top: 45px !important;" >Informations client</h1>
 
     <div style="text-align:center">
@@ -141,11 +156,11 @@
                         <th><label for="etat">Etat</label></th>
                         <td>{{form_widget(form.etat, { 'attr': { 'class' : 'form-select form-select-sm', 'id':'etat' } })}}</td>
                     </tr>
-                    <tr  class='tr_no_color select'>
+                    <tr class='tr_no_color select'>
                         <th><label for="mail">Informer le client</label></th>
-                        <td> {{form_widget(form.mail,{'attr':{'class' :'switch-custom'}})}}</td>
+                        <td> {{form_widget(form.mail,{'attr':{'class' :'switch-custom' ,'id':'mail'} })}}</td>
                     </tr>
-                    <tr class='tr_color select'>
+                    <tr class='tr_color select'> 
                         <th></th>
                         <td><button class='btn btn-success btn-form'>
                             <img class="edit" width='25px' src="{{asset('/images/icon-check.png')}}"/>
@@ -197,7 +212,7 @@
 
     </div>
     <div style="padding-top: 80px !important; text-align:center" class="btns">
-        <a class="btn btn-primary" href="{{ path('prioritaire_new', {'id': appareil.id}) }}">Mettre prioritaire</a>
+        <a class="btn btn-warning" href="{{ path('prioritaire_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-important.png')}}"/></a>
         <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
         <a class="btn btn-dark" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-add-entretien.png')}}"/></a>
         {{ include('client/_delete_form.html.twig') }}

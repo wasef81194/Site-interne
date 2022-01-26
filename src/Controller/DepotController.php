@@ -215,16 +215,13 @@ class DepotController extends AbstractController
            ;
            $mailer->send($data);
 
-
-
-
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($client);
                 $entityManager->persist($appareil);
                
                 $entityManager->persist($editeur);
                 $entityManager->flush(); 
-                $this->addFlash('message', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.');
+                $this->addFlash('message', 'Votre appareil à bien été deposer chez nous, nous vous tiendrons au courant de l\'état de votre appareil.');
             }
             return $this->render('depot/index.html.twig', [ 'client'=>$client, 'appareil'=>$appareil,'form' => $form->createView()]);
         }

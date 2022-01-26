@@ -6,10 +6,15 @@
 	/*user*/
 		/*show*/
 		@import url("interne/user/show.css");
+	/*alert*/
+		/*alert*/
+		@import url("interne/alert/alert.scss");
 /*public*/
 @import url("public/index.css");
-	/*base*/
+	/*loader*/
 	@import url("public/loader.css");
+	/*checkmaker*/
+	@import url("public/checkmaker.css");
 /*base*/
 @import url("base.css");
 
