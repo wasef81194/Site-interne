@@ -88,7 +88,6 @@ class PrioritaireController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($prioritaire);
             $entityManager->flush();
-            $this->addFlash('sucess', 'Ce client à été retiré de la liste des prioritaires');
         }
 
         return $this->redirectToRoute('prioritaire_index', [], Response::HTTP_SEE_OTHER);

@@ -18,4 +18,8 @@ h1{
 button .btn-depot{
 	color: white;
 }
-
+.img-center{
+	display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
