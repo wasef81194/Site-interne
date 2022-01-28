@@ -13,3 +13,6 @@ td {
 .white{
     color: white !important;
 }
+.table td, th{
+    text-align: center !important;
+}

@@ -26,7 +26,7 @@ class FormDepot extends AbstractType
             ->add('cu', CheckboxType::class,[ 
                 'required' => true, 
                 'mapped'=>false, 
-                'label'=>'Acceptez les conditions de prise en charge'
+                'label'=>'Acceptez les '
             ]);
             ;
             

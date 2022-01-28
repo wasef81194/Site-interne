@@ -13,7 +13,7 @@
         <h1 style="margin-top: 45px !important;">Profil</h1>
         <div class="card" style="width: 45%; margin:auto; padding : 30px;">
             <img class='check' style="width: 15%; margin : auto; " src="{{asset('/images/icon-membre.gif')}}"/>
-            <table class="table">
+            <table class="table" style="margin-top:30px;">
                 <tbody>
                     <tr class='select profil'>
                         <th>Login</th>
@@ -34,7 +34,7 @@
                 </tbody>
             </table>
             <div style="padding-top: 50px !important; text-align:center" class="btns">
-                <a class="btn btn-primary" href="{{ path('user_edit', {'id': user.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                <a class="btn btn-primary btn-lg" href="{{ path('user_edit', {'id': user.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
             
                 {{ include('user/_delete_form.html.twig') }}
             

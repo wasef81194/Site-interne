@@ -1,4 +1,4 @@
 <form method="post" class='inline' action="{{ path('client_delete', {'id': client.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce client ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
-    <button class="btn btn-danger"><img class="delete" src="{{asset('/images/icon-delete.png')}}"/></button>
+    <button class="btn btn-danger btn-lg"><img class="delete" src="{{asset('/images/icon-delete.png')}}"/></button>
 </form>

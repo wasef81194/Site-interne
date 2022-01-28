@@ -24,7 +24,7 @@
                         <th>Mot de passe</th>
                         <th>Chargeur</th>
                         <th>Etat</th>
-                        <th style="width:180px !important;">Actions</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +55,10 @@
                         {% else %}
                         <td>  </td>
                         {% endif %}
-                        <td class="td-button">
-                            <a class="btn btn-success"href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
-                            <a class="btn btn-secondary"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
-                            <a class="btn btn-info"href="{{ path('client_clone', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-cloner.png')}}"/></a>
+                        <td>
+                            <a class="btn btn-success btn-lg"href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
+                            <a class="btn btn-secondary btn-lg"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                            <a class="btn btn-info btn-lg" href="{{ path('client_clone', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-cloner.png')}}"/></a>
                             {{ include('client/_delete_form.html.twig') }}
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <a  class="btn btn-success" href="{{ path('client_new') }}"><img class="delete" width='28px' src="{{asset('/images/icon-add.png')}}"/></a>
+            <a  class="btn btn-success btn-lg" href="{{ path('client_new') }}"><img class="delete" width='28px' src="{{asset('/images/icon-add.png')}}"/></a>
         </div>
 
     

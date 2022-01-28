@@ -32,7 +32,9 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 class DepotController extends AbstractController
 {
     
-    /***@Route("/{name}")*/
+    /**
+    * @Route("/", name="formulaire_de_depot", methods={"GET"})
+    */
     
     public function depot(Request $request,MailerInterface $mailer,EtatRepository $etatRepository, UserRepository $userRepository){
         
@@ -221,9 +223,17 @@ class DepotController extends AbstractController
                
                 $entityManager->persist($editeur);
                 $entityManager->flush(); 
-                $this->addFlash('message', 'Votre appareil à bien été deposer chez nous, nous vous tiendrons au courant de l\'état de votre appareil.');
+                $this->addFlash('message', 'Votre appareil à bien été deposer chez AZERTY Solutions Informatiques, nous vous tiendrons au courant des point d\'avencement de votre appareil.');
             }
             return $this->render('depot/index.html.twig', [ 'client'=>$client, 'appareil'=>$appareil,'form' => $form->createView()]);
+        }
+
+        /**
+        * @Route("/condition", name="condition", methods={"GET"})
+        */
+    
+        public function condition(){
+            return $this->render('depot/condition.html.twig', []);
         }
    
 }

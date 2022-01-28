@@ -1,32 +1,104 @@
-<div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Condition
+{% endblock %}
+{% block body %}
+    <div class="container-fluid mb-100">
+		<a  href="{{ path('formulaire_de_depot') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+		<img class="img-center" src="{{asset('/images/azertylogo.png')}}"/>
+		<h1 class="mt-3">Condition de prise en charge AZERTY</h1>
+            <div class="container">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Prise en charge
+                    </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                        <p>  Nous sommes désolés que votre appareil ne fonctionne pas correctement. 
+                        Chez AZERTY Solution Informatique, le devis est gratuit seulement si votre appareil est réparé dans nos locaux. Dans le cas contraire le devis vous sera facturé à 30 €. 
+                        </p>
+                        
+                        <p>Pendant la maintenance de votre appareil :</p>
+                        <ul>
+                            <li> Lors de la sauvegarde de vos données, AZERTY Solution Informatique décline toute responsabilité en cas de perte de données.</li>
+                            <li> Il est possible qu’AZERTY désactive le mot de passe de votre session ou le remplace.</li>
+                            <li> En cas échéant, il est possible de désactiver les logiciels de sécurité tiers.</li>
+                            <li> Si la sécurité de vos données vous préoccupe, faites une sauvegarde de vos données sur un disque externe avant qu’il soit pris en charge par AZERTY.</li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Restauration du logiciel
+                    </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                             <p>Lorsque nous restaurons votre système d’exploitation, nous installons la dernière mise à jour de votre version de MacOS, Windows ou Linux. Si nous ne pouvons pas déterminer la version spécifique de votre système d’exploitation, nous restaurons la dernière mise à jour installé à l’origine. 
+                             Il vous incombe de sauvegarder tous les programmes, logiciels et données existants, ainsi que d’effacer toutes les données existantes avant toute réparation en cas de pertes de données. AZERTY Solution Informatique ne peut être tenue responsable de la perte, de la récupération ou de la mise en péril des données ou des programmes, ni de l’impossibilité d’utiliser le matériel du fait des réparations effectuées. Vous pourrez utiliser votre sauvegarde pour réinstaller vos données ou application. Vérifier si des mises à jour supplémentaires sont disponibles. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Quel sera le délai de réparation de mon appareil ?
+                    </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                        <p> AZERTY Solution Informatique propose une réparation le jour même pour certain type de réparation, par exemple s’il faut remplacer une pièce disponible déjà dans nos locaux. 
+                        Si les techniciens estiment une durée plus longue que 48h, ils vous tiendront informés du délai de réparation. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Type d'appareil pris en charge
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                       <p>Nous prenons en charge les PC portables, les PC de bureau ainsi que les imprimantes. De nombreux utilisateurs pensent que leur PC est trop vieux pour être réparé. Ce constat est relatif. En réalité, l’âge de votre ordinateur compte moins que la qualité du processeur et des autres composants installés. Il suffit souvent de procéder à un bon nettoyage et à une optimisation de votre ordinateur pour lui rendre sa performance initiale. Dans les cas les plus sévères, une réinitialisation de votre PC peut s’avérer nécessaire. Une maintenance d’ordinateur reste cependant largement plus rentable qu’un achat d’un ordinateur neuf de qualité. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        Devis et Garantie
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                        <p>
+                            Les tarifs varient pour les différents services proposés par AZERTY. Pour plus d’information contactez-nous par courriel à l’adresse <a href="mailto:contact@azertyfrance.fr">contact@azertyfrance.fr</a>, par téléphone au 01 34 15 52 32, ou sur demande par courrier postal à l’adresse suivante: <code>38 Rue de la Station Interphone 8, 95130 Franconville</code>. Les tarifs, exprimés en EUR toutes taxes comprises, sont systématiquement communiqués au client et validés d’un commun accord entre le client et AZERTY Solution Informatique avant toute intervention.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                        Données personnelles
+                    </button>
+                    </h2>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <p> AZERTY Solution Informatique informe le client que certaines de ses données personnelles sont enregistrées à des fins de gestion de la relation client, notamment dans le cadre de la communication d’offres commerciales émises par AZERTY Solutions Informatiques. Ces informations sont renseignées lors du saisie du formulaire de prise en charge par le client. AZERTY Solutions Informatiques s'engage à respecter la plus stricte confidentialité concernant les données personnelles du client et à ne pas divulguer, sous nimporte quel prétexte que ce soit, les informations auxquelles elle a accès au cours de ses prestations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-    </div>
-  </div>
-</div>
+    {% include 'layout/footer.html.twig' %}
+
+{% endblock %}
