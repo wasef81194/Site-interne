@@ -1,5 +1,5 @@
 depot:
-  path: /
+  path: /depot
   controller: App\Controller\DepotController::depot 
 suivi:
   path: /suivi
