@@ -33,7 +33,7 @@ class DepotController extends AbstractController
 {
     
     /**
-    * @Route("/", name="formulaire_de_depot", methods={"GET"})
+    * @Route("/", name="formulaire_de_depot",methods={"GET","POST"})
     */
     
     public function depot(Request $request,MailerInterface $mailer,EtatRepository $etatRepository, UserRepository $userRepository){

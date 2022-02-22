@@ -1,6 +1,8 @@
 depot:
   path: /depot
   controller: App\Controller\DepotController::depot 
+  methods:  [GET]
 suivi:
   path: /suivi
   controller: App\Controller\ClientController::index 
+  
