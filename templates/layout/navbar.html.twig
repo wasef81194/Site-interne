@@ -20,12 +20,12 @@
       <ul class="navbar-nav  d-flex" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
         {% if app.user %}
-          <a class="nav-link" href="{{ path('user_show', {'id':  app.user.id} )}}"><img src="{{ asset('/images/icon-user.png') }}" width="30"/></a>
+          <a class="nav-link" href="{{ path('user_show', {'id':  app.user.id} )}}"><img src="{{ asset('./images/icon-user.png') }}" width="30"/></a>
         {% endif %}
         </li>
         {% if app.user %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_logout')}}"><img src="{{ asset('/images/layout/icon-deconnexion.png') }}" width="28"/></a>
+            <a class="nav-link" href="{{ path('app_logout')}}"><img src="{{ asset('./images/layout/icon-deconnexion.png') }}" width="28"/></a>
           </li>
         {% endif %}
       {#<li class="nav-item">

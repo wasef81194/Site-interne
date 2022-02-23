@@ -15,7 +15,7 @@
         </div>
     {% endfor %}
 <div class="container-fluid mb-100"> 
-    <a   href="{{ path('client_index') }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+    <a   href="{{ path('client_index') }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
     {% for message in app.flashes('error')%}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong> Attention !</strong> {{message}}
@@ -27,7 +27,7 @@
         <table class="table inline" >
             <thead>
                 <tr class='table_head'>
-                    <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('/images/icon-user.png')}}"/> Client</th>
+                    <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-user.png')}}"/> Client</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,7 +73,7 @@
         <table class="table inline" >
             <thead>
                 <tr class='table_head thead_red'>
-                    <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('/images/icon-pc.png')}}"/> Appareil</th>
+                    <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('./images/icon-pc.png')}}"/> Appareil</th>
                 </tr>
             </thead>
             <tbody class='appareil'>
@@ -96,9 +96,9 @@
                 <tr class=' tr_no_color select'>
                     <th>Chargeur</th>
                     {% if appareil.chargeur == 1 %}
-                        <td> <img  class='width-s'  class='check' src="{{asset('/images/check.png')}}"/></td>
+                        <td> <img  class='width-s'  class='check' src="{{asset('./images/check.png')}}"/></td>
                     {% else %}
-                        <td>  <img  class='cross width-s' src="{{asset('/images/cross.png')}}"/></td>
+                        <td>  <img  class='cross width-s' src="{{asset('./images/cross.png')}}"/></td>
                     {% endif %}
                 </tr>
                 <tr class=' tr_color  select'>
@@ -111,7 +111,7 @@
         <table class="table inline"  >
             <thead>
             <tr class='table_head thead_dark_green '>
-                <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('/images/icon-statut.png')}}"/> Statut</th>
+                <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('./images/icon-statut.png')}}"/> Statut</th>
             </tr>
             </thead>
                 <tbody class='etat'>
@@ -143,7 +143,7 @@
 
                 <thead>
                     <tr class='table_head thead_green' style='background-color:green'>
-                        <th style="text-align:center" colspan='2' > <img  class='form-icon' src="{{asset('/images/icon-form.png')}}"/> Formulaire</th>
+                        <th style="text-align:center" colspan='2' > <img  class='form-icon' src="{{asset('./images/icon-form.png')}}"/> Formulaire</th>
                     </tr>
                 </thead>
                 <tbody class='form'>
@@ -163,7 +163,7 @@
                     <tr class='tr_color select'> 
                         <th></th>
                         <td><button class='btn btn-success btn-form'>
-                            <img class="edit" width='25px' src="{{asset('/images/icon-check.png')}}"/>
+                            <img class="edit" width='25px' src="{{asset('./images/icon-check.png')}}"/>
                         </button></td>
                     </tr>
                     
@@ -174,7 +174,7 @@
             <table class="table inline" >
                 <thead>
                     <tr class='table_head thead_black'>
-                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('/images/icon-entretien.png')}}"/> Procédure</th>
+                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-entretien.png')}}"/> Procédure</th>
                     </tr>
                 </thead>
                 {% if taches is not empty %}
@@ -212,9 +212,9 @@
 
     </div>
     <div style="padding-top: 80px !important; text-align:center" class="btns">
-        <a class="btn btn-warning btn-lg" href="{{ path('prioritaire_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-important.png')}}"/></a>
-        <a class="btn btn-primary btn-lg" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
-        <a class="btn btn-dark btn-lg" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-add-entretien.png')}}"/></a>
+        <a class="btn btn-warning btn-lg" href="{{ path('prioritaire_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-important.png')}}"/></a>
+        <a class="btn btn-primary btn-lg" href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
+        <a class="btn btn-dark btn-lg" href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-add-entretien.png')}}"/></a>
         {{ include('client/_delete_form.html.twig') }}
     </div>
     

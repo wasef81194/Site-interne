@@ -5,7 +5,7 @@
 {% block body %}
     {% include 'layout/navbar.html.twig' %}
         <div class="container-fluid mb-100">    
-            <a  href="{{ path('client_show',{'id': client.id}) }}"> <img class="retour" src="{{asset('/images/retour.png')}}"/> </a>
+            <a  href="{{ path('client_show',{'id': client.id}) }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
             <h1>Ajouter une nouvelle tâche</h1>
             {{ include('tache/_form.html.twig') }}
         </div>
