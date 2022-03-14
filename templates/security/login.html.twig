@@ -6,11 +6,7 @@
 <form method="post">
    
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+    
  
    
     <div class="card" style="width: 30%;  padding : 30px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -70%); ">
@@ -36,12 +32,17 @@
             </div>
         #}
 
-        <button class="btn btn-lg btn-primary right" style='margin-top: 10px' type="submit">
+        <button class="btn btn-lg btn-primary right" style='margin-top: 10px ; margin-bottom:10px;' type="submit">
            Valider
         </button>
          {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
+        {% if app.user %}
+        <div class="alert alert-success">
+            Vous ête connectez en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
     </div>
 
 </form>
