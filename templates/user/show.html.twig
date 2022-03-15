@@ -23,8 +23,10 @@
                         <th>Role</th>
                         {% if is_granted('ROLE_ADMIN') %}
                             <td>Admin</td>
+                        {% elseif is_granted('ROLE_SUPER_ADMIN') %}
+                            <td>Super Admin</td>
                         {% else %}
-                            </td>Membre</td>
+                            <td>Membre</td>
                         {% endif %}
                     </tr>
                     <tr class='select profil'>

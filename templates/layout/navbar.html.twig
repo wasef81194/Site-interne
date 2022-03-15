@@ -11,7 +11,7 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{{ path('prioritaire_index') }}">Prioritaires</a>
         </li>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{{ path('user_index') }}"> Utilisateurs </a>
         </li>

@@ -199,32 +199,32 @@ class ClientController extends AbstractController
         $appareil = $client->getAppareil();
         //Envoie un mail
         if($etat->getStatut() == 'Pris en charge'){
-            $path = '..\public\images\mail\encharge.png';
+            $path = '../public/images/mail/encharge.png';
         }
         elseif($etat->getStatut() == 'Devis envoyée'){
-            $path = '..\public\images\mail\devis.png';
+            $path = '../public/images/mail/devis.png';
         }
         elseif($etat->getStatut() == 'En attente de pièce'){
-            $path = '..\public\images\mail\piece.png';
+            $path = '../public/images/mail/piece.png';
         }
         elseif($etat->getStatut() == 'En cours de réparation'){
-            $path = '..\public\images\mail\reparation.png';
+            $path = '../public/images/mail/reparation.png';
         }
         elseif($etat->getStatut() ==  'Prêt à être récupéré'){
-            $path = '..\public\images\mail\pret.png';
+            $path = '../public/images/mail/pret.png';
         }
         elseif($etat->getStatut() == 'Livré'){
-            $path = '..\public\images\mail\livre.png';
+            $path = '../public/images/mail/livre.png';
         }
         $data = (new TemplatedEmail())
-        ->from((new Address('noreplyazerty@gmail.com','AZERTY Solutions Informatiques')))
+        ->from((new Address('contact@azertyfrance.fr','AZERTY Solutions Informatiques')))
         ->to(new Address($client->getMail()))
-        //->bcc(new Address('contact@azertyfrance.fr'))
+        ->bcc(new Address('contact@azertyfrance.fr'))
         //->cc('cc@example.com')
         //->bcc('bcc@example.com')
         ->replyTo('contact@azertyfrance.fr')
         //->priority(Email::PRIORITY_HIGH)
-        ->embedFromPath('..\public\images\mail\asi.png', 'asi')
+        ->embedFromPath('../public/images/mail/asi.png', 'asi')
         ->embedFromPath($path, 'etat')
         ->subject('Etat de votre appareil')
         ->htmlTemplate('emails/mailEtat.html.twig')
