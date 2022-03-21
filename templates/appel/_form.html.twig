@@ -1,0 +1,38 @@
+{{ form_start(form,{ 'attr': { 'class' : 'form-material formCall' } })}}
+    <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.nom , { 'attr': { 'class' : 'form-control rounded-1 required ', 'id':'nom' } })}}
+            <label for="nom">Nom *</label>
+		</div>
+        <div class="form-field ">
+            {{form_widget(form.prenom , { 'attr': {  'class' : 'form-control rounded-1 required', 'id':'prenom' } })}}
+            <label for="pernom">Prénom *</label>
+        </div>
+	</div>
+	<div class="grix xs1 sm2">
+		<div class="form-field">
+            {{form_widget(form.tel , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'mail' }})}}
+            <label for="mail">Téléphone *</label>
+        </div>
+		<div class="form-field ">
+			{{form_widget(form.mail , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'tel' } })}}
+			<label for="tel">Mail</label>
+		</div>
+	</div>
+    <div class="grix">
+		<div class="form-field">
+			{{form_widget(form.objet , { 'attr': {  'class' : 'form-control rounded-1 required', 'id':'objet' } })}}
+			<label for="objet">Objet de l'appel *</label>
+	    </div>
+    </div>
+    <div class="grix">
+		<div class="form-field">
+			{{form_widget(form.message , { 'attr': {  'class' : 'form-control rounded-1', 'id':'message' } })}}
+			<label for="message">Raison de l'appel *</label>
+	    </div>
+    </div>
+	<div class="mb-3 mt-5 text-center">
+		<button type="submit" class="btn btn-dark btn-depot submit" >Valider</button>
+	</div>
+{{ form_end(form) }}
+  

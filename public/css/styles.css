@@ -8,7 +8,12 @@
 		@import url("interne/user/show.css");
 	/*alert*/
 		/*alert*/
-		@import url("interne/alert/alert.scss");
+		@import url("interne/alert/alert.css");
+	/*appel*/
+		/*new*/
+		@import url("interne/appel/new.css");
+		/*index*/
+		@import url("interne/appel/index.css");
 /*public*/
 @import url("public/index.css");
 	/*loader*/
@@ -17,3 +22,4 @@
 	@import url("public/checkmaker.css");
 /*base*/
 @import url("base.css");
+

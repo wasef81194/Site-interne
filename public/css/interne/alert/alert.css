@@ -1,3 +1,4 @@
+
 .close:not(:disabled):not(.disabled) {
     cursor: pointer;
   }

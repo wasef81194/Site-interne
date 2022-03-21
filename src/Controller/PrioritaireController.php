@@ -86,6 +86,7 @@ class PrioritaireController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$prioritaire->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            $prioritaire->setAppareil(null);
             $entityManager->remove($prioritaire);
             $entityManager->flush();
         }

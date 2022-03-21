@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À Rappeler{% endblock %}
+{% block body %}
+{% include 'layout/navbar.html.twig' %}
+    <div class="container">
+            <div class="row mt-5" >
+                <div class="col">
+                    <h1>À Rappeler</h1>
+                {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
+                    {% if appel.do != 1 %}
+                    <div class="zoom " >
+                        <div class="card cardCall">
+                            <div class="card-body">
+                                {{ include('appel/check_form.html.twig') }}
+                                <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
+                                <p class="card-text"><a class="none" href="tel:~{{ appel.tel }}">{{ appel.tel }}</a></p>
+                                {% if appel.mail %}
+                                    <p class="card-text"><a class="none" href="mailto:~{{ appel.mail }}">{{ appel.mail }}</a></p>
+                                {% endif %}
+                                <p class="card-text">{{ appel.objet|capitalize }}</p>
+                                <p class="card-text">{{ appel.message|capitalize }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                            {{  appel.date|date('d-m-Y H:i:s ') }}
+                                <div class="right"> {{ include('appel/_delete_form.html.twig') }} </div>
+                                <a class="btn btn-secondary right" href="{{ path('app_appel_edit', {'id': appel.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                <div class="col">
+                    <h1>Historique d'appel</h1>
+                {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
+                    {% if appel.do  %}
+                    <div class="zoom">
+                        <div class="card cardCall">
+                            <div class="card-body">
+                                {{ include('appel/check_form.html.twig') }}
+                                <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
+                                <p class="card-text"><a class="none" href="tel:~{{ appel.tel }}">{{ appel.tel }}</a></p>
+                                {% if appel.mail %}
+                                    <p class="card-text"><a class="none" href="mailto:~{{ appel.mail }}">{{ appel.mail }}</a></p>
+                                {% endif %}
+                                <p class="card-text">{{ appel.objet|capitalize }}</p>
+                                <p class="card-text">{{ appel.message|capitalize }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                            {{  appel.date|date('d-m-Y H:i:s ') }}
+                            <div class="right"> {{ include('appel/_delete_form.html.twig') }} </div>
+                            <a class="btn btn-secondary right" href="{{ path('app_appel_edit', {'id': appel.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        <a href="{{ path('app_appel_new') }}">Create new</a>
+    </div>
+    {% include 'layout/footer.html.twig' %}
+{% endblock %}

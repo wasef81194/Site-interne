@@ -1,14 +1,13 @@
 function redirection() {
     document.location.href="http://azertyfrance.fr"; 
 }
-
 $(document).ready(function(){
     $('.form').ready(function () {
-        console.log('ready');
-        $('#loading').hide();		
+        //console.log('ready');
+        $('#loadingDepot').hide();	
     });
 	$(".form").submit(function(){
-		$('#loading').show();
+		$('#loadingDepot').show();
 		$('.card').hide();
     });
     var sucess = document.getElementById("sucess");

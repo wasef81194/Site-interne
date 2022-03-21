@@ -219,7 +219,7 @@ class ClientController extends AbstractController
         $data = (new TemplatedEmail())
         ->from((new Address('contact@azertyfrance.fr','AZERTY Solutions Informatiques')))
         ->to(new Address($client->getMail()))
-        ->bcc(new Address('contact@azertyfrance.fr'))
+        ->cc(new Address('contact@azertyfrance.fr'))
         //->cc('cc@example.com')
         //->bcc('bcc@example.com')
         ->replyTo('contact@azertyfrance.fr')

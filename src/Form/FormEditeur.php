@@ -30,7 +30,8 @@ class FormEditeur extends AbstractType
             ->add('mail', CheckboxType::class, [
                 'mapped'=>false,
                 'required'=>false,
-                'label' => false
+                'label' => false,
+                'data'   => true
             ]);
             ;
            // ->add('etat')

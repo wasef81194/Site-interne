@@ -192,7 +192,7 @@ class DepotController extends AbstractController
                ->from((new Address('contact@azertyfrance.fr','AZERTY Solutions Informatiques')))
                ->to(new Address($client->getMail()))
                //->bcc(new Address('contact@azertyfrance.fr'))
-               ->bcc(new Address('contact@azertyfrance.fr'))
+               ->cc(new Address('contact@azertyfrance.fr'))
                //->bcc('bcc@example.com')
                //->priority(Email::PRIORITY_HIGH)
                ->subject('Dépot chez AZERTY Solutions Informatiques')

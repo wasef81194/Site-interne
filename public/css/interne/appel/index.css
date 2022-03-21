@@ -1,0 +1,22 @@
+.zoom {
+    -webkit-transition: all 1s ease; /* Safari et Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* Internet Explorer 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+.zoom:hover {
+    -webkit-transform:scale(1.03); /* Safari et Chrome */
+    -moz-transform:scale(1.03); /* Firefox */
+    -ms-transform:scale(1.03); /* Internet Explorer 9 */
+    -o-transform:scale(1.03); /* Opera */
+    transform:scale(1.03);
+}
+.completed{
+    /*text-decoration:line-through;*/
+    opacity: 0.33;
+}
+.cardbody .big-checkbox {
+    width: 30px;
+    height: 30px;
+}
