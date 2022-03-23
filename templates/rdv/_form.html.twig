@@ -1,0 +1,49 @@
+
+{{ form_start(form,{ 'attr': { 'class' : 'form-material formRdv' } })}}
+<div class="grix xs1 sm2">
+    <div class="form-field">
+        {{form_widget(form.nom , { 'attr': { 'class' : 'form-control rounded-1 required ', 'id':'nom' } })}}
+        <label for="nom">Nom*</label>
+    </div>
+    <div class="form-field ">
+        {{form_widget(form.prenom , { 'attr': {  'class' : 'form-control rounded-1 required', 'id':'prenom' } })}}
+        <label for="pernom">Prénom*</label>
+    </div>
+</div>
+<div class="grix xs1 sm2">
+    <div class="form-field">
+        {{form_widget(form.tel , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'tel' }})}}
+        <label for="tel">Téléphone*</label>
+    </div>
+    <div class="form-field ">
+        {{form_widget(form.mail , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'mail' } })}}
+        <label for="mail">Mail*</label>
+    </div>
+</div>
+<div class="grix xs1 sm2">
+    <div class="form-field">
+        {{form_widget(form.adresse , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'adresse' }})}}
+        <label for="mail">Adresse Complète *</label>
+    </div>
+    <div class="form-field ">
+        {{form_widget(form.cp , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'cp' } })}}
+        <label for="cp">Code Postal *</label>
+    </div>
+</div>
+<div class="grix">
+    <div class="form-field">
+        {{form_label(form.date)}}
+        {{form_widget(form.date , { 'attr': { 'id':'date' } })}}
+    </div>
+</div>
+<div class="grix">
+    <div class="form-field">
+        {{form_widget(form.message , { 'attr': {  'class' : 'form-control rounded-1', 'id':'message' } })}}
+        <label for="message">Raison de l'intervention*</label>
+    </div>
+</div>
+
+<div class="mb-3 mt-5 text-center">
+    <button type="submit" class="btn btn-dark btn-depot submit shadow-4" >Valider</button>
+</div>
+{{ form_end(form) }}

@@ -2,15 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Appel;
+use App\Entity\Rdv;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class AppelType extends AbstractType
+class RdvType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -25,12 +25,22 @@ class AppelType extends AbstractType
                 'required' => true
                 ])
             ->add('mail',EmailType::class,[
-                'required' => false
+                'required' => true
                 ])
-            ->add('objet',null,[
+            ->add('adresse',null,[
+                'required' => true
+                ])
+            ->add('cp',null,[
                 'required' => true
                 ])
             ->add('message',TextareaType::class,[
+                'required' => true
+                ])
+            ->add('date',DateTimeType::class,[
+                'label'=> 'Date d\'intervention à domicile*',
+                'attr'=>[
+                    'class'=>'gray'
+                ],
                 'required' => true
                 ])
         ;
@@ -39,7 +49,7 @@ class AppelType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Appel::class,
+            'data_class' => Rdv::class,
         ]);
     }
 }

@@ -99,7 +99,6 @@ class AppelController extends AbstractController
             $appel->setDo(1);
         }
         $appelRepository->add($appel);
-        dump($appel);
         return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
     }
 }

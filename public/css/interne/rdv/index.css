@@ -1,0 +1,18 @@
+.gray{
+    color: gray;
+}
+.bg-green{
+    background-color: #cee7ce !important;
+}
+.white{
+    color: white;
+}
+.btn-orange{
+    background-color: orange;
+}
+.btn-orange:hover{
+    background-color: rgb(194, 130, 11);
+}
+.bg-orange{
+    background-color: #f9dfb1 !important;
+}

@@ -1,13 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Appel{% endblock %}
+{% block title %}Modifier la demande d'appel{% endblock %}
 
 {% block body %}
-    <h1>Edit Appel</h1>
+    {% include 'layout/navbar.html.twig' %}
+    
+    <div class="container-fluid">
+        <a  href="{{ path('app_appel_index') }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
 
-    {{ include('appel/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_appel_index') }}">back to list</a>
-
-    {{ include('appel/_delete_form.html.twig') }}
+    
+        <div class="container">
+                
+                <h1>Modifier la demande d'appel</h1>
+                <div class="card p-50  mt-5 cardCall">
+                    {{ include('appel/_form.html.twig') }}
+                </div> 
+                <div class="loading" id="loadingCall">
+                    <div class="loadingio-spinner-bean-eater-9bccoyxbzpc">
+                        <div class="ldio-rd9g19yom4p">
+                            <div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    {% include 'layout/footer.html.twig' %}
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de Rendez-vous{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mb-4">Demande de rendez-vous à domicile</h1>
+       <div class="card p-50  mt-5 cardRdv">
+            {{ include('rdv/_form.html.twig') }}
+            
+            {% for message in app.flashes('sucessRdv')%}
+                <div class="wrapper" id="sucessRdv"> 
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+				<div class="alert alert-success center" role="alert" id="sucessRdv">
+                    
+					<span>{{message}}<span>
+				</div>
+			{% endfor %}
+        </div> 
+       <!-- <a href="{{ path('app_appel_index') }}">back to list</a> -->
+        <div class="loading" id="loadingRdv">
+            <div class="loadingio-spinner-bean-eater-9bccoyxbzpc">
+                <div class="ldio-rd9g19yom4p">
+                    <div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'layout/footer.html.twig' %}
+{% endblock %}
