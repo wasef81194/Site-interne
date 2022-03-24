@@ -22,3 +22,6 @@ td {
 .none{
     text-decoration: none;
 }
+.mr-2{
+    margin-right: 2px !important;
+}

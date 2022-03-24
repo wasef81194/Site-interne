@@ -4,7 +4,7 @@
     Nous avons bien reçu votre demande d'intervention à l'adresse : {{ adresse }} , toutefois nous vous sugerons une nouvelle date d'intervention : 
 </p>
 <p>
- <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('d-m-Y H:i:s ')}}</div>  
+ <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr')}}</div>  
 <p>
    Si cette date vous convient merci de nous confirmer ou non votre demande en repondant à ce mail ou en appelant au 01.34.15.52.32
 </p>

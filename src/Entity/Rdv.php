@@ -62,6 +62,11 @@ class Rdv
      */
     private $confirmer;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $do;
+
 
     public function getId(): ?int
     {
@@ -172,6 +177,18 @@ class Rdv
     public function setConfirmer(?int $confirmer): self
     {
         $this->confirmer = $confirmer;
+
+        return $this;
+    }
+
+    public function getDo(): ?bool
+    {
+        return $this->do;
+    }
+
+    public function setDo(bool $do): self
+    {
+        $this->do = $do;
 
         return $this;
     }

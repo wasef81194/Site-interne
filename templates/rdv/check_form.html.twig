@@ -1,0 +1,3 @@
+<form method="post" id="formRdvCompleted" action="{{ path('app_rdv_checked', {'id': rdv.id}) }}">
+    <input class="form-check-input right big-checkbox" type="checkbox" id="checkCompleted"  {% if rdv.do %} checked {% endif %}>
+</form>

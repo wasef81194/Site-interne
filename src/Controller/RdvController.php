@@ -25,7 +25,7 @@ class RdvController extends AbstractController
     /**
      * @Route("/", name="app_rdv_index", methods={"GET"})
      */
-    public function index(RdvRepository $rdvRepository): Response
+    public function index(Request $request,RdvRepository $rdvRepository): Response
     {
         return $this->render('rdv/index.html.twig', [
             'rdvs' => $rdvRepository->findAll(),
@@ -131,7 +131,7 @@ class RdvController extends AbstractController
         $data = (new TemplatedEmail())
         ->from((new Address('contact@azertyfrance.fr','AZERTY Solutions Informatiques')))
         ->to(new Address($rdv->getMail()))
-        ->cc(new Address('contact@azertyfrance.fr'))
+        //->cc(new Address('contact@azertyfrance.fr'))
         ->subject('Intervention à domicile')
         ->htmlTemplate($chemein)
         ->context([
@@ -146,6 +146,21 @@ class RdvController extends AbstractController
         ])
         ;
         $mailer->send($data);
+        return $this->redirectToRoute('app_rdv_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/completed/{id}", name="app_rdv_checked", methods={"POST"})
+     */
+    public function completed(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
+    {
+        if($rdv->getDo()){
+            $rdv->setDo(0);
+        }
+        else{
+            $rdv->setDo(1);
+        }
+        $rdvRepository->add($rdv);
         return $this->redirectToRoute('app_rdv_index', [], Response::HTTP_SEE_OTHER);
     }
 }

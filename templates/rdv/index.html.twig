@@ -11,49 +11,108 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./images/azerty.jpg')}}">
 {% endblock %}
 {% block body %}
+
 {% include 'layout/navbar.html.twig' %}
     <div class="container">
         <h1>Demande d'intervention à domicile</h1>
         <div class="row mt-5">
             <div class="col">
-                {% for rdv in rdvs| sort((a, b) => b.date <=> a.date) %}
+                {% for rdv in rdvs| sort((a, b) => a.date <=> b.date) %}
+                    {% if rdv.do != 1 %}
+                        {% set confirmer = '' %}
+                        {% set sugestion = '' %}
+                        <div class="zoom ">
+                            {% if  rdv.confirmer == 1 %}
+                                <div class="card cardRdv bg-green mb-3" >
+                                {% set confirmer = 'Confirmer par AZERTY' %}
+                            {% elseif rdv.confirmer == 2 %}
+                                <div class="card cardRdv mb-3 bg-orange" >
+                                {% set sugestion = 'Attente de confirmation' %}
+                            {% elseif rdv.confirmer == 3 %}
+                                <div class="card cardRdv mb-3 bg-green">
+                                {% set confirmer = 'Confirmer par le client' %}
+                            {% else %}
+                                <div class="card cardRdv mb-3" >
+                            {% endif %}
+                                <div class="card-body">
+                                
+                                    <h5 class="card-title">
+                                    {{ include('rdv/check_form.html.twig') }}
+                                        <span class="badge bg-success">{{confirmer}}</span> 
+                                        <span class="badge bg-warning" style="background-color: #c2820b;">{{sugestion}}</span> 
+                                    </h5>
+                                    <h5 class="card-title">
+                                        {{ rdv.nom|upper }} {{ rdv.prenom|capitalize }}
+                                    </h5>
+                                    <p class="card-text"><a class="none" href="tel:~{{ rdv.tel }}">{{ rdv.tel }}</a></p>
+                                    <p class="card-text"><a class="none" href="mailto:~{{ rdv.mail }}">{{ rdv.mail }}</a></p>
+                                    <p class="card-text">{{ rdv.adresse|capitalize }}</p>
+                                    <p class="card-text">{{ rdv.message|capitalize }}</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    {% if "now"|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
+                                        <span class="badge bg-danger">Aujourd'hui</span>
+                                    {% elseif "now"|date_modify("+1 day")|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
+                                        <span class="badge bg-primary">Demain</span>
+                                    {% elseif "now"|date("d-m-Y") > rdv.date|date('d-m-Y') %}
+                                        <span class="badge bg-secondary">Passé</span>
+                                    {% endif %}
+                                    {{  rdv.date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr') }}
+                                    {{ include('rdv/confirmation_form.html.twig') }}
+                                    <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                        <img  width="20px"  class='suggestion' src="{{asset('/images/suggestion.png')}}"/>
+                                    </button>
+                                    <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{ include('rdv/edit_date.html.twig') }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+            {% for rdv in rdvs| sort((a, b) => b.date <=> a.date) %}
+                {% if rdv.do %}
+                    {% set confirmer = '' %}
+                    {% set sugestion = '' %}
                     <div class="zoom ">
-                        {% if  rdv.confirmer == 1 %}
-                            <div class="card cardCall bg-green mb-3" >
-                        {% elseif rdv.confirmer == 2 %}
-                            <div class="card cardCall mb-3 bg-orange" >
-                        {% else %}
-                            <div class="card cardCall mb-3" >
-                        {% endif %}
+                        <div class="card cardRdv mb-3" >
                             <div class="card-body">
-                                <h5 class="card-title"> {{ rdv.confirmer }} {{ rdv.nom|upper }} {{ rdv.prenom }}</h5>
+                                <h5 class="card-title">
+                                {{ include('rdv/check_form.html.twig') }}
+                                    <span class="badge bg-success">{{confirmer}}</span> 
+                                    <span class="badge bg-warning" style="background-color: #c2820b;">{{sugestion}}</span> 
+                                </h5>
+                                <h5 class="card-title">
+                                    {{ rdv.nom|upper }} {{ rdv.prenom|capitalize }}
+                                </h5>
                                 <p class="card-text"><a class="none" href="tel:~{{ rdv.tel }}">{{ rdv.tel }}</a></p>
                                 <p class="card-text"><a class="none" href="mailto:~{{ rdv.mail }}">{{ rdv.mail }}</a></p>
                                 <p class="card-text">{{ rdv.adresse|capitalize }}</p>
                                 <p class="card-text">{{ rdv.message|capitalize }}</p>
                             </div>
                             <div class="card-footer text-muted">
-                                {{ include('rdv/confirmation_form.html.twig') }}
-                                <button type="button" class="btn btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
-                                    Sugestion
+                                
+                                {{  rdv.date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr') }}
+                                {#{{ include('rdv/confirmation_form.html.twig') }}
+                                <button type="button" class=" mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                    <img  class='suggestion' width="20px" src="{{asset('/images/suggestion.png')}}"/>
                                 </button>
-                            {#<a class="btn btn-secondary right" href="{{ path('app_rdv_edit_date', {'id': rdv.id}) }}"  >x</a>#}
-                                {{  rdv.date|date('d-m-Y H:i:s ') }}
+                                <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
+                                #}
                                 <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
-                                <a class="btn btn-secondary right" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
                             </div>
                         </div>
                     </div>
-                    <!-- Modal -->
                     {{ include('rdv/edit_date.html.twig') }}
-                {% endfor %}
-            </div>
-            <div class="col">
-                <p style="color:right"> En attente</p>
+                {% endif %}
+            {% endfor %}
             </div>
         </div>
 
-        <a href="{{ path('app_rdv_new') }}">Create new</a>
+        {#<a href="{{ path('app_rdv_new') }}">Create new</a>#}
         
     </div>
     

@@ -7,11 +7,11 @@
 .white{
     color: white;
 }
-.btn-orange{
-    background-color: orange;
-}
 .btn-orange:hover{
-    background-color: rgb(194, 130, 11);
+    background-color: #ac7510 !important;
+}
+.btn-orange{
+    background-color: rgb(226, 148, 4) !important;
 }
 .bg-orange{
     background-color: #f9dfb1 !important;
