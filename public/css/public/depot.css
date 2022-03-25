@@ -1,0 +1,14 @@
+.cardDepot{
+    width: 60%; 
+    margin:auto;
+    margin-bottom:150px; 
+    padding : 30px;
+}
+@media screen and (min-width:640px) {
+    .cardDepot{
+        width: 90%; 
+        margin:auto;
+        margin-bottom:300px; 
+        padding : 40px;
+    }
+}

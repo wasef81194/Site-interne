@@ -58,7 +58,7 @@ class RdvController extends AbstractController
      */
     public function show(Rdv $rdv): Response
     {
-        return $this->render('rdv/show.html.twig', [
+        return $this->render('rdv/client/show.html.twig', [
             'rdv' => $rdv,
         ]);
     }
@@ -124,6 +124,12 @@ class RdvController extends AbstractController
         if($rdv->getConfirmer()==2){
             $chemein = 'emails/redemande_rdv.html.twig';
         }
+        elseif($rdv->getConfirmer()==4){
+            $chemein = 'emails/redemande_client_rdv.html.twig';
+        }
+        elseif($rdv->getConfirmer()==5){
+            $chemein = 'emails/annulation_client_rdv.html.twig';
+        }
         else{
             $chemein = 'emails/confirmation_rdv.html.twig';
         }
@@ -135,6 +141,7 @@ class RdvController extends AbstractController
         ->subject('Intervention à domicile')
         ->htmlTemplate($chemein)
         ->context([
+            'id' => $rdv->getId(),
             'nom' => $rdv->getNom(),
             'prenom' => $rdv->getPrenom(),
             'mail' => $rdv->getMail(),
@@ -146,7 +153,12 @@ class RdvController extends AbstractController
         ])
         ;
         $mailer->send($data);
-        return $this->redirectToRoute('app_rdv_index', [], Response::HTTP_SEE_OTHER);
+        if($rdv->getConfirmer()==3 || $rdv->getConfirmer()==4 || $rdv->getConfirmer()==5){
+            return $this->redirectToRoute('app_rdv_show', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
+        }
+        else{
+            return $this->redirectToRoute('app_rdv_index', [], Response::HTTP_SEE_OTHER);
+        }
     }
 
     /**
@@ -162,5 +174,37 @@ class RdvController extends AbstractController
         }
         $rdvRepository->add($rdv);
         return $this->redirectToRoute('app_rdv_index', [], Response::HTTP_SEE_OTHER);
+    }
+    
+    /**
+     * @Route("/confirmer/{id}/client", name="app_rdv_confirmer_client", methods={"POST"})
+     */
+    public function confirmationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
+    {
+        $rdv->setConfirmer(3);
+        $rdvRepository->add($rdv);
+        return $this->redirectToRoute('app_rdv_mail', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("client/{id}/edit/date", name="app_rdv_edit_date_client", methods={"POST"})
+     */
+    public function suggestionDateClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
+    {
+        $rdv->setConfirmer(4);
+        $date = new \DateTime($request->request->get('datetime'));
+        $rdv->setDate($date);
+        $rdvRepository->add($rdv);
+        return $this->redirectToRoute('app_rdv_mail', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/annuler/{id}/client", name="app_rdv_annuler_client", methods={"POST"})
+     */
+    public function annulationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
+    {
+        $rdv->setConfirmer(5);
+        $rdv->setDo(1);
+        $rdvRepository->add($rdv);
+        return $this->redirectToRoute('app_rdv_mail', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
     }
 }

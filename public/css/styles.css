@@ -23,5 +23,7 @@
 	@import url("public/loader.css");
 	/*checkmaker*/
 	@import url("public/checkmaker.css");
+	/*depot*/
+	@import url("public/depot.css");
 /*base*/
 @import url("base.css");
