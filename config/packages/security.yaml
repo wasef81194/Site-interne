@@ -56,3 +56,14 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: /client, roles: ROLE_USER }
          - { path: /suivi, roles: ROLE_USER }
+         - { path: /appareil, roles: ROLE_USER }
+         - { path: /appel, roles: ROLE_USER }
+         - { path: /rdv/interne, roles: ROLE_USER }
+         - { path: /rdv/public, roles: PUBLIC_ACCESS }
+         - { path: /editeur, roles: ROLE_USER }
+         - { path: /prioritaire, roles: ROLE_USER }
+         - { path: /tache, roles: ROLE_USER }
+         - { path: /user, roles: ROLE_USER }
+         - { path: /pdf, roles: ROLE_NO_ACCESS }
+         - { path: /email, roles: ROLE_NO_ACCESS }
+

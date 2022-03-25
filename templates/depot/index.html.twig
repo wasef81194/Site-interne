@@ -7,9 +7,11 @@
 {% block body %}
 	<div class="container-fluid mb-100">
 		<a  href="{{ relative_path('http://azertyfrance.fr') }}"> <img class="retour" src="{{asset('../images/retour.png')}}"/> </a>
-		<img class="img-center" src="{{asset('./images/azertylogo.png')}}"/>
-		<h1 class="mt-3">Formulaire de dépôt d’appareils informatiques</h1>
-		<div class="card carddepot">
+		<div id="hide">
+			<img class="img-center" src="{{asset('./images/azertylogo.png')}}"/>
+			<h1 class="mt-3">Formulaire de dépôt d’appareils informatiques</h1>
+		</div>
+		<div class="card cardDepot" style="margin:auto">
 			
 		{{ form_start(form,{ 'attr': { 'class' : 'form-material form cacher ' } })}}
 		<h2>Informations clients</h2>
@@ -28,37 +30,37 @@
 			<div class="grix xs1 sm2">
 				<div class="form-field">
 					{{form_widget(form.client.nom , { 'attr': { 'class' : 'form-control rounded-1 required ', 'id':'nom' } })}}
-					<label for="nom">Nom</label>
+					<label for="nom">Nom*</label>
 				</div>
 				<div class="form-field ">
 					{{form_widget(form.client.prenom , { 'attr': {  'class' : 'form-control rounded-1 required', 'id':'prenom' } })}}
-					<label for="pernom">Prénom</label>
+					<label for="pernom">Prénom*</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field">
 					{{form_widget(form.client.mail , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'mail' }})}}
-					<label for="mail">Mail</label>
+					<label for="mail">Mail*</label>
 				</div>
 				<div class="form-field ">
 					{{form_widget(form.client.tel , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'tel' } })}}
-					<label for="tel">Téléphone</label>
+					<label for="tel">Téléphone*</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field">
 					{{form_widget(form.client.rue , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'rue' } })}}
-					<label for="rue">Rue</label>
+					<label for="rue">Rue*</label>
 				</div>
 				<div class="form-field">
 					{{form_widget(form.client.ville , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'ville' } })}}
-					<label for="ville">Ville</label>
+					<label for="ville">Ville*</label>
 				</div>
 			</div>
 			<div class="grix xs1 sm2">
 				<div class="form-field ">
 					{{form_widget(form.client.cp , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'cp' } })}}
-					<label for="cp">Code Postal</label>
+					<label for="cp">Code Postal*</label>
 				</div>
 				<div class="form-field "></div>
 			</div>
@@ -66,7 +68,7 @@
 			<div class="grix xs1 sm2">
 				<div class="form-field">
 					{{form_widget(form.appareil.marque , {'attr': {  'class' : 'form-control rounded-1 required', 'id':'marque' } })}}
-					<label for="marque">Marque</label>
+					<label for="marque">Marque*</label>
 				</div>
 				<div class="form-field">
 					{{form_widget(form.appareil.modele , { 'attr': {  'class' : 'form-control rounded-1', 'id':'modele' }})}}
@@ -104,7 +106,7 @@
 					{{form_label(form.cu,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required'} })}}
 				 	
 				</div>
-				&nbsp; <a class="inline" href="{{path('condition')}}">  conditions de prise en charge</a>
+				&nbsp; <a class="inline" href="{{path('condition')}}">conditions de prise en charge</a>*
 			</div>
 			<div class="mb-3 mt-5 text-center">
 				<button type="submit" class="btn btn-dark btn-depot submit" >Valider</button>

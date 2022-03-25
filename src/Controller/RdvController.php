@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 class RdvController extends AbstractController
 {
     /**
-     * @Route("/", name="app_rdv_index", methods={"GET"})
+     * @Route("/interne", name="app_rdv_index", methods={"GET"})
      */
     public function index(Request $request,RdvRepository $rdvRepository): Response
     {
@@ -33,7 +33,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_rdv_new", methods={"GET", "POST"})
+     * @Route("/public/new", name="app_rdv_new", methods={"GET", "POST"})
      */
     public function new(Request $request, RdvRepository $rdvRepository): Response
     {
@@ -47,14 +47,14 @@ class RdvController extends AbstractController
            
         }
 
-        return $this->renderForm('rdv/new.html.twig', [
+        return $this->renderForm('rdv/client/new.html.twig', [
             'rdv' => $rdv,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_rdv_show", methods={"GET"})
+     * @Route("/public/{id}", name="app_rdv_show", methods={"GET"})
      */
     public function show(Rdv $rdv): Response
     {
@@ -64,7 +64,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_rdv_edit", methods={"GET", "POST"})
+     * @Route("/interne/{id}/edit", name="app_rdv_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -83,7 +83,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_rdv_delete", methods={"POST"})
+     * @Route("/interne/{id}", name="app_rdv_delete", methods={"POST"})
      */
     public function delete(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -95,7 +95,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/confirmer/{id}", name="app_rdv_confirmer", methods={"POST"})
+     * @Route("/interne/confirmer/{id}", name="app_rdv_confirmer", methods={"POST"})
      */
     public function confirmation(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -105,7 +105,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit/date", name="app_rdv_edit_date", methods={"POST"})
+     * @Route("/interne/{id}/edit/date", name="app_rdv_edit_date", methods={"POST"})
      */
     public function editDate(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -117,7 +117,7 @@ class RdvController extends AbstractController
     }
 
      /**
-     * @Route("/confirmer/{id}/mail", name="app_rdv_mail", methods={"GET"})
+     * @Route("/public/confirmer/{id}/mail", name="app_rdv_mail", methods={"GET"})
      */
     public function mail(Request $request, Rdv $rdv,MailerInterface $mailer, RdvRepository $rdvRepository): Response
     {
@@ -162,7 +162,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/completed/{id}", name="app_rdv_checked", methods={"POST"})
+     * @Route("/interne/completed/{id}", name="app_rdv_checked", methods={"POST"})
      */
     public function completed(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -177,7 +177,7 @@ class RdvController extends AbstractController
     }
     
     /**
-     * @Route("/confirmer/{id}/client", name="app_rdv_confirmer_client", methods={"POST"})
+     * @Route("/public/confirmer/{id}/client", name="app_rdv_confirmer_client", methods={"POST"})
      */
     public function confirmationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -187,7 +187,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("client/{id}/edit/date", name="app_rdv_edit_date_client", methods={"POST"})
+     * @Route("/public/client/{id}/edit/date", name="app_rdv_edit_date_client", methods={"POST"})
      */
     public function suggestionDateClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -198,7 +198,7 @@ class RdvController extends AbstractController
         return $this->redirectToRoute('app_rdv_mail', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
     }
     /**
-     * @Route("/annuler/{id}/client", name="app_rdv_annuler_client", methods={"POST"})
+     * @Route("/public/annuler/{id}/client", name="app_rdv_annuler_client", methods={"POST"})
      */
     public function annulationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {

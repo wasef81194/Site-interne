@@ -15,6 +15,8 @@
 {% include 'layout/navbar.html.twig' %}
     <div class="container">
         <h1>Demande d'intervention à domicile</h1>
+        {% set did = 1 %}
+        {% set demande = 1 %}
         <div class="row mt-5">
             <div class="col">
                 {% for rdv in rdvs| sort((a, b) => a.date <=> b.date) %}
@@ -78,6 +80,8 @@
                         </div>
                         {{ include('rdv/edit_date.html.twig') }}
                     {% endif %}
+                {% else %}
+                    {% set demande = 0 %} 
                 {% endfor %}
             </div>
             <div class="col">
@@ -117,9 +121,16 @@
                     </div>
                     {{ include('rdv/edit_date.html.twig') }}
                 {% endif %}
+            {% else %}
+                {% set did = 0 %}   
             {% endfor %}
             </div>
         </div>
+        {% if did == 0 and demande == 0 %}
+            <div class="alert alert-secondary mt-3" style="text-align:center" role="alert">
+                En attente de demande ...
+            </div>
+        {% endif %}
 
         {#<a href="{{ path('app_rdv_new') }}">Create new</a>#}
         

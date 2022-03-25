@@ -29,6 +29,10 @@
                         </div>
                     </div>
                     {% endif %}
+                {% else %}
+                    <div class="alert alert-secondary mt-5" style="text-align:center" role="alert">
+                        En attente de demande d'appel...
+                    </div>
                 {% endfor %}
                 </div>
                 <div class="col">
@@ -55,6 +59,10 @@
                         </div>
                     </div>
                     {% endif %}
+                {% else %}
+                    <div class="alert alert-secondary mt-5" style="text-align:center" role="alert">
+                        Historique d'appel vide...
+                    </div>
                 {% endfor %}
                 </div>
             </div>

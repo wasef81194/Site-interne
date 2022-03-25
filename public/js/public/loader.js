@@ -9,6 +9,7 @@ $(document).ready(function(){
 	$(".form").submit(function(){
 		$('#loadingDepot').show();
 		$('.card').hide();
+        $('#hide').hide();
     });
     var sucess = document.getElementById("sucess");
     if(sucess){

@@ -1,7 +1,7 @@
 <h3>Changement de date d'intervention à domicile</h3>
 <p>Bonjour, {{nom}} {{prenom}} </p>
 <p>
-    Nous avons bien reçu votre demande d'intervention à l'adresse : {{ adresse }} , toutefois nous vous suggerons une nouvelle date d'intervention : 
+    Nous avons bien reçu votre demande d'intervention à l'adresse : {{ adresse }} , toutefois nous vous suggérons une nouvelle date d'intervention : 
 </p>
 <p>
  <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr')}}</div>  

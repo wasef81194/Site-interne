@@ -68,10 +68,14 @@
                 </div>
                 {{ include('rdv/client/suggestion_date_client.html.twig') }}
             {% else %}
-                <p class="white" >Attendre que azerty repondent</p>
+                <div class="alert alert-secondary" style="text-align:center" role="alert">
+                    Nous avons bien reçu votre demande ! Vous recevrez un mail très prochainement de confirmation de ce rendez-vous de notre part ou une nouvelle suggestion de date.
+                </div>
             {% endif %}
         {% else %}
-            <p class="white" >lien depassé</p>
+            <div class="alert alert-danger" style="text-align:center" role="alert">
+                Lien dépassé !
+            </div>
         {% endif %}
     </div>
     {% include 'layout/footer.html.twig' %}
