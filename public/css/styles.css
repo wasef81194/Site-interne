@@ -25,5 +25,9 @@
 	@import url("public/checkmaker.css");
 	/*depot*/
 	@import url("public/depot.scss");
+	/*appel*/
+	@import url("public/appel/new.css");
+	/*rdv*/
+	@import url("public/rdv/new.css");
 /*base*/
 @import url("base.css");

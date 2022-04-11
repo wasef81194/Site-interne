@@ -7,6 +7,7 @@ $(document).ready(function(){
 	$(".formCall").submit(function(){
 		$('#loadingCall').show();
 		$('.cardCall').hide();
+        $('#hideCall').hide();
     });
     var sucess = document.getElementById("sucessCall");
     if(sucess){

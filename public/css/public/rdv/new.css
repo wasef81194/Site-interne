@@ -1,14 +1,16 @@
-.cardDepot{
+.cardRdv{
     width: 60%; 
     margin:auto !important;
     margin-bottom:150px; 
     padding : 30px;
+  }
+#rdv_date_date_month, #rdv_date_date_day,#rdv_date_date_year,#rdv_date_time_hour,#rdv_date_time_minute{
+    color: grey;
 }
-
+ 
 @media screen and (max-width: 1000px)
 {
-    .cardDepot{
-        
+    .cardRdv{
         /*width: 70%;*/ 
         width: 95%; 
         font-size: 40px !important;
@@ -16,23 +18,19 @@
         margin-bottom:300px; 
         padding : 40px;
     }
-    .cardDepot h2{
-        font-size: 50px;
-    }
-    
-    .cardDepot .btn-resposive{
+    .cardRdv .btn-responsive{
         padding: 20px !important;
         font-size: 50px !important;
     }
-    .cardDepot .form-control {
+    .cardRdv .form-control {
        height: 120px;
        font-size: 40px !important;
     }
-    .cardDepot label {
+    .cardRdv label {
         font-size: 30px !important;
      }
-     .cardDepot .label-lg {
-        font-size: 40px !important;
-     }
-    
+     #rdv_date_date_month, #rdv_date_date_day,#rdv_date_date_year,#rdv_date_time_hour,#rdv_date_time_minute{
+        font-size: 30px !important;
+    }
+     
 }

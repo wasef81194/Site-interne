@@ -8,6 +8,7 @@ $(document).ready(function(){
 	$(".formRdv").submit(function(){
 		$('#loadingRdv').show();
 		$('.cardRdv').hide();
+        $('#hideRdv').hide();
     });
     var sucess = document.getElementById("sucessRdv");
     if(sucess){
