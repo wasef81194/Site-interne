@@ -29,5 +29,7 @@
 	@import url("public/appel/new.css");
 	/*rdv*/
 	@import url("public/rdv/new.css");
+	/*layout*/
+	@import url("public/layout/footer.css");
 /*base*/
 @import url("base.css");
