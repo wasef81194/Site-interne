@@ -1,0 +1,41 @@
+.cardDepot{
+    width: 60%; 
+    margin:auto !important;
+    margin-bottom:150px; 
+    padding : 30px;
+}
+
+.form-control .rounded-1 .required .form-control{
+    font-size: 100px !important; 
+}
+@media screen and (max-width: 1000px)
+{
+    .cardDepot{
+        
+        /*width: 70%;*/ 
+        width: 95%; 
+        font-size: 40px !important;
+        margin:auto !important;
+        margin-bottom:300px; 
+        padding : 40px;
+    }
+    .cardDepot h2{
+        font-size: 50px;
+    }
+    
+    .cardDepot .btn-resposive{
+        padding: 20px !important;
+        font-size: 50px !important;
+    }
+    .cardDepot .form-control {
+       height: 120px;
+       font-size: 40px !important;
+    }
+    .cardDepot label {
+        font-size: 30px !important;
+     }
+     .cardDepot .label-lg {
+        font-size: 40px !important;
+     }
+    
+}

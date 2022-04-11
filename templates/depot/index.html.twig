@@ -20,7 +20,7 @@
 
 					<div class="form-check">
 						{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
-						<label class="form-check-label" style='margin-right : 10px !important'>{{form_label(child)}}</span>
+						<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
 					</div>
 
 				{% endfor %}
@@ -95,7 +95,7 @@
 				<div class="form-check">
 
 					{{form_widget(form.appareil.chargeur )}}
-					{{form_label(form.appareil.chargeur )}}
+					{{form_label(form.appareil.chargeur,null,{ 'attr': {  'class' : 'label-lg'} } )}}
 
 				</div>
 			</div>
@@ -103,13 +103,13 @@
 				<div class="form-check inline">
 
 					{{form_widget(form.cu)}}
-					{{form_label(form.cu,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required'} })}}
+					{{form_label(form.cu,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required  label-lg'} })}}
 				 	
 				</div>
 				&nbsp; <a class="inline" href="{{path('condition')}}">conditions de prise en charge</a>*
 			</div>
 			<div class="mb-3 mt-5 text-center">
-				<button type="submit" class="btn btn-dark btn-depot submit" >Valider</button>
+				<button type="submit" class="btn btn-dark btn-resposive btn-depot submit" >Valider</button>
 			</div>
 			
 			
