@@ -57,7 +57,8 @@ security:
          - { path: /client, roles: ROLE_USER }
          - { path: /suivi, roles: ROLE_USER }
          - { path: /appareil, roles: ROLE_USER }
-         - { path: /appel, roles: ROLE_USER }
+         - { path: /appel/interne, roles: ROLE_USER }
+         - { path: /appel/public, roles: PUBLIC_ACCESS }
          - { path: /rdv/interne, roles: ROLE_USER }
          - { path: /rdv/public, roles: PUBLIC_ACCESS }
          - { path: /editeur, roles: ROLE_USER }

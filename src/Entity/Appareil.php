@@ -40,7 +40,7 @@ class Appareil
     private $mdp;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prblm;
 

@@ -7,7 +7,7 @@
 {{ adresse }} {{cp}}
 </p>
 <p>
- Le : <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr') }}</div>  
+ Le : <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('d-m-Y  H:i') }}</div>  
 
 <p>
     Si vous souhaitez annuler ou modifier cette intervention merci de vous rendre sur ce <a href="{{path('app_rdv_show', {'id': id})}}" >lien</a> ou nous contacter le plus rapidement possible au 01.34.15.52.32

@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppelController extends AbstractController
 {
     /**
-     * @Route("/", name="app_appel_index", methods={"GET"})
+     * @Route("/interne", name="app_appel_index", methods={"GET"})
      */
     public function index(AppelRepository $appelRepository): Response
     {
@@ -26,7 +26,7 @@ class AppelController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_appel_new", methods={"GET", "POST"})
+     * @Route("/public/new", name="app_appel_new", methods={"GET", "POST"})
      */
     public function new(Request $request, AppelRepository $appelRepository): Response
     {
@@ -48,7 +48,7 @@ class AppelController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_appel_show", methods={"GET"})
+     * @Route("/interne/{id}", name="app_appel_show", methods={"GET"})
      */
     public function show(Appel $appel): Response
     {
@@ -58,7 +58,7 @@ class AppelController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_appel_edit", methods={"GET", "POST"})
+     * @Route("/interne/{id}/edit", name="app_appel_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Appel $appel, AppelRepository $appelRepository): Response
     {
@@ -77,7 +77,7 @@ class AppelController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_appel_delete", methods={"POST"})
+     * @Route("/interne/{id}", name="app_appel_delete", methods={"POST"})
      */
     public function delete(Request $request, Appel $appel, AppelRepository $appelRepository): Response
     {
@@ -88,7 +88,7 @@ class AppelController extends AbstractController
         return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
     }
     /**
-     * @Route("/completed/{id}", name="app_appel_checked", methods={"POST"})
+     * @Route("/interne/completed/{id}", name="app_appel_checked", methods={"POST"})
      */
     public function completed(Request $request, Appel $appel, AppelRepository $appelRepository): Response
     {

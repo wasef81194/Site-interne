@@ -36,7 +36,7 @@
                     {% else %}
                         <tr class='tr_color  select'>
                     {% endif %}
-                        <td>{{ client.date|format_datetime('long', 'short',locale='fr') }}</td>
+                        <td>{{ client.date|date('d-m-Y  H:i') }}</td>
                         <td>{{ client.personne }}</td>
                         <td>{{ client.nom }}</td>
                         <td>{{ client.prenom }}</td>
