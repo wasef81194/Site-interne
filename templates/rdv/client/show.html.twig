@@ -53,7 +53,7 @@
                             <p class="card-text">{{ rdv.message|capitalize }}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            {{  rdv.date|date('d F Y  H:i')|format_datetime('long', 'short',locale='fr') }}
+                            {{  rdv.date|date('d F Y  H:i') }}
                             {% if rdv.confirmer == 2 or rdv.confirmer == 4 %}
                                 {{ include('rdv/client/confirmation_client_form.html.twig') }}
                                 <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
