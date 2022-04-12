@@ -189,10 +189,12 @@ class DepotController extends AbstractController
                
                 //Envoie un mail
                $data = (new TemplatedEmail())
-               ->from((new Address('contact@azertyfrance.fr','AZERTY Solutions Informatiques')))
+               ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
                ->to(new Address($client->getMail()))
-               //->bcc(new Address('contact@azertyfrance.fr'))
+               ->bcc(new Address('contact@azertyfrance.fr'))
                ->cc(new Address('contact@azertyfrance.fr'))
+               //->cc(new Address('noreplyazertyfrance@gmail.com'))
+               
                //->bcc('bcc@example.com')
                //->priority(Email::PRIORITY_HIGH)
                ->subject('Dépot chez AZERTY Solutions Informatiques')
