@@ -9,7 +9,7 @@
         <img class="img-center" src="{{asset('./images/azertylogo.png')}}"/>
         <h1 class="mt-3 mb-4">Demande de rendez-vous à domicile</h1>
     </div>
-       <div class="card p-50  mt-5 cardRdv"  style="margin:auto">
+       <div class="card p-50  mt-5 cardRdvNew"  style="margin:auto">
             {{ include('rdv/_form.html.twig') }}
             
             {% for message in app.flashes('sucessRdv')%}

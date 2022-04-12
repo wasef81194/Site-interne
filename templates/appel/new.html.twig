@@ -12,7 +12,7 @@
                 <h1 class="mt-3">Demander à être rappelé</h1>
             </div>
             
-        <div class="card p-50  mt-5 cardCall"  style="margin:auto">
+        <div class="card p-50  mt-5 cardCallNew"  style="margin:auto">
                 {{ include('appel/_form.html.twig') }}
                 {% for message in app.flashes('sucess')%}
                     <img src='{{asset('images/call.png')}}' class="call" width="200"/>
