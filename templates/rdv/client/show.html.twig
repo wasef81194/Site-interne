@@ -11,6 +11,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./images/azerty.jpg')}}">
 {% endblock %}
 {% block body %}
+    <div class="container-fluid">
+        <img class="img-center" src="{{asset('./images/azertylogo.png')}}"/>
+    </div>
     <div class="container">
         <h1>Intervention à domicile</h1>
         {% if rdv.do != 1 %}
@@ -20,22 +23,22 @@
                 {% set annulation = '' %}
                 <div class="zoom ">
                     {% if  rdv.confirmer == 1 %}
-                        <div class="card cardRdv bg-green mb-3" >
+                        <div class="card cardRdv cardRdvclient bg-green mb-3" >
                         {% set confirmer = 'Confirmer par AZERTY' %}
                     {% elseif rdv.confirmer == 2 %}
-                        <div class="card cardRdv mb-3 bg-orange" >
+                        <div class="card cardRdv cardRdvclient mb-3 bg-orange" >
                         {% set sugestion = 'Attente de confirmation' %}
                     {% elseif rdv.confirmer == 3 %}
-                        <div class="card cardRdv mb-3 bg-green">
+                        <div class="card cardRdv cardRdvclient mb-3 bg-green">
                         {% set confirmer = 'Confirmer par le client' %}
                     {% elseif rdv.confirmer == 4 %}
-                        <div class="card cardRdv mb-3 bg-orange" >
+                        <div class="card cardRdv cardRdvclient mb-3 bg-orange" >
                         {% set sugestion = 'Nouvelle suggestion client' %}
                     {% elseif rdv.confirmer == 5 %}
-                        <div class="card cardRdv mb-3 completed" >
+                        <div class="card cardRdv cardRdvclient mb-3 completed" >
                         {% set annulation = 'Annuler' %}
                     {% else %}
-                        <div class="card cardRdv mb-3" >
+                        <div class="card cardRdv cardRdvclient mb-3" >
                     {% endif %}
                         <div class="card-body">
                         

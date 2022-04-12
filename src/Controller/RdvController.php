@@ -138,7 +138,7 @@ class RdvController extends AbstractController
         ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
         ->to(new Address($rdv->getMail()))
         ->bcc(new Address('contact@azertyfrance.fr'))
-        ->cc(new Address('contact@azertyfrance.fr'))
+        ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
         //->cc(new Address('contact@azertyfrance.fr'))
         ->subject('Intervention à domicile')
         ->htmlTemplate($chemein)
