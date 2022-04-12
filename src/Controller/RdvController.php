@@ -136,7 +136,7 @@ class RdvController extends AbstractController
         //Envoie un mail
         $data = (new TemplatedEmail())
         ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
-        ->to(new Address($client->getMail()))
+        ->to(new Address($rdv->getMail()))
         ->bcc(new Address('contact@azertyfrance.fr'))
         ->cc(new Address('contact@azertyfrance.fr'))
         //->cc(new Address('contact@azertyfrance.fr'))
