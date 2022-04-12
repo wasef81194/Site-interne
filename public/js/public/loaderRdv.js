@@ -1,4 +1,3 @@
-console.log('RDVVVV');
 $(document).ready(function(){
     $('.formRdv').ready(function () {
         console.log('ready');
@@ -7,7 +6,7 @@ $(document).ready(function(){
     });
 	$(".formRdv").submit(function(){
 		$('#loadingRdv').show();
-		$('.cardRdv').hide();
+		$('.cardRdvNew').hide();
         $('#hideRdv').hide();
     });
     var sucess = document.getElementById("sucessRdv");

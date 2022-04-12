@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
 	$(".formCall").submit(function(){
 		$('#loadingCall').show();
-		$('.cardCall').hide();
+		$('.cardCallNew').hide();
         $('#hideCall').hide();
     });
     var sucess = document.getElementById("sucessCall");
