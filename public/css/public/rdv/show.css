@@ -33,5 +33,9 @@
     .btn-close {
         margin-top: -70px !important;
     }
+    .alert-responsive{
+        font-size: 35px !important;
+        padding: 20px;
+    }
     
 }

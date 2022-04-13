@@ -47,3 +47,6 @@ button.btn.btn-success.btn-form{
 .table td,.table th{
 	max-width: 300px !important;
 }
+.mw-250{
+	min-width: 260px !important;
+}
