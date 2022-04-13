@@ -13,14 +13,13 @@
             <table class="table">
                 <thead>
                     <tr class='table_head'>
-                        <th style="min-with : 50px !important">Date</th>
+                        <th style="min-with : 80px !important">Date</th>
                         <th>Civilité</th>
                         <th>Nom</th>
                         <th>Prenom</th>
                         <th>Télephone</th>
                         <th>Marque</th>
                         <th>Modele</th>
-                        <th>Mot de passe</th>
                         <th>Chargeur</th>
                         <th>Etat</th>
                         <th>Actions</th>
@@ -35,14 +34,13 @@
                     {% else %}
                         <tr class='tr_color  select'>
                     {% endif %}
-                        <td>{{ client.date|date('d') {{titleMonth}} client.date|date('H:i')}}</td>
+                        <td>{{ client.date|date('d')}} {{titleMonth}} {{client.date|date('Y H:i')}}</td>
                         <td>{{ client.personne }}</td>
                         <td>{{ client.nom }}</td>
                         <td>{{ client.prenom }}</td>
                         <td>{{ client.tel }} </td>
                         <td>{{ client.appareil.marque }} </td>
                         <td>{{ client.appareil.modele }} </td>
-                        <td>{{ client.appareil.mdp }} </td>
                         {% if client.appareil.chargeur == 1 %}
                         <td> <img  class='check' src="{{asset('/images/check.png')}}" width="40px" /></td>
                         {% else %}
