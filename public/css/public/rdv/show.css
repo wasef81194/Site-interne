@@ -1,6 +1,23 @@
 @media screen and (max-width: 1000px)
 {
-    .cardRdvclient{
-        font-size: 25px !important;
+    .responsive-btn{
+        font-size: 50px !important;
+        float: none !important;
     }
+    .card.cardRdv.cardRdvclient{
+        font-size: 35px !important;
+    }
+    .cardRdvclient .card-title{
+        font-size: 50px !important;
+    }
+    .cardRdvclient .card-footer{
+        font-size: 50px !important
+    }
+    .title-name {
+        margin-top: 100px;
+    }
+    .inline-button{
+       margin : auto;
+    }
+    
 }

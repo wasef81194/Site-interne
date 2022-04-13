@@ -55,7 +55,7 @@
                         {% else %}
                         <td>  </td>
                         {% endif %}
-                        <td class="td-button">
+                        <td>
                             <a class="btn btn-success btn-sm"href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('/images/icon-afficher.png')}}"/></a>
                             <a class="btn btn-secondary btn-sm"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('/images/icon-edit.png')}}"/></a>
                             <a class="btn btn-info btn-sm" href="{{ path('client_clone', {'id': client.id}) }}"><img class="cloner" width='25px' src="{{asset('/images/icon-cloner.png')}}"/></a>
