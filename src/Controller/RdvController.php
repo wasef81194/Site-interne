@@ -179,7 +179,7 @@ class RdvController extends AbstractController
     }
     
     /**
-     * @Route("/public/confirmer/{id}/client", name="app_rdv_confirmer_client", methods={"POST"})
+     * @Route("/public/confirmer/{id}", name="app_rdv_confirmer_client", methods={"POST"})
      */
     public function confirmationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -189,7 +189,7 @@ class RdvController extends AbstractController
     }
 
     /**
-     * @Route("/public/client/{id}/edit/date", name="app_rdv_edit_date_client", methods={"POST"})
+     * @Route("/public/{id}/edit/date", name="app_rdv_edit_date_client", methods={"POST"})
      */
     public function suggestionDateClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
@@ -200,7 +200,7 @@ class RdvController extends AbstractController
         return $this->redirectToRoute('app_rdv_mail', ['id'=>$rdv->getId()], Response::HTTP_SEE_OTHER);
     }
     /**
-     * @Route("/public/annuler/{id}/client", name="app_rdv_annuler_client", methods={"POST"})
+     * @Route("/public/annuler/{id}", name="app_rdv_annuler_client", methods={"POST"})
      */
     public function annulationClient(Request $request, Rdv $rdv, RdvRepository $rdvRepository): Response
     {
