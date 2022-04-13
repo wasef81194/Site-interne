@@ -1,9 +1,5 @@
 @media screen and (max-width: 1000px)
 {
-    .responsive-btn{
-        font-size: 50px !important;
-        float: none !important;
-    }
     .card.cardRdv.cardRdvclient{
         font-size: 35px !important;
     }
@@ -18,6 +14,10 @@
     }
     .inline-button{
        margin : auto;
+    }
+    .responsive-btn{
+        font-size: 50px !important;
+        float: none !important;
     }
     
 }
