@@ -264,9 +264,6 @@
     "setasign/fpdi": {
         "version": "v2.3.6"
     },
-    "swiftmailer/swiftmailer": {
-        "version": "v6.3.0"
-    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -574,20 +571,6 @@
     },
     "symfony/string": {
         "version": "v5.3.7"
-    },
-    "symfony/swiftmailer-bundle": {
-        "version": "3.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.5",
-            "ref": "f0b2fccdca2dfd97dc2fd5ad216d5e27c4f895ac"
-        },
-        "files": [
-            "./config/packages/test/swiftmailer.yaml",
-            "./config/packages/swiftmailer.yaml",
-            "./config/packages/dev/swiftmailer.yaml"
-        ]
     },
     "symfony/translation": {
         "version": "5.3",

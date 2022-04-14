@@ -33,6 +33,9 @@ use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Loader\ArrayLoader;
+use Symfony\Component\Intl\Countries;
+
+//\Locale::setDefault('fr');
 date_default_timezone_set('Europe/Paris');
 /**
  * @Route("/client")
