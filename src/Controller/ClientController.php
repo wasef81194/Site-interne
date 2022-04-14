@@ -84,7 +84,7 @@ class ClientController extends AbstractController
             'August'=>'Août',
             'September'=>'Septembre',
             'October'=>'Octobre',
-            'November'=>'Novembre',
+            'November'=>'Novembre', 
             'December'=>'Décembre',
         ], 'fr_FR');
         
