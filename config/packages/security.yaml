@@ -54,6 +54,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: /client, roles: ROLE_USER }
+        - { path: /suivie, roles: ROLE_USER }
         - { path: /appareil, roles: ROLE_USER }
         - { path: /appel/interne, roles: ROLE_USER }
         - { path: /appel/public, roles: PUBLIC_ACCESS }
