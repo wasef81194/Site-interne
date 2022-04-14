@@ -32,7 +32,7 @@
                     {% else %}
                         <tr class='tr_color  select'>
                     {% endif %}
-                        <td>{{ client.date|date('D d M Y H:i:s')|format_datetime('full',locale='fr') }}</td>
+                        <td>{{ client.date|date('D d M Y H:i')|format_datetime('full',locale='fr') }}</td>
                         <td>{{ client.personne }}</td>
                         <td>{{ client.nom }}</td>
                         <td>{{ client.prenom }}</td>

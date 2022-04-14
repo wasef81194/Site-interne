@@ -31,7 +31,7 @@
                     {% else %}
                         <tr class='tr_color  select'>
                     {% endif %}
-                         <td>{{ prioritaire.appareil.client.date|date('d-m-Y H:i:s ') }}</td>
+                         <td>{{ prioritaire.appareil.client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}</td>
                          <td>{{ prioritaire.appareil.client.personne }}</td>
                         <td>{{ prioritaire.appareil.client.nom }}</td>
                         <td>{{ prioritaire.appareil.client.prenom }}</td>

@@ -7,7 +7,7 @@
 {{ adresse }} {{cp}}
 </p>
 <p style="display: inline;">
- Le : <div style="font-size : 21 ; font-weight : bold; color : red;  display: inline;"> {{date|date('d-m-Y  H:i') }}</div>  
+ Le : <div style="font-size : 21 ; font-weight : bold; color : red;  display: inline;"> {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr') }}</div>  
 </p>
 
 <p>

@@ -56,7 +56,7 @@
                             <p class="card-text">{{ rdv.message|capitalize }}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            {{  rdv.date|date('d F Y  H:i') }}
+                            {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
                             {% if rdv.confirmer == 2 or rdv.confirmer == 4 %}
                             <div class="inline-button">
                                     {{ include('rdv/client/confirmation_client_form.html.twig') }} 
