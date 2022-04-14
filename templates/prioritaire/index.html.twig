@@ -17,8 +17,6 @@
                         <th>Télephone</th>
                         <th>Marque</th>
                         <th>Modele</th>
-                        <th>Numero de serie</th>
-                        <th>Mot de passe</th>
                         <th>Chargeur</th>
                         <th>Etat</th>
                         <th>Actions</th>
@@ -40,8 +38,6 @@
                         <td>{{ prioritaire.appareil.client.tel }} </td>
                         <td>{{ prioritaire.appareil.marque }} </td>
                         <td>{{ prioritaire.appareil.modele }} </td>
-                        <td>{{ prioritaire.appareil.ns }} </td>
-                        <td>{{ prioritaire.appareil.mdp }} </td>
                         {% if prioritaire.appareil.chargeur == 1 %}
                         <td> <img  class='check' src="{{asset('./images/check.png')}}"/></td>
                         {% else %}
@@ -55,12 +51,12 @@
                         <td class="td-button">
                             {{ include('prioritaire/_delete_form.html.twig') }}
                             
-                            <a class="btn btn-success btn-lg"href="{{ path('client_show', {'id': prioritaire.appareil.client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
+                            <a class="btn btn-success btn"href="{{ path('client_show', {'id': prioritaire.appareil.client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
                         </td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="12" class='white'>En attente de clients...</td>
+                        <td colspan="12" class='white'>En attente de clients prioritaire...</td>
                     </tr>
                     {% endfor %}
                 </tbody>
