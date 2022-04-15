@@ -2,15 +2,5 @@
 <p>Bonjour, {{nom}} {{prenom}} </p>
 <p>
 Nous avons bien reçu votre annulation d'intervention à l'adresse : {{ adresse }}. Si vous souhaitez reprendre un <a href="https://site-interne.alwaysdata.net/rdv/public/{{id}}" target="_blank">rendez-vous</a> n'hésitez pas à solliciter notre équipe.
-</p>
---------------------------------
-</p>
-<p>
-AZERTY Solutions Informatiques
-</p>
-<p>
-38 rue de la station 95130, Franconville
-</p>
-<p>
-01.34.15.52.32
-</p>
+
+{% include 'emails/layout/footer.html.twig' %}
