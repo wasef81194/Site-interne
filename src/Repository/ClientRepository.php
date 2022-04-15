@@ -37,6 +37,42 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findClientsMonth($janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
+    {
+        
+        return $this->createQueryBuilder('client')
+            ->orWhere("MONTH(client.date) = :janvier")
+            ->setParameter(':janvier', $janvier)
+            ->orWhere("MONTH(client.date) = :fevrier")
+            ->setParameter(':fevrier', $fevrier)
+            ->orWhere("MONTH(client.date) = :mars")
+            ->setParameter(':mars', $mars)
+            ->orWhere("MONTH(client.date) = :avril")
+            ->setParameter(':avril', $avril)
+            ->orWhere("MONTH(client.date) = :mai")
+            ->setParameter(':mai', $mai)
+            ->orWhere("MONTH(client.date) = :juin")
+            ->setParameter(':juin', $juin)
+            ->orWhere("MONTH(client.date) = :juillet")
+            ->setParameter(':juillet', $juillet)
+            ->orWhere("MONTH(client.date) = :aout")
+            ->setParameter(':aout', $aout)
+            ->orWhere("MONTH(client.date) = :septembre")
+            ->setParameter(':septembre', $septembre)
+            ->orWhere("MONTH(client.date) = :octobre")
+            ->setParameter(':octobre', $octobre)
+            ->orWhere("MONTH(client.date) = :novembre")
+            ->setParameter(':novembre', $novembre)
+            ->orWhere("MONTH(client.date) = :decembre")
+            ->setParameter(':decembre', $decembre)
+            ->getQuery()
+            ->getResult()
+        ;
+        
+        
+            
+    }
+
     /*public function getCommentPaginator(Client $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')

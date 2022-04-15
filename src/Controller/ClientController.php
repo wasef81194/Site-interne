@@ -103,10 +103,31 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
     {
+        $janvier = $request->request->get('janvier');
+        $fevrier = $request->request->get('fevrier');
+        $mars = $request->request->get('mars');
+        $avril = $request->request->get('avril');
+        $mai = $request->request->get('mai');
+        $juin = $request->request->get('juin');
+        $juillet = $request->request->get('juillet');
+        $aout = $request->request->get('aout');
+        $septembre = $request->request->get('septembre');
+        $octobre = $request->request->get('octobre');
+        $novembre = $request->request->get('novembre');
+        $decembre = $request->request->get('decembre'); 
+        
+        $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
+        $cheked = 'Cheked';
+        foreach ($months as $key => $month) {
+            dump($key,$month);
+           /* $key = $request->request->get($key);
+            dump($key,$month);
+            $key.$cheked = $key!=null ? 'checked' : '';*/
+        }
         return $this->render('client/show_all.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clientRepository->findClientsMonth($janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre),
             'appareils' => $appareilRepository->findAll(),
         ]);
     }
