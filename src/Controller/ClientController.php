@@ -117,7 +117,7 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-        if (!$clientRepository->findClientsMonth($janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre)){
+        if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
             $clients =  $clientRepository->findAll();
         }
         else{
@@ -254,6 +254,7 @@ class ClientController extends AbstractController
         ->replyTo('contact@azertyfrance.fr')
         //->priority(Email::PRIORITY_HIGH)
         ->embedFromPath('../public/images/mail/asi.png', 'asi')
+        ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
         ->embedFromPath($path, 'etat')
         ->subject('Etat de votre appareil')
         ->htmlTemplate('emails/mailEtat.html.twig')
