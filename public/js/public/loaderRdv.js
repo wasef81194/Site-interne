@@ -1,8 +1,6 @@
 $(document).ready(function(){
     $('.formRdv').ready(function () {
-        console.log('ready');
-        $('#loadingRdv').hide();
-        console.log('loding hide');		
+        $('#loadingRdv').hide();	
     });
 	$(".formRdv").submit(function(){
 		$('#loadingRdv').show();
@@ -11,7 +9,6 @@ $(document).ready(function(){
     });
     var sucess = document.getElementById("sucessRdv");
     if(sucess){
-        console.log(sucess);
         $('.formRdv').hide();
         $('#sucess').hide();
         $('#loadingRdv').show();

@@ -3,7 +3,6 @@ function redirection() {
 }
 $(document).ready(function(){
     $('.form').ready(function () {
-        //console.log('ready');
         $('#loadingDepot').hide();	
     });
 	$(".form").submit(function(){
@@ -13,7 +12,6 @@ $(document).ready(function(){
     });
     var sucess = document.getElementById("sucess");
     if(sucess){
-        console.log(sucess);
         $('.cacher').hide();
         $('#sucess').show();
         setTimeout(redirection, 6000);

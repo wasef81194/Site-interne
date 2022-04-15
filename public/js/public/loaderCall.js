@@ -1,8 +1,6 @@
 $(document).ready(function(){
     $('.formCall').ready(function () {
-        console.log('ready');
-        $('#loadingCall').hide();
-        console.log('loding hide');		
+        $('#loadingCall').hide();		
     });
 	$(".formCall").submit(function(){
 		$('#loadingCall').show();
@@ -11,7 +9,6 @@ $(document).ready(function(){
     });
     var sucess = document.getElementById("sucessCall");
     if(sucess){
-        console.log(sucess);
         $('.formCall').hide();
         $('#sucess').hide();
         $('#loadingCall').show();

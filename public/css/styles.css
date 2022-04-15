@@ -10,8 +10,6 @@
 		/*alert*/
 		@import url("interne/alert/alert.css");
 	/*appel*/
-		/*new*/
-		@import url("interne/appel/new.css");
 		/*index*/
 		@import url("interne/appel/index.css");
 	/*rdv*/
@@ -24,7 +22,7 @@
 	/*checkmaker*/
 	@import url("public/checkmaker.css");
 	/*depot*/
-	@import url("public/depot.scss");
+	@import url("public/depot.css");
 	/*appel*/
 	@import url("public/appel/new.css");
 	/*rdv*/

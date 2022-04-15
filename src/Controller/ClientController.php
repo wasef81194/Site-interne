@@ -117,18 +117,23 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-        
-        $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
-        $cheked = 'Cheked';
-        foreach ($months as $key => $month) {
-            dump($key,$month);
-           /* $key = $request->request->get($key);
-            dump($key,$month);
-            $key.$cheked = $key!=null ? 'checked' : '';*/
+        if (!$clientRepository->findClientsMonth($janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre)){
+            $clients =  $clientRepository->findAll();
         }
+        else{
+            $clients = $clientRepository->findClientsMonth($janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+        }
+        $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
+        $chekeds = [];
+        foreach ($months as $key => $month) {
+            $cheked =$months[$key]!=null ? 'checked' : '';
+            $chekeds[$key] = $cheked;
+        }
+        //dump($chekeds);
         return $this->render('client/show_all.html.twig', [
-            'clients' => $clientRepository->findClientsMonth($janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre),
+            'clients' =>  $clients ,
             'appareils' => $appareilRepository->findAll(),
+            'checkds' => $chekeds
         ]);
     }
 
