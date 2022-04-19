@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Entity\Editeur;
+use App\Entity\Etat;
 
 use App\Form\FormClientType;
 use App\Repository\ClientRepository;
@@ -103,8 +104,9 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    public function show_all(Request $request, EtatRepository $etatRepository, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
     {
+        dump($etatRepository->findAll());
         $years = [];
         $yearsRequest = [];
         $maxYear = $clientRepository->findMaxYears();
@@ -157,6 +159,7 @@ class ClientController extends AbstractController
             'checkds' => $chekeds,
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
+            'etats'=>$etatRepository->findAll()
         ]);
     }
 

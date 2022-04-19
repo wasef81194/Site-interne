@@ -19,13 +19,13 @@ class EtatRepository extends ServiceEntityRepository
         parent::__construct($registry, Etat::class);
     }
     // /**
-    //  * @return Etat[] Returns an array of Etat objects
+    //  * @return Etat[] all statuts of the table etat Returns an array of Etat objects
     //  */
     
-    public function findMinYears()
+    public function findAllStatuts()
     {
-        return $this->createQueryBuilder('client')
-            ->select('client, MIN(YEAR(client.date))')
+        return $this->createQueryBuilder('etat')
+            ->select('etat, etat.statut')
             ->getQuery()
             ->getResult()
         ;
