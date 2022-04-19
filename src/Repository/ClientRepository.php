@@ -37,7 +37,7 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findClientsMonth($janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
+    public function findClientsMonth($year = null, $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
     {
         
         return $this->createQueryBuilder('client')
@@ -65,6 +65,8 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':novembre', $novembre)
             ->orWhere("MONTH(client.date) = :decembre")
             ->setParameter(':decembre', $decembre)
+            ->andWhere("YEAR(client.date) = :year")
+            ->setParameter(':year', $year)
             ->getQuery()
             ->getResult()
         ;
@@ -72,7 +74,32 @@ class ClientRepository extends ServiceEntityRepository
         
             
     }
-
+    //SELECT MAX(YEAR(`date`)) FROM `client`
+    public function findMaxYears()
+    {
+        return $this->createQueryBuilder('client')
+            ->select('client, MAX(YEAR(client.date))')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findMinYears()
+    {
+        return $this->createQueryBuilder('client')
+            ->select('client, MIN(YEAR(client.date))')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findClientsYear($year)
+    {
+        return $this->createQueryBuilder('client')
+            ->orWhere("YEAR(client.date) = :year")
+            ->setParameter(':year', $year)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     /*public function getCommentPaginator(Client $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')

@@ -1,6 +1,8 @@
-$(document).ready(function(){
+
+$(document).ready(function(){	
     $('.formCall').ready(function () {
-        $('.loaderAllClients').hide();	
+        console.log('hide');
+        $('.loaderAllClients').hide();
         $('.allClients').show();	
     });
     //$(document).on('change', '#janvier,#fevrier,#mars,#avril,#mai,#juin,#juillet,#aout,#septembre,#octobre,#novembre,#decembre', function(){
