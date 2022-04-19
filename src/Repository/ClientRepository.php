@@ -37,7 +37,7 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findClientsMonth($year = null, $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
+    public function findClientsMonth($year = null , $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
     {
         
         return $this->createQueryBuilder('client')
@@ -65,7 +65,7 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':novembre', $novembre)
             ->orWhere("MONTH(client.date) = :decembre")
             ->setParameter(':decembre', $decembre)
-            ->andWhere("YEAR(client.date) = :year")
+            ->orWhere("YEAR(client.date) = :year")
             ->setParameter(':year', $year)
             ->getQuery()
             ->getResult()

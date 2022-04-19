@@ -65,10 +65,16 @@
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
             {% for year in years %}
-            <div>
-                <input type="checkbox" id="{{year}}" name="{{year}}"  value="{{year}}" >
-                <label for="{{year}}">{{year}}</label>
-            </div>
+                {% set checkedY = '' %}
+                {% for check in yearsCheckds %}
+                    {% if year == check %}
+                        {% set checkedY = 'checked' %}
+                    {% endif %}
+                {% endfor %}
+                <div>
+                    <input type="checkbox" id="{{year}}" name="{{year}}"  value="{{year}}" {{checkedY}}>
+                    <label for="{{year}}">{{year}}</label>
+                </div>
             {% endfor %}
             </div>
         </div>

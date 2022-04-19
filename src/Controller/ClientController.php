@@ -106,8 +106,10 @@ class ClientController extends AbstractController
     public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
     {
         $years = [];
+        $yearsRequest = [];
         $maxYear = $clientRepository->findMaxYears();
         $minYear = $clientRepository->findMaxYears();
+        $clients = []; 
 
         $janvier = $request->request->get('janvier');
         $fevrier = $request->request->get('fevrier');
@@ -123,14 +125,23 @@ class ClientController extends AbstractController
         $decembre = $request->request->get('decembre'); 
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
-           dump($request->request->get($i));
+            if($request->request->get($i)){
+                array_push($yearsRequest,$request->request->get($i));
+            }
         }
         //********************Mois************ */
-        if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
+        if ( count($yearsRequest)==0 && !$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
             $clients =  $clientRepository->findAll();
         }
         else{
-            $clients = $clientRepository->findClientsMonth(2022,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+            if ( count($yearsRequest)==0) {
+                $clients = $clientRepository->findClientsMonth(null,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+            }
+            else {
+                foreach ($yearsRequest as  $yearRequest) {
+                    $clients += $clientRepository->findClientsMonth($yearRequest,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+                }
+            }
         }
         $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
         $chekeds = [];
@@ -138,16 +149,14 @@ class ClientController extends AbstractController
             $cheked =$months[$key]!=null ? 'checked' : '';
             $chekeds[$key] = $cheked;
         }
-        //********************Annee***********************
         
-        
-        dump( $request->request->get('year'));
         //dump($clientRepository->findMaxYears(),$clientRepository->findMinYears());
         return $this->render('client/show_all.html.twig', [
             'clients' =>  $clients ,
             'appareils' => $appareilRepository->findAll(),
             'checkds' => $chekeds,
             'years' =>$years,
+            'yearsCheckds' =>$yearsRequest,
         ]);
     }
 
