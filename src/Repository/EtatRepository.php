@@ -18,11 +18,6 @@ class EtatRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Etat::class);
     }
-    // /**
-    //  * @return Etat[] all statuts of the table etat Returns an array of Etat objects
-    //  */
-    
-    
 
     // /**
     //  * @return Etat[] Returns an array of Etat objects

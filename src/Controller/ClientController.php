@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Entity\Editeur;
-use App\Entity\Etat;
 
 use App\Form\FormClientType;
 use App\Repository\ClientRepository;
@@ -24,7 +23,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Repository\EtatRepository;
 use App\Repository\UserRepository;
-use App\Repository\EditeurRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -105,16 +103,14 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, EditeurRepository $editeurRepository, EtatRepository $etatRepository, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
     {
-        //dump($editeurRepository->findStatuts('Prêt à être récupéré'));
         $years = [];
         $yearsRequest = [];
-        $statutsRequest = [];
         $maxYear = $clientRepository->findMaxYears();
         $minYear = $clientRepository->findMaxYears();
         $clients = []; 
-        /************* MONTH *********************** */
+
         $janvier = $request->request->get('janvier');
         $fevrier = $request->request->get('fevrier');
         $mars = $request->request->get('mars');
@@ -127,15 +123,6 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-
-        $etats = $etatRepository->findAll();
-        /*********************STATUTS************************ */
-        for ($i=0; $i < count( $etats) ; $i++) { 
-           // dump( $etats[$i]->getStatut());
-           array_push($statutsRequest,$request->request->get($etats[$i]->getStatut()));
-           dump($request->request->get($i));
-           
-        }
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
             if($request->request->get($i)){
@@ -152,7 +139,6 @@ class ClientController extends AbstractController
             }
             else {
                 foreach ($yearsRequest as  $yearRequest) {
-                    dump($yearRequest);
                     $clients += $clientRepository->findClientsMonth($yearRequest,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
                 }
             }
@@ -171,7 +157,6 @@ class ClientController extends AbstractController
             'checkds' => $chekeds,
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
-            'etats'=>$etatRepository->findAll()
         ]);
     }
 

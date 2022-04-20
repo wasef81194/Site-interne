@@ -19,7 +19,6 @@ class EditeurRepository extends ServiceEntityRepository
         parent::__construct($registry, Editeur::class);
     }
 
-    
     // /**
     //  * @return Editeur[] Returns an array of Editeur objects
     //  */

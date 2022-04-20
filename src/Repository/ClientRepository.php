@@ -36,9 +36,7 @@ class ClientRepository extends ServiceEntityRepository
         ->getResult()
         ;
     }
-    // /**
-    //  * @return client[] par rapport au mois et l'année 
-    //  */
+
     public function findClientsMonth($year = null , $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
     {
         
@@ -69,20 +67,14 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':decembre', $decembre)
             ->orWhere("YEAR(client.date) = :year")
             ->setParameter(':year', $year)
-            ->Join('client.appareil', 'appareil')
-            ->Join('appareil.editeur', 'editeur')
-            ->Join('editeur.etat', 'etat')
-            ->andWhere("etat.statut = :statut")
-            ->setParameter(':statut','Prêt à être récupéré')
             ->getQuery()
             ->getResult()
         ;
+        
+        
             
     }
     //SELECT MAX(YEAR(`date`)) FROM `client`
-    // /**
-    //  * @return client[] par rapport au mois maximum inscrit dans la bdd 
-    //  */
     public function findMaxYears()
     {
         return $this->createQueryBuilder('client')
@@ -91,9 +83,6 @@ class ClientRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    // /**
-    //  * @return client[] par rapport au mois minimum inscrit dans la bdd 
-    //  */
     public function findMinYears()
     {
         return $this->createQueryBuilder('client')
@@ -101,7 +90,7 @@ class ClientRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }/*
+    }
     public function findClientsYear($year)
     {
         return $this->createQueryBuilder('client')
@@ -110,7 +99,7 @@ class ClientRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }*/
+    }
     /*public function getCommentPaginator(Client $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')
