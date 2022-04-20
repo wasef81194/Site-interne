@@ -69,11 +69,14 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':decembre', $decembre)
             ->orWhere("YEAR(client.date) = :year")
             ->setParameter(':year', $year)
+            ->Join('client.appareil', 'appareil')
+            ->Join('appareil.editeur', 'editeur')
+            ->Join('editeur.etat', 'etat')
+            ->andWhere("etat.statut = :statut")
+            ->setParameter(':statut','Prêt à être récupéré')
             ->getQuery()
             ->getResult()
         ;
-        
-        
             
     }
     //SELECT MAX(YEAR(`date`)) FROM `client`

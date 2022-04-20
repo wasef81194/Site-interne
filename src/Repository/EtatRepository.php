@@ -22,14 +22,8 @@ class EtatRepository extends ServiceEntityRepository
     //  * @return Etat[] all statuts of the table etat Returns an array of Etat objects
     //  */
     
-    public function findAllStatuts()
-    {
-        return $this->createQueryBuilder('etat')
-            ->select('etat, etat.statut')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    
+
     // /**
     //  * @return Etat[] Returns an array of Etat objects
     //  */

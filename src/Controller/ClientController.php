@@ -24,6 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Repository\EtatRepository;
 use App\Repository\UserRepository;
+use App\Repository\EditeurRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -104,9 +105,9 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, EtatRepository $etatRepository, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    public function show_all(Request $request, EditeurRepository $editeurRepository, EtatRepository $etatRepository, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
     {
-        dump($etatRepository->findAll());
+        //dump($editeurRepository->findStatuts('Prêt à être récupéré'));
         $years = [];
         $yearsRequest = [];
         $maxYear = $clientRepository->findMaxYears();
@@ -141,6 +142,7 @@ class ClientController extends AbstractController
             }
             else {
                 foreach ($yearsRequest as  $yearRequest) {
+                    dump($yearRequest);
                     $clients += $clientRepository->findClientsMonth($yearRequest,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
                 }
             }
