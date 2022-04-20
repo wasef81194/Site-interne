@@ -130,8 +130,16 @@ class ClientController extends AbstractController
             }
         }
         //********************Mois************ */
-        if ( count($yearsRequest)==0 && !$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
-            $clients =  $clientRepository->findAll();
+        if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
+            
+            if (count($yearsRequest)==0 ) {
+                $clients =  $clientRepository->findAll();
+            }
+            else{
+                foreach ($yearsRequest as  $yearRequest) {
+                    $clients += $clientRepository->findClientsYear($yearRequest);
+                }
+            }
         }
         else{
             if ( count($yearsRequest)==0) {

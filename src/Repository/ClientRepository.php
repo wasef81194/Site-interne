@@ -65,7 +65,7 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':novembre', $novembre)
             ->orWhere("MONTH(client.date) = :decembre")
             ->setParameter(':decembre', $decembre)
-            ->orWhere("YEAR(client.date) = :year")
+            ->andWhere("YEAR(client.date) = :year")
             ->setParameter(':year', $year)
             ->getQuery()
             ->getResult()
