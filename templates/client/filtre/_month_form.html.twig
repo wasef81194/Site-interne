@@ -89,12 +89,12 @@
             {% for etat in etats %}
                 {% if etat.statut == '' %}
                     <div>
-                        <input type="checkbox" id="{{etat.statut}}" name="{{etat.statut}}"  value="{{etat.statut}}">
+                        <input type="checkbox" id="{{etat.statut}}" name="{{ loop.index0 }}"  value="{{etat.statut}}">
                         <label for="{{etat.statut}}">Sans statut</label>
                     </div>
                 {% else %}
                 <div>
-                    <input type="checkbox" id="{{etat.statut}}" name="{{etat.statut}}"  value="{{etat.statut}}">
+                    <input type="checkbox" id="{{etat.statut}}" name="{{ loop.index0 }}"  value="{{etat.statut}}">
                     <label for="{{etat.statut}}">{{etat.statut}}</label>
                 </div>
                 {% endif %}

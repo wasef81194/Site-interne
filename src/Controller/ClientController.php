@@ -110,10 +110,11 @@ class ClientController extends AbstractController
         //dump($editeurRepository->findStatuts('Prêt à être récupéré'));
         $years = [];
         $yearsRequest = [];
+        $statutsRequest = [];
         $maxYear = $clientRepository->findMaxYears();
         $minYear = $clientRepository->findMaxYears();
         $clients = []; 
-
+        /************* MONTH *********************** */
         $janvier = $request->request->get('janvier');
         $fevrier = $request->request->get('fevrier');
         $mars = $request->request->get('mars');
@@ -126,6 +127,15 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
+
+        $etats = $etatRepository->findAll();
+        /*********************STATUTS************************ */
+        for ($i=0; $i < count( $etats) ; $i++) { 
+           // dump( $etats[$i]->getStatut());
+           array_push($statutsRequest,$request->request->get($etats[$i]->getStatut()));
+           dump($request->request->get($i));
+           
+        }
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
             if($request->request->get($i)){
