@@ -1,0 +1,90 @@
+<form method="post" action="{{ path('client_show_all')}}" id="filtreMonth">
+<div class="accordion accordion-flush" id="accordionFlushExample">
+<div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Mois
+        </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div>
+                    <input type="checkbox" id="janvier" name="janvier"  value="01" {{checkds['janvier']}}>
+                    <label for="janvier">Janvier</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="fevrier" name="fevrier"  value="02" {{checkds['fevrier']}}>
+                    <label for="fevrier">Février</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="mars" name="mars"  value="03" {{checkds['mars']}}>
+                    <label for="mars">Mars</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="avril" name="avril"  value="04" {{checkds['avril']}}>
+                    <label for="avril">Avril</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="mai" name="mai"  value="05" {{checkds['mai']}}>
+                    <label for="mai">Mai</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="juin" name="juin"  value="06" {{checkds['juin']}}>
+                    <label for="juin">Juin</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="juillet" name="juillet"  value="07" {{checkds['juillet']}}>
+                    <label for="avril">Juillet</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="aout" name="aout"  value="08" {{checkds['aout']}}>
+                    <label for="aout">Août</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="septembre" name="septembre"  value="09" {{checkds['septembre']}}>
+                    <label for="septembre">Septembre</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="octobre" name="octobre"  value="10" {{checkds['octobre']}}>
+                    <label for="octobre">Octobre</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="novembre" name="novembre"  value="11" {{checkds['novembre']}}>
+                    <label for="novembre">Novembrbe</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="decembre" name="decembre"  value="12" {{checkds['decembre']}}>
+                    <label for="decembre">Décembre</label>
+                </div>
+            </div>
+        </div>
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Années
+        </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+            {% for year in years %}
+                {% set checkedY = '' %}
+                {% for check in yearsCheckds %}
+                    {% if year == check %}
+                        {% set checkedY = 'checked' %}
+                    {% endif %}
+                {% endfor %}
+                <div>
+                    <input type="checkbox" id="{{year}}" name="{{year}}"  value="{{year}}" {{checkedY}}>
+                    <label for="{{year}}">{{year}}</label>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+    
+        <div class="center mt-4">
+            <button class="btn btn-primary m-auto"> Valider</button>
+        </div>
+        
+    </form>
