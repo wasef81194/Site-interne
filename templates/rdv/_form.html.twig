@@ -32,15 +32,15 @@
 </div>
 <div class="grix">
     <div class="form-field">
-    {#<input  class="form-control" type="datetime-local" name="datetime"> "datetime", "datetime_immutable", "string", "timestamp", "array".#}
-        <div class="gray"> {{form_label(form.date)}} </div>
-        {{form_widget(form.date , { 'attr': { 'id':'date', 'class': 'form-control' } })}}
+        {{form_widget(form.date , { 'attr': {  'class' : 'form-control rounded-1 required','id':'date' } })}}
+        <label for="date">Date de l'intervention *</label>
     </div>
 </div>
 <div class="grix">
     <div class="form-field">
         {{form_widget(form.message , { 'attr': {  'class' : 'form-control rounded-1', 'id':'message' } })}}
         <label for="message">Raison de l'intervention*</label>
+        
     </div>
 </div>
 
