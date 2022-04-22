@@ -1,6 +1,6 @@
 <h3>Annulation d'intervention à domicile</h3>
 <p>Bonjour, {{nom}} {{prenom}} </p>
 <p>
-Nous avons bien reçu votre annulation d'intervention à l'adresse : {{ adresse }}. Si vous souhaitez reprendre un <a href="https://site-interne.alwaysdata.net/rdv/public/{{id}}" target="_blank">rendez-vous</a> n'hésitez pas à solliciter notre équipe.
+Nous avons bien reçu votre annulation d'intervention à l'adresse : {{ adresse }}. Si vous souhaitez reprendre un {% include 'emails/layout/link.html.twig' %} rendez-vous</a> n'hésitez pas à solliciter notre équipe.
 
 {% include 'emails/layout/footer.html.twig' %}

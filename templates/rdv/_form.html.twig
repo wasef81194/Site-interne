@@ -32,8 +32,9 @@
 </div>
 <div class="grix">
     <div class="form-field">
+    {#<input  class="form-control" type="datetime-local" name="datetime"> "datetime", "datetime_immutable", "string", "timestamp", "array".#}
         <div class="gray"> {{form_label(form.date)}} </div>
-        {{form_widget(form.date , { 'attr': { 'id':'date' } })}}
+        {{form_widget(form.date , { 'attr': { 'id':'date', 'class': 'form-control' } })}}
     </div>
 </div>
 <div class="grix">

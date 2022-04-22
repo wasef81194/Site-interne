@@ -37,6 +37,7 @@ class RdvType extends AbstractType
                 'required' => true
                 ])
             ->add('date',DateTimeType::class,[
+                'input'=>'timestamp',
                 'label'=> 'Date d\'intervention à domicile*',
                 'attr'=>[
                     'class'=>'gray'
