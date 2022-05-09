@@ -1,0 +1,9 @@
+include("./interne/completedRdv.js");
+include("./interne/completedCall.js");
+include("./public/loaderRdv.js");
+include("./public/loaderCall.js");
+include("./public/loader.js");
+include("./interne/alert.js");
+include("./interne/filtreMonth.js");
+include("./interne/statut-appareil.js");
+include("./interne/retour.js");

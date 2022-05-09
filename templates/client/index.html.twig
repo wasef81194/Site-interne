@@ -4,8 +4,6 @@
 
 {% block body %}
     {% include 'layout/navbar.html.twig' %}
-  
-
         <div class="container mb-100">
             <h1>Clients {{titleMonth}} {{year}} <i class="fa fa-whatsapp" aria-hidden="true"></i>
             </h1>
@@ -31,9 +29,10 @@
                 {% for client in clients | sort((a, b) => b.date <=> a.date) %}
                     {% set counter = ( counter | default(0) ) + 1 %}
                     {% if counter % 2 %}
-                        <tr class='tr_no_color select'>
+                        <tr class='ligne_client tr_no_color select'>
                     {% else %}
-                        <tr class='tr_color  select'>
+                    {#client_livrate#}
+                        <tr class='ligne_client tr_color select'>
                     {% endif %}
                         <td>{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
                         <td>{{ client.personne }}</td>
@@ -48,7 +47,9 @@
                         <td>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" /></td>
                         {% endif %}
                         {% if client.appareil.editeur.etat.statut is defined %}
-                            <td class='statutAppareil'>{{ client.appareil.editeur.etat.statut}}</td>
+                            <td class='statutAppareil'> 
+                                <span class="badge" style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
+                            </td>
                         {% else %}
                         <td>  </td>
                         {% endif %}

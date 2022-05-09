@@ -55,3 +55,12 @@ body{
 	width:180px !important;
 	text-align: right !important;
 }
+.visible{
+	visibility: visible;
+}
+.hidden{
+	visibility: hidden;
+}
+.bg-green{
+	background-color: rgb(4, 119, 33) !important;
+}
