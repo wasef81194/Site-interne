@@ -61,6 +61,24 @@ body{
 .hidden{
 	visibility: hidden;
 }
-.bg-green{
-	background-color: rgb(4, 119, 33) !important;
+.bg-green-dark{
+	background-color: rgb(4, 109, 31) !important;
+}
+.bg-green-light{
+	background-color: rgb(53, 189, 87) !important;
+}
+.bg-yellow-dark{
+	background-color: rgb(206, 203, 21) !important;
+}
+.bg-purple-dark{
+	background-color: #b4842b !important;
+}
+.bg-blue-light{
+	background-color: #199bbb !important;
+}
+.bg-red-light{
+	background-color: #e24b25 !important;
+}
+.black{
+	color:black;
 }

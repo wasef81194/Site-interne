@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Clients{% endblock %}
+{% block stylesheets %}
+            
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+    {#{{ encore_entry_link_tags('app') }}#}
+           
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./images/azerty.jpg')}}">
+{% endblock %}
 {% block body %}
     {% include 'layout/navbar.html.twig' %}
         <div class="container mb-100">
@@ -34,7 +42,7 @@
                     {#client_livrate#}
                         <tr class='ligne_client tr_color select'>
                     {% endif %}
-                        <td>{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
+                        <td class="td-date">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
                         <td>{{ client.personne }}</td>
                         <td>{{ client.nom }}</td>
                         <td>{{ client.prenom }}</td>
@@ -56,7 +64,10 @@
                         <td class="inline-button mw-250">
                             <a class="btn btn-success"href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
                             <a class="btn btn-secondary"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
-                            <a class="btn btn-info" href="{{ path('client_clone', {'id': client.id}) }}"><img class="cloner" width='25px' src="{{asset('./images/icon-cloner.png')}}"/></a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardClient{{client.id}}">
+                                E
+                            </button>
+                            {{ include('client/modal/modal.html.twig') }}
                             {{ include('client/_delete_form.html.twig') }}
                         </td>
                     </tr>
