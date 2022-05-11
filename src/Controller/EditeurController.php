@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Editeur;
+use App\Entity\Client;
 use App\Form\FormEditeur;
 use App\Repository\EditeurRepository;
+use App\Repository\EtatRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,26 +29,32 @@ class EditeurController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="editeur_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="editeur_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Client $client,EtatRepository $etatRepository , UserRepository $userRepository): Response
     {
-        $editeur = new Editeur();
-        $form = $this->createForm(FormEditeur::class, $editeur);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($this->isCsrfTokenValid('editeurChange'.$client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($editeur);
-            $entityManager->flush();
+    
+            $user = $request->request->get('user');
+            $etat =$request->request->get('etat');
+            $mail = $request->request->get('mail');
+            $appareil = $client->getAppareil();
+            $editeur = new Editeur();
+            $editeur->setDate(new \DateTime());
+            $editeur->setUser($userRepository->find($user));
+            $editeur->setEtat($etatRepository->find($etat));
+            $appareil->setEditeur($editeur);
 
-            return $this->redirectToRoute('editeur_index', [], Response::HTTP_SEE_OTHER);
+            $entityManager->persist($appareil);
+            $entityManager->persist($editeur);
+            $entityManager->flush(); 
+            if($mail!=null){
+                return $this->redirectToRoute('client_mail', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
+            }
         }
 
-        return $this->renderForm('editeur/new.html.twig', [
-            'editeur' => $editeur,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);
     }
 
     /**

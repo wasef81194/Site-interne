@@ -43,9 +43,9 @@ date_default_timezone_set('Europe/Paris');
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/index/{month}/{year}/{method}", name="client_index", methods={"GET"})
+     * @Route("/index/{month}/{year}/{method}", name="client_index", methods={"GET","POST"})
      */
-    public function index( $month = null, $year = null , $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository): Response
+    public function index( $month = null, $year = null , $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository, UserRepository $userRepository, EtatRepository $etatRepository): Response
     {
         
         if($month != null && $year != null ){
@@ -92,11 +92,13 @@ class ClientController extends AbstractController
         ], 'fr_FR');
         
 
-        return $this->render('client/index.html.twig', [
+        return $this->renderForm('client/index.html.twig', [
             'clients' => $clientRepository->findClientsFromThisDate($month,$year),
             'appareils' => $appareilRepository->findAll(),
             'month' => $month,
             'year'=>$year,
+            'users'=>$userRepository->findAll(),
+            'etats'=>$etatRepository->findAll(),
             'titleMonth' => $translator->trans($monthLetter)
         ]);
     }
@@ -253,7 +255,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/{id}/mail", name="client_mail",methods={"GET","POST"})
      */
-    public function mail(Client $client, MailerInterface $mailer): Response
+    public function mail(Client $client, MailerInterface $mailer,Request $request ): Response
     {
         $etat = $client->getAppareil()->getEditeur()->getEtat();
         $appareil = $client->getAppareil();
@@ -302,10 +304,10 @@ class ClientController extends AbstractController
             'modele' => $appareil->getModele(),
             'ns' => $appareil->getNs(),
             'etat'=>$etat->getStatut(),
-        ])
-    ;
-    $mailer->send($data);
-    return $this->redirectToRoute('client_show', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
+            ])
+        ;
+        $mailer->send($data);
+        return $this->redirectToRoute('client_show', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
     }
  
     /**

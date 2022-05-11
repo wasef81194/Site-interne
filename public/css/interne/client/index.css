@@ -4,3 +4,24 @@
 .td-date{
    min-width: 100px;
 }
+.show-info-client{
+   font-size: 19px;  
+}
+.modal-img{
+   font-size: 60px; 
+}
+/*.modal .client{
+   top: 30vh !important;
+}*/
+.modal-dialog .client{
+   max-width: 90% !important;
+ }
+.modal-dialog {
+   max-width: 90% !important;
+}
+.modal-text-client{
+   text-align: justify; 
+}
+.jc{
+   justify-content: center;
+}

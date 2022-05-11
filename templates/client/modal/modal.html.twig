@@ -1,13 +1,54 @@
-<div class="modal fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog client">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title black" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
+        <h4 class="modal-title black fs-s" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="modal-img">
-            <i class="bi bi-person-bounding-box"></i>
+        
+        <div class="row black">
+            <div class="col-lg-4">
+                <div class="modal-img">
+                    <i class="bi bi-person-bounding-box black"></i>
+                </div>
+                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Information client</h4>
+                <p class="mt-4"><b>Civilité : </b>{{client.personne}} <p>
+                <p><b>Nom : </b>{{client.nom}}<p>
+                <p><b>Prénom : </b>{{client.prenom}}<p>
+                <p><b>Prénom : </b>{{client.prenom}}<p>
+                <p><b>Mail : </b>{{client.mail}}<p>
+                <p><b>Télephone : </b>{{client.tel}}<p>
+                <p><b>Adresse : </b>{{client.rue}} {{client.ville}} {{client.cp}}<p>
+                
+            </div>
+            <div class="col-lg-4">
+                <div class="modal-img">
+                    <i class="bi bi-pc-display black"></i>
+                </div>
+                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Information de l'appreil</h4>
+                <p class="mt-4"><b>Marque : </b>{{client.appareil.marque}}<p>
+                <p><b>Modele : </b>{{client.appareil.modele}}<p>
+                <p><b>Numéro de serie : </b>{{client.appareil.ns}}<p>
+                <p><b>Chargeur : </b>
+                    {% if client.appareil.chargeur == 1 %}
+                        <img  class='check' src="{{asset('./images/check.png')}}" width="40px" />
+                    {% else %}
+                        <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" />
+                    {% endif %}
+                <p>
+                <p><b>Problème : </b>{{client.appareil.prblm}}<p>
+            </div>
+            <div class="col-lg-4">
+                <div class="modal-img">
+                    <i class="bi bi-wrench-adjustable black"></i>
+                </div>
+                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
+                <p class="mt-4"> <span class="badge" style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span><p>
+                <p><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}<p>
+                <p><b>Par : </b>{{client.appareil.editeur.user.login}}<p>
+                {{include('client/etat/etat_modal.html.twig') }}
+            </div>
         </div>
       </div>
       <div class="modal-footer">
