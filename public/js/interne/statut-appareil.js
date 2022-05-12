@@ -1,14 +1,11 @@
 //page index client
 $(document).ready(function () {
-  //console.log();
-  // var statuts = document.querySelectorAll(".statutAppareil");
   var lignes = document.querySelectorAll(".ligne_client");
   //on récperer toute les lignes du tableau
   for (ligne of lignes) {
     //on recuperer le statut de chaque ligne
-    statut = ligne.childNodes;
+    var statut = ligne.childNodes;
     // Pour chaque statut on lui attrbut une classe
-    console.log(statut[17].childNodes[1].innerText);
     if (statut[17].childNodes[1].innerText == "Livré") {
       ligne.classList.add("completed");
       statut[17].childNodes[1].classList.add("bg-green-dark");
@@ -24,19 +21,44 @@ $(document).ready(function () {
       statut[17].childNodes[1].classList.add("bg-red-light");
     }
   }
+
+  //Envoie du formulaire ChangeStatus
+
+  $(document).on("submit", "#editFormStatut", function (e) {
+    e.preventDefault();
+    ajax_simple(this.action, $(this).serialize());
+  });
+  function ajax_simple(url, formData) {
+    $.ajax({
+      method: "POST",
+      url: url,
+      data: formData,
+      dataType: "HTML",
+    })
+      .done(function (response) {
+        //$(".modal-client").html(response);
+        var split1 = response.split("<div class='pop-up'>");
+        console.log(split1);
+        console.log("done");
+        // $(".modal-client").html(splitResponse);
+      })
+      .fail(function (jxh, textmsg) {
+        console.log(url);
+        console.log(textmsg);
+        console.log(jxh);
+      });
+  }
 });
+
 //page all client
 $(document).ready(function () {
-  //console.log();
-  // var statuts = document.querySelectorAll(".statutAppareil");
   var lignes = document.querySelectorAll(".statutAppareilAll");
   //on récperer toute les lignes du tableau
   for (ligne of lignes) {
-    console.log(ligne);
     //on recuperer le statut de chaque ligne
-    statut = ligne.childNodes;
+    var statut = ligne.childNodes;
     // Pour chaque statut on lui attrbut une classe
-    console.log(statut[1].innerText);
+
     if (statut[1].innerText == "Livré") {
       ligne.parentNode.classList.add("completed");
       statut[1].classList.add("bg-green-dark");

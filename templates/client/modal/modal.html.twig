@@ -1,6 +1,6 @@
-<div class="modal client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal modal-client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog client">
-    <div class="modal-content">
+    <div class="modal-content mt-10">
       <div class="modal-header">
         <h4 class="modal-title fs-s" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -50,7 +50,7 @@
               </div>
             </div>
             <div class="col-lg-4">
-                <div class="card text-white bg-success mb-3">
+                <div class="card text-white bg-success mb-3 card-statut">
                   <div class="card-header card-modal-header-client">
                     <div class="modal-img">
                       <i class="bi bi-wrench-adjustable "></i>
@@ -68,8 +68,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <a class="btn btn-primary" href="{{ path('client_show', {'id': client.id}) }}">Voir plus</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>

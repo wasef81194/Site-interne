@@ -52,6 +52,9 @@ class EditeurController extends AbstractController
             if($mail!=null){
                 return $this->redirectToRoute('client_mail', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
             }
+            else{
+                return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);

@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('editeur_new', {'id': client.id})}}" id="editChange">
+<form method="post" name="stautchange" action="{{ path('editeur_new', {'id': client.id})}}" id="editFormStatut">
     <label for="user">Editeur : </label>
     <select name="user" id="editeur-select">
         {% for user in users %}
@@ -14,5 +14,5 @@
     <label for="mail">Informer le client: </label>
     <input type="checkbox" name="mail">
     <input type="hidden" name="_token" value="{{ csrf_token('editeurChange' ~ client.id) }}">
-    <input type="submit" value="Valider">
+    <button type="submit" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
 </form>
