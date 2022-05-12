@@ -1,69 +1,55 @@
 security:
-    enable_authenticator_manager: true
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-        App\Entity\User:
-            algorithm: auto
-    providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: login
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
-            logout:
-                path: app_logout
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
-   
-                # where to redirect after logout
-                # target: app_any_route
-                # where to redirect after logout
-                # target: app_any_route
-                # where to redirect after logout
-                # target: app_any_route
-                # where to redirect after logout
-                # target: app_any_route
-            
-                # where to redirect after logout
-                # target: app_any_route
-            # form_login:
-                # "login" is the name of the route created previously
-                #login_path: login
-               # check_path: login
-           # custom_authenticator: App\Security\AppCustomAuthenticator
-         #   logout:
-               # path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+  enable_authenticator_manager: true
+  # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
+    App\Entity\User:
+      algorithm: auto
+  providers:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: login
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      lazy: true
+      provider: app_user_provider
+      custom_authenticator: App\Security\UserAuthenticator
+      logout:
+        path: app_logout
+  # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+  # where to redirect after logout
+  # target: app_any_route
+  # where to redirect after logout
+  # target: app_any_route
+  # where to redirect after logout
+  # target: app_any_route
+  # where to redirect after logout
+  # target: app_any_route
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+  # where to redirect after logout
+  # target: app_any_route
+  # form_login:
+  # "login" is the name of the route created previously
+  #login_path: login
+  # check_path: login
+  # custom_authenticator: App\Security\AppCustomAuthenticator
+  #   logout:
+  # path: app_logout
+  # where to redirect after logout
+  # target: app_any_route
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        - { path: /client, roles: ROLE_USER }
-        - { path: /suivie, roles: ROLE_USER }
-        - { path: /appareil, roles: ROLE_USER }
-        - { path: /appel/interne, roles: ROLE_USER }
-        - { path: /appel/public, roles: PUBLIC_ACCESS }
-        - { path: /rdv/interne, roles: ROLE_USER }
-        - { path: /rdv/public/client, roles: PUBLIC_ACCESS }
-        - { path: /editeur, roles: ROLE_USER }
-        - { path: /prioritaire, roles: ROLE_USER }
-        - { path: /tache, roles: ROLE_USER }
-        - { path: /user, roles: ROLE_USER }
-        - { path: /pdf, roles: ROLE_NO_ACCESS }
-        - { path: /email, roles: ROLE_NO_ACCESS }
+  # activate different ways to authenticate
+  # https://symfony.com/doc/current/security.html#the-firewall
 
+  # https://symfony.com/doc/current/security/impersonating_user.html
+  # switch_user: true
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
