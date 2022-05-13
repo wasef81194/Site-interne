@@ -28,3 +28,21 @@ td {
 .gray{
     color: gray;
 }
+.w-85{
+    width: 80% !important;
+}
+.w-15{
+    width: 15% !important;
+}
+.inline-block{
+    display: inline-block !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.text-center{
+    text-align: center !important;
+}
+.blue{
+    color: #4b6bd4;
+}

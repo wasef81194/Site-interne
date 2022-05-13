@@ -8,21 +8,21 @@
       <div class="modal-body">
         
         <div class="row black">
-            <div class="col-lg-4">
+            <div class="col-lg-4 modal-content">
                 <div class="modal-img">
-                    <i class="bi bi-person-bounding-box black"></i>
+                    <i class="bi bi-person-bounding-box blue"></i>
                 </div>
-                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Information client</h4>
+                <h4 class="modal-title black fs-s blue" id="staticBackdropLabel">Information client</h4>
+                
                 <p class="mt-4"><b>Civilité : </b>{{client.personne}} <p>
                 <p><b>Nom : </b>{{client.nom}}<p>
-                <p><b>Prénom : </b>{{client.prenom}}<p>
                 <p><b>Prénom : </b>{{client.prenom}}<p>
                 <p><b>Mail : </b>{{client.mail}}<p>
                 <p><b>Télephone : </b>{{client.tel}}<p>
                 <p><b>Adresse : </b>{{client.rue}} {{client.ville}} {{client.cp}}<p>
                 
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 modal-content">
                 <div class="modal-img">
                     <i class="bi bi-pc-display black"></i>
                 </div>
@@ -39,12 +39,12 @@
                 <p>
                 <p><b>Problème : </b>{{client.appareil.prblm}}<p>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 modal-content">
                 <div class="modal-img">
                     <i class="bi bi-wrench-adjustable black"></i>
                 </div>
                 <h4 class="modal-title black fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
-                <p class="mt-4"> <span class="badge" style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span><p>
+                <p class="mt-4"> <span class="badge badge-modal" style="font-size:16px">{{ client.appareil.editeur.etat.statut}}</span><p>
                 <p><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}<p>
                 <p><b>Par : </b>{{client.appareil.editeur.user.login}}<p>
                 {{include('client/etat/etat_modal.html.twig') }}

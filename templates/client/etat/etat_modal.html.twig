@@ -1,18 +1,28 @@
 <form method="post" action="{{ path('editeur_new', {'id': client.id})}}" id="editChange">
-    <label for="user">Editeur : </label>
-    <select name="user" id="editeur-select">
-        {% for user in users %}
-            <option value={{user.id}}>{{user.login}}</option>
-        {% endfor %}
-    </select>
-    <label for="etat">Etat: </label>
-    <select name="etat" id="etat-select">
-        {% for etat in etats %}
-            <option value={{etat.id}}>{{etat.statut}}</option>
-        {% endfor %}
-    </select>
-    <label for="mail">Informer le client: </label>
-    <input type="checkbox" name="mail">
+    <div class="mb-3">
+        <label for="user" class="form-label w-15">Editeur</label>
+        <select name="user" class="form-select w-85 inline-block" id="editeur-select">
+            {% for user in users %}
+                <option value={{user.id}}>{{user.login}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="etat" class="form-label w-15">Etat</label>
+        <select name="etat" class="form-select w-85 inline-block" id="etat-select">
+            {% for etat in etats %}
+                <option value={{etat.id}}>{{etat.statut}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3 text-right">
+        <input type="checkbox" class="form-check-input" name="mail" checked>
+        <label class="form-check-label" for="mail">
+            Informer le client
+        </label>
+    </div>
     <input type="hidden" name="_token" value="{{ csrf_token('editeurChange' ~ client.id) }}">
-    <input type="submit" value="Valider">
+    <div> 
+        <input type="submit" class="btn btn-primary" value="Valider">
+    </div>
 </form>

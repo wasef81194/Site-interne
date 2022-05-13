@@ -9,6 +9,7 @@
 }
 .modal-img{
    font-size: 60px; 
+   text-align: center;
 }
 /*.modal .client{
    top: 30vh !important;
@@ -22,6 +23,7 @@
 .modal-text-client{
    text-align: justify; 
 }
-.jc{
-   justify-content: center;
+.modal-title{
+   text-align: center;
+   font-weight: bold;
 }
