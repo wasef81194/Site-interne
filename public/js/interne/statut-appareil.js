@@ -92,7 +92,12 @@ $(document).ready(function () {
       data: formData,
     })
       .done(function (response) {
-         console.log(response.getElementById('teset'));
+         var clientID = formData.split("=")[5];
+         var statut = formData.split("=")[2].split("&")[0];
+         var statuts = document.querySelector("#etat-select"+clientID)
+         console.log(statuts, statuts[0].value,statuts[1].firstChild.textContent);
+         //var statut = $(response).find("#change-statut"+clientID)
+         console.log(document.querySelector("#change-statut"+clientID).innerText = statuts[statut-1].firstChild.textContent);
       })
       .fail(function (jxh, textmsg) {
         console.log(url);

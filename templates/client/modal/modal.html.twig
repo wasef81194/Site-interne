@@ -57,9 +57,12 @@
                     <h4 class="modal-title  fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
                   </div>
                   <div class="card-body">
-                    <span class="badge change-etat"  id='test' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
-                    <p class="card-text change-date"><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</p>
-                    <p class="card-text change-user"><b>Par : </b>{{client.appareil.editeur.user.login}}</p>
+                    {% if client.appareil.editeur.etat.statut is defined %}
+                    
+                      <span class="badge change-etat"  id='change-statut{{client.id}}' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
+                      <p class="card-text change-date"><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</p>
+                      <p class="card-text change-user"><b>Par : </b>{{client.appareil.editeur.user.login}}</p>
+                    {% endif %}
                     {{include('client/etat/etat_modal.html.twig') }}
                   </div>
                 </div>

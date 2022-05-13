@@ -1,7 +1,7 @@
 <form method="post" name="stautchange" action="{{ path('editeur_new', {'id': client.id})}}" id="editFormStatut">
     <div class="mb-3">
         <label for="user" class="form-label w-15">Editeur</label>
-        <select name="user" class="form-select w-85 inline-block" id="editeur-select">
+        <select name="user" class="form-select w-85 inline-block" id="editeur-select{{client.id}}">
             {% for user in users %}
                 <option value={{user.id}}>{{user.login}}</option>
             {% endfor %}
@@ -9,9 +9,10 @@
     </div>
     <div class="mb-3">
         <label for="etat" class="form-label w-15">Etat</label>
-        <select name="etat" class="form-select w-85 inline-block" id="etat-select">
+        <select name="etat" class="form-select w-85 inline-block" id="etat-select{{client.id}}">
             {% for etat in etats %}
                 <option value={{etat.id}}>{{etat.statut}}</option>
+                
             {% endfor %}
         </select>
     </div>
@@ -23,6 +24,7 @@
     </div>
     <input type="hidden" name="_token" value="{{ csrf_token('editeurChange' ~ client.id) }}">
     <input type="hidden" name="date" value="{{ "now"|date("m/d/Y H:i:s") }}">
+    <input type="hidden" name="clientId" value="{{client.id}}">
     <div> 
         <button type="submit" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
     </div>
