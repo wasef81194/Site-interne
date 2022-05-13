@@ -25,7 +25,11 @@ $(document).ready(function(){
         }
         
     }
-    var modalBadges = document.querySelectorAll(".badge-modal");
+    colorStatut();
+ 
+});
+function colorStatut() {
+  var modalBadges = document.querySelectorAll(".badge-modal");
     for(badge of modalBadges){
         //on recuperer le statut de chaque badge
         //console.log(badge.innerText);
@@ -49,8 +53,7 @@ $(document).ready(function(){
         }
         
     }
- 
-});
+}
 //page all client
 $(document).ready(function () {
     var lignes = document.querySelectorAll(".statutAppareilAll");
@@ -94,12 +97,19 @@ $(document).ready(function () {
       .done(function (response) {
           //on recupere l'id du client
          var clientID = formData.split("=")[5];
-          //on recupere l'id du statut envoyer
-         var statut = formData.split("=")[2].split("&")[0];
-         //on recupere le texte liées à l'id du statut
-         var statuts = document.querySelector("#etat-select"+clientID)
-         //on change le statut par le nouveau
-         document.querySelector("#change-statut"+clientID).innerText = statuts[statut-1].firstChild.textContent;
+         console.log(formData);
+          //Etat
+            //on recupere l'id du statut envoyer
+            var statut = formData.split("=")[2].split("&")[0];
+            //on recupere le texte liées à l'id du statut
+            var statuts = document.querySelector("#etat-select"+clientID)
+            //on selectionne toute les endroit changer
+            var elements = document.querySelectorAll("#change-statut"+clientID);
+            for (element of elements) {
+              //on change le statut par le nouveau
+              console.log(element.innerText = statuts[statut-1].firstChild.textContent);
+            }
+            colorStatut()
       })
       .fail(function (jxh, textmsg) {
         console.log(url);
