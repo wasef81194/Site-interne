@@ -39,9 +39,10 @@ class EditeurController extends AbstractController
             $user = $request->request->get('user');
             $etat =$request->request->get('etat');
             $mail = $request->request->get('mail');
+            $date = $request->request->get('date');
             $appareil = $client->getAppareil();
             $editeur = new Editeur();
-            $editeur->setDate(new \DateTime());
+            $editeur->setDate(new \DateTime($date));
             $editeur->setUser($userRepository->find($user));
             $editeur->setEtat($etatRepository->find($etat));
             $appareil->setEditeur($editeur);

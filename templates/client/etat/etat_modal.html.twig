@@ -22,6 +22,7 @@
         </label>
     </div>
     <input type="hidden" name="_token" value="{{ csrf_token('editeurChange' ~ client.id) }}">
+    <input type="hidden" name="date" value="{{ "now"|date("m/d/Y H:i:s") }}">
     <div> 
         <button type="submit" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
     </div>

@@ -90,14 +90,9 @@ $(document).ready(function () {
       method: "POST",
       url: url,
       data: formData,
-      dataType: "HTML",
     })
       .done(function (response) {
-        //$(".modal-client").html(response);
-        var split1 = response.split("<div class='pop-up'>");
-        console.log(split1);
-        console.log("done");
-        // $(".modal-client").html(splitResponse);
+         console.log(response.getElementById('teset'));
       })
       .fail(function (jxh, textmsg) {
         console.log(url);

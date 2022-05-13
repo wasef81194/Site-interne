@@ -308,6 +308,7 @@ class ClientController extends AbstractController
         ;
         $mailer->send($data);
         return $this->redirectToRoute('client_show', ['id'=>$client->getId()], Response::HTTP_SEE_OTHER);
+      //return $this->json(['etat' => $etat->getStatut() , 'lastEdit'=> $etat->getDate()]);
     }
  
     /**
