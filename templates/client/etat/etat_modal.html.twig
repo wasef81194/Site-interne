@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('editeur_new', {'id': client.id})}}" id="editChange">
+<form method="post" name="stautchange" action="{{ path('editeur_new', {'id': client.id})}}" id="editFormStatut">
     <div class="mb-3">
         <label for="user" class="form-label w-15">Editeur</label>
         <select name="user" class="form-select w-85 inline-block" id="editeur-select">
@@ -23,6 +23,6 @@
     </div>
     <input type="hidden" name="_token" value="{{ csrf_token('editeurChange' ~ client.id) }}">
     <div> 
-        <input type="submit" class="btn btn-primary" value="Valider">
+        <button type="submit" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
     </div>
 </form>

@@ -27,3 +27,25 @@
    text-align: center;
    font-weight: bold;
 }
+.jc{
+   justify-content: center;
+}
+.card-modal-header-client {
+   text-align: center;
+   color: white !important;
+ }
+ .check-modal {
+   font-size: 25px;
+   color: #2bf52b;
+  
+ }
+.cross-modal{
+   font-size: 25px;
+   color: #ffffff;
+  
+}
+.badge-statut-appareil{
+   display: inline-block;
+   color: #fff;
+   text-align: center;
+}

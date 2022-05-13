@@ -1,59 +1,74 @@
-<div class="modal client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal modal-client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog client">
-    <div class="modal-content">
+    <div class="modal-content mt-10">
       <div class="modal-header">
-        <h4 class="modal-title black fs-s" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
+        <h4 class="modal-title fs-s" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
-        <div class="row black">
-            <div class="col-lg-4 modal-content">
-                <div class="modal-img">
-                    <i class="bi bi-person-bounding-box blue"></i>
+        <div class="row ">
+            <div class="col-lg-4">
+                <div class="card text-white bg-primary mb-3">
+                  <div class="card-header card-modal-header-client">
+                    <div class="modal-img">
+                      <i class="bi bi-person-bounding-box "></i>
+                    </div>
+                    <h4 class="modal-title fs-s" id="staticBackdropLabel">Information client</h4>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text"><strong>Civilité : </strong>{{client.personne}} </p>
+                    <p class="card-text"><strong>Nom : </strong>{{client.nom}}</p>
+                    <p class="card-text"><strong>Prénom : </strong>{{client.prenom}}</p>
+                    <p class="card-text"><strong>Mail : </strong>{{client.mail}} </p>
+                    <p class="card-text"><strong>Télephone : </strong>{{client.tel}} </p>
+                    <p class="card-text"><strong>Adresse : </strong>{{client.rue}} {{client.ville}} {{client.cp}}</p>
+                  </div>
                 </div>
-                <h4 class="modal-title black fs-s blue" id="staticBackdropLabel">Information client</h4>
-                
-                <p class="mt-4"><b>Civilité : </b>{{client.personne}} <p>
-                <p><b>Nom : </b>{{client.nom}}<p>
-                <p><b>Prénom : </b>{{client.prenom}}<p>
-                <p><b>Mail : </b>{{client.mail}}<p>
-                <p><b>Télephone : </b>{{client.tel}}<p>
-                <p><b>Adresse : </b>{{client.rue}} {{client.ville}} {{client.cp}}<p>
-                
             </div>
-            <div class="col-lg-4 modal-content">
-                <div class="modal-img">
-                    <i class="bi bi-pc-display black"></i>
+            <div class="col-lg-4">
+              <div class="card text-white bg-danger mb-3">
+                <div class="card-header card-modal-header-client">
+                  <div class="modal-img">
+                    <i class="bi bi-pc-display"></i>
+                  </div>
+                  <h4 class="modal-title fs-s" id="staticBackdropLabel">Information de l'appreil</h4>
                 </div>
-                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Information de l'appreil</h4>
-                <p class="mt-4"><b>Marque : </b>{{client.appareil.marque}}<p>
-                <p><b>Modele : </b>{{client.appareil.modele}}<p>
-                <p><b>Numéro de serie : </b>{{client.appareil.ns}}<p>
-                <p><b>Chargeur : </b>
+                <div class="card-body">
+                  <p class="card-text"><strong>Marque : </strong>{{client.appareil.marque}}</p>
+                  <p class="card-text"><strong>Modele : </strong>{{client.appareil.modele}}</p>
+                  <p class="card-text"><strong>Numéro de serie : </strong>{{client.appareil.ns}}</p>
+                  <p class="card-text"><strong>Chargeur : </strong>
                     {% if client.appareil.chargeur == 1 %}
-                        <img  class='check' src="{{asset('./images/check.png')}}" width="40px" />
+                        <i class="bi bi-check-lg check-modal"></i>
                     {% else %}
-                        <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" />
+                        <i class="bi bi-x-lg cross-modal"></i>
                     {% endif %}
-                <p>
-                <p><b>Problème : </b>{{client.appareil.prblm}}<p>
-            </div>
-            <div class="col-lg-4 modal-content">
-                <div class="modal-img">
-                    <i class="bi bi-wrench-adjustable black"></i>
+                  </p>
+                  <p class="card-text"><strong>Problème : </strong>{{client.appareil.prblm}}</p>
                 </div>
-                <h4 class="modal-title black fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
-                <p class="mt-4"> <span class="badge badge-modal" style="font-size:16px">{{ client.appareil.editeur.etat.statut}}</span><p>
-                <p><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}<p>
-                <p><b>Par : </b>{{client.appareil.editeur.user.login}}<p>
-                {{include('client/etat/etat_modal.html.twig') }}
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card text-white bg-success mb-3 card-statut">
+                  <div class="card-header card-modal-header-client">
+                    <div class="modal-img">
+                      <i class="bi bi-wrench-adjustable "></i>
+                    </div>
+                    <h4 class="modal-title  fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
+                  </div>
+                  <div class="card-body">
+                    <span class="badge" style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
+                    <p class="card-text"><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</p>
+                    <p class="card-text"><b>Par : </b>{{client.appareil.editeur.user.login}}</p>
+                    {{include('client/etat/etat_modal.html.twig') }}
+                  </div>
+                </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <a class="btn btn-primary" href="{{ path('client_show', {'id': client.id}) }}">Voir plus</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>
