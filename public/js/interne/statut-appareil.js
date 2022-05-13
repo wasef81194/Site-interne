@@ -92,12 +92,14 @@ $(document).ready(function () {
       data: formData,
     })
       .done(function (response) {
+          //on recupere l'id du client
          var clientID = formData.split("=")[5];
+          //on recupere l'id du statut envoyer
          var statut = formData.split("=")[2].split("&")[0];
+         //on recupere le texte liées à l'id du statut
          var statuts = document.querySelector("#etat-select"+clientID)
-         console.log(statuts, statuts[0].value,statuts[1].firstChild.textContent);
-         //var statut = $(response).find("#change-statut"+clientID)
-         console.log(document.querySelector("#change-statut"+clientID).innerText = statuts[statut-1].firstChild.textContent);
+         //on change le statut par le nouveau
+         document.querySelector("#change-statut"+clientID).innerText = statuts[statut-1].firstChild.textContent;
       })
       .fail(function (jxh, textmsg) {
         console.log(url);
