@@ -56,8 +56,8 @@ $(document).ready(function () {
     })
       .done(function (response) {
           //on recupere l'id du client
-          var clientID = formData.split("=")[5];
-          console.log(formData.split("="));
+          var clientID = formData.split("clientId=")[1];
+          console.log(clientID);
             //Etat
             //on recupere l'id du statut envoyer
             var statut = formData.split("=")[2].split("&")[0];

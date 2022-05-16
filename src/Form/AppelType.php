@@ -25,7 +25,7 @@ class AppelType extends AbstractType
                 'required' => true
                 ])
             ->add('mail',EmailType::class,[
-                'required' => false
+                'required' => true
                 ])
             ->add('objet',null,[
                 'required' => true

@@ -9,6 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//mail
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 /**
  * @Route("/appel")
@@ -28,13 +33,36 @@ class AppelController extends AbstractController
     /**
      * @Route("/public/new", name="app_appel_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, AppelRepository $appelRepository): Response
+    public function new(Request $request, MailerInterface $mailer, AppelRepository $appelRepository): Response
     {
         $appel = new Appel();
         $form = $this->createForm(AppelType::class, $appel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Envoie un mail
+            $data = (new TemplatedEmail())
+                ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+                ->to(new Address($appel->getMail()))
+                ->bcc(new Address('contact@azertyfrance.fr'))
+                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
+                ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+                ->replyTo('contact@azertyfrance.fr')
+                ->subject('Demande à être rappelé')
+                ->htmlTemplate('emails/appel/rappel.html.twig')
+                ->context([
+                    'nom' => $appel->getNom(),
+                    'prenom' => $appel->getPrenom(),
+                    'mail' => $appel->getMail(),
+                    'tel' => $appel->getTel(),
+                    'objet' => $appel->getObjet(),
+                    'message' => $appel->getMessage()
+                ])
+                // Optionally add any attachments
+                ->attachFromPath($pdfFilepath)
+            ;
+            $mailer->send($data);
+
             $appel->setDate(new \DateTime() );
             $appelRepository->add($appel);
             $this->addFlash('sucess', 'Nous avons bien reçu votre demande d\'appel et nous vous recontacterons le plus rapidement possible. Surveillé votre téléphone il se peut qu\'on vous appel avec un numéro masqué.');
