@@ -31,3 +31,6 @@ td {
 .mt-5{
     margin-top: 5%;
 }
+.cursor-loader{
+    cursor: wait;
+}

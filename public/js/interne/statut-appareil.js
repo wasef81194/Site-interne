@@ -5,7 +5,6 @@ $(document).ready(function(){
     for(ligne of lignes){
         //on recuperer le statut de chaque ligne
         statut = ligne.childNodes;
-      //  console.log(statut[17].childNodes[1]);
         if(statut[17].childNodes[1].innerText == 'Livré'){
             ligne.classList.add('completed');
         }
@@ -17,7 +16,7 @@ $(document).ready(function(){
   //modal ouvert
   var modalBadges = document.querySelectorAll(".modal-statut");
     for(badge of modalBadges){
-      console.log(badge, badge.innerText);
+      
       if (badge.innerText == "Pris en charge") {
         badge.classList.add("bg-yellow-dark");
       }
@@ -46,8 +45,10 @@ $(document).ready(function () {
 
   $(document).on("submit", "#editFormStatut", function (e) {
     e.preventDefault();
+    document.querySelector('.body').classList.add("cursor-loader");
     ajax_simple(this.action, $(this).serialize());
   });
+
   function ajax_simple(url, formData) {
     $.ajax({
       method: "POST",
@@ -57,7 +58,6 @@ $(document).ready(function () {
       .done(function (response) {
           //on recupere l'id du client
           var clientID = formData.split("=")[5];
-          console.log(clientID);
             //Etat
             //on recupere l'id du statut envoyer
             var statut = formData.split("=")[2].split("&")[0];
@@ -67,6 +67,7 @@ $(document).ready(function () {
             var elements = document.querySelectorAll("#change-statut"+clientID);
             for (element of elements) {
               //on change le statut par le nouveau
+              document.querySelector('.body').classList.remove("cursor-loader");
               removeColoredStatut(element);
               element.innerText = statuts[statut-1].firstChild.textContent
               ColoredStatut(element);
