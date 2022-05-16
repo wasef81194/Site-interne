@@ -41,7 +41,7 @@
                             {% else %}
                                 <tr class='tr_color  select'>
                             {% endif %}
-                                <td>{{ client.date|date('D d M')|format_datetime('medium','none',locale='fr') }}</td>
+                                <td class="td-date">{{ client.date|date('D d M')|format_datetime('medium','none',locale='fr') }}</td>
                                 <td>{{ client.personne }}</td>
                                 <td>{{ client.nom }}</td>
                                 <td>{{ client.prenom }}</td>
@@ -64,7 +64,7 @@
                                 {% endif %}
                                 
 
-                                <td class="td-button">
+                                <td class="td-button" style="min-width:150px">
                                     <a class="btn btn-success" href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
                                     {{ include('client/_delete_form.html.twig') }}
                                 </td>

@@ -16,7 +16,6 @@ $(document).ready(function(){
   //modal ouvert
   var modalBadges = document.querySelectorAll(".modal-statut");
     for(badge of modalBadges){
-      
       if (badge.innerText == "Pris en charge") {
         badge.classList.add("bg-yellow-dark");
       }
@@ -58,6 +57,7 @@ $(document).ready(function () {
       .done(function (response) {
           //on recupere l'id du client
           var clientID = formData.split("=")[5];
+          console.log(formData.split("="));
             //Etat
             //on recupere l'id du statut envoyer
             var statut = formData.split("=")[2].split("&")[0];
@@ -75,6 +75,7 @@ $(document).ready(function () {
            // colorStatut()
       })
       .fail(function (jxh, textmsg) {
+        document.querySelector('.body').classList.remove("cursor-loader");
         console.log(url);
         console.log(textmsg);
         console.log(jxh);

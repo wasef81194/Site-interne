@@ -40,7 +40,7 @@
                 {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
                     {% if appel.do  %}
                     <div class="zoom">
-                        <div class="card cardCall">
+                        <div class="card cardCall mt-3">
                             <div class="card-body">
                                 {{ include('appel/check_form.html.twig') }}
                                 <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
