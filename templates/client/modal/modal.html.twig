@@ -15,7 +15,7 @@
                     </div>
                     <h4 class="modal-title fs-s" id="staticBackdropLabel">Information client</h4>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body  mt-5 mb-5">
                     <p class="card-text"><strong>Civilité : </strong>{{client.personne}} </p>
                     <p class="card-text"><strong>Nom : </strong>{{client.nom}}</p>
                     <p class="card-text"><strong>Prénom : </strong>{{client.prenom}}</p>
@@ -33,7 +33,7 @@
                   </div>
                   <h4 class="modal-title fs-s" id="staticBackdropLabel">Information de l'appreil</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body  mt-5 mb-5">
                   <p class="card-text"><strong>Marque : </strong>{{client.appareil.marque}}</p>
                   <p class="card-text"><strong>Modele : </strong>{{client.appareil.modele}}</p>
                   <p class="card-text"><strong>Numéro de serie : </strong>{{client.appareil.ns}}</p>
@@ -59,7 +59,7 @@
                   <div class="card-body">
                     {% if client.appareil.editeur.etat.statut is defined %}
                     
-                      <span class="badge change-etat"  id='change-statut{{client.id}}' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
+                      <p class="center"><span class="badge change-etat modal-statut"  id='change-statut{{client.id}}' style="font-size:16px">{{ client.appareil.editeur.etat.statut}}</span></p>
                       <p class="card-text change-date"><b>Dérniere modificaion : </b>{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</p>
                       <p class="card-text change-user"><b>Par : </b>{{client.appareil.editeur.user.login}}</p>
                     {% endif %}

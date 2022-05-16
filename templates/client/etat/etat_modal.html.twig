@@ -25,6 +25,6 @@
     <input type="hidden" name="date" value="{{ "now"|date("m/d/Y H:i:s") }}">
     <input type="hidden" name="clientId" value="{{client.id}}">
     <div> 
-        <button type="submit" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
+        <button type="submit" class="right btn btn-light" id="sendFormStatut" value="{{path('editeur_new', {'id': client.id})}}">Valider</button>
     </div>
 </form>

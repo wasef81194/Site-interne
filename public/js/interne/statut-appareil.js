@@ -1,59 +1,29 @@
 $(document).ready(function(){
+    //page index
     var lignes = document.querySelectorAll(".ligne_client");
     //on récperer toute les lignes du tableau
     for(ligne of lignes){
         //on recuperer le statut de chaque ligne
-        statut = ligne.childNodes
+        statut = ligne.childNodes;
+      //  console.log(statut[17].childNodes[1]);
         if(statut[17].childNodes[1].innerText == 'Livré'){
             ligne.classList.add('completed');
-            statut[17].childNodes[1].classList.add('bg-green-dark');
         }
-        else if(statut[17].childNodes[1].innerText == 'Prêt à être récupéré') {
-            statut[17].childNodes[1].classList.add('bg-green-light');
-        }
-        else if(statut[17].childNodes[1].innerText == 'Pris en charge'){
-            statut[17].childNodes[1].classList.add('bg-yellow-dark');
-        }
-        else if(statut[17].childNodes[1].innerText == 'En attente de pièce'){
-            statut[17].childNodes[1].classList.add('bg-purple-dark');
-        }
-        else if(statut[17].childNodes[1].innerText == 'Devis envoyée'){
-            statut[17].childNodes[1].classList.add('bg-blue-light');
-        }
-        else if(statut[17].childNodes[1].innerText == 'En cours de réparation'){
-            statut[17].childNodes[1].classList.add('bg-red-light');
-        }
-        
+        ColoredStatut(statut[17].childNodes[1]);
     }
-    colorStatut();
  
 });
-function colorStatut() {
-  var modalBadges = document.querySelectorAll(".badge-modal");
+$(document).ready(function(){
+  //modal ouvert
+  var modalBadges = document.querySelectorAll(".modal-statut");
     for(badge of modalBadges){
-        //on recuperer le statut de chaque badge
-        //console.log(badge.innerText);
-        if(badge.innerText == 'Livré'){
-            badge.classList.add('bg-green-dark');
-        }
-        else if(badge.innerText == 'Prêt à être récupéré') {
-            badge.classList.add('bg-green-light');
-        }
-        else if(badge.innerText == 'Pris en charge'){
-            badge.classList.add('bg-yellow-dark');
-        }
-        else if(badge.innerText == 'En attente de pièce'){
-            badge.classList.add('bg-purple-dark');
-        }
-        else if(badge.innerText == 'Devis envoyée'){
-            badge.classList.add('bg-blue-light');
-        }
-        else if(badge.innerText == 'En cours de réparation'){
-            badge.classList.add('bg-red-light');
-        }
-        
+      console.log(badge, badge.innerText);
+      if (badge.innerText == "Pris en charge") {
+        badge.classList.add("bg-yellow-dark");
+      }
+      ColoredStatut(badge);
     }
-}
+})
 //page all client
 $(document).ready(function () {
     var lignes = document.querySelectorAll(".statutAppareilAll");
@@ -65,18 +35,8 @@ $(document).ready(function () {
   
       if (statut[1].innerText == "Livré") {
         ligne.parentNode.classList.add("completed");
-        statut[1].classList.add("bg-green-dark");
-      } else if (statut[1].innerText == "Prêt à être récupéré") {
-        statut[1].classList.add("bg-green-light");
-      } else if (statut[1].innerText == "Pris en charge") {
-        statut[1].classList.add("bg-yellow-dark");
-      } else if (statut[1].innerText == "En attente de pièce") {
-        statut[1].classList.add("bg-purple-dark");
-      } else if (statut[1].innerText == "Devis envoyée") {
-        statut[1].classList.add("bg-blue-light");
-      } else if (statut[1].innerText == "En cours de réparation") {
-        statut[1].classList.add("bg-red-light");
       }
+      ColoredStatut(statut[1]);
     }
   });
   
@@ -96,9 +56,9 @@ $(document).ready(function () {
     })
       .done(function (response) {
           //on recupere l'id du client
-         var clientID = formData.split("=")[5];
-         console.log(formData);
-          //Etat
+          var clientID = formData.split("=")[5];
+          console.log(clientID);
+            //Etat
             //on recupere l'id du statut envoyer
             var statut = formData.split("=")[2].split("&")[0];
             //on recupere le texte liées à l'id du statut
@@ -107,9 +67,11 @@ $(document).ready(function () {
             var elements = document.querySelectorAll("#change-statut"+clientID);
             for (element of elements) {
               //on change le statut par le nouveau
-              console.log(element.innerText = statuts[statut-1].firstChild.textContent);
+              removeColoredStatut(element);
+              element.innerText = statuts[statut-1].firstChild.textContent
+              ColoredStatut(element);
             }
-            colorStatut()
+           // colorStatut()
       })
       .fail(function (jxh, textmsg) {
         console.log(url);
@@ -119,3 +81,37 @@ $(document).ready(function () {
   }
 });
 
+/***Function ****/
+
+// Ajoute une class par rapport au statut
+function ColoredStatut(statut){
+  if (statut.innerText == "Livré") {
+    statut.classList.add("bg-green-dark");
+  } else if (statut.innerText == "Prêt à être récupéré") {
+    statut.classList.add("bg-green-light");
+  } else if (statut.innerText == "Pris en charge") {
+    statut.classList.add("bg-yellow-dark");
+  } else if (statut.innerText == "En attente de pièce") {
+    statut.classList.add("bg-purple-dark");
+  } else if (statut.innerText == "Devis envoyée") {
+    statut.classList.add("bg-blue-light");
+  } else if (statut.innerText == "En cours de réparation") {
+    statut.classList.add("bg-red-light");
+  }
+}
+// suprime la class par rapport au statut
+function removeColoredStatut(statut){
+  if (statut.innerText == "Livré") {
+    statut.classList.remove("bg-green-dark");
+  } else if (statut.innerText == "Prêt à être récupéré") {
+    statut.classList.remove("bg-green-light");
+  } else if (statut.innerText == "Pris en charge") {
+    statut.classList.remove("bg-yellow-dark");
+  } else if (statut.innerText == "En attente de pièce") {
+    statut.classList.remove("bg-purple-dark");
+  } else if (statut.innerText == "Devis envoyée") {
+    statut.classList.remove("bg-blue-light");
+  } else if (statut.innerText == "En cours de réparation") {
+    statut.classList.remove("bg-red-light");
+  }
+}
