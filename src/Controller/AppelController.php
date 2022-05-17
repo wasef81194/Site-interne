@@ -114,8 +114,10 @@ class AppelController extends AbstractController
 
         return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
     /**
-     * @Route("/interne/completed/{id}", name="app_appel_checked", methods={"POST"})
+     * @Route("/interne/completed/{id}", name="app_appel_checked", methods={"GET","POST"})
      */
     public function completed(Request $request, Appel $appel, AppelRepository $appelRepository): Response
     {
@@ -128,4 +130,37 @@ class AppelController extends AbstractController
         $appelRepository->add($appel);
         return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
     }
+    /**
+     * @Route("/interne/noreply/{id}", name="app_appel_no_reply", methods={"POST"})
+     */
+    public function noreply(Request $request,MailerInterface $mailer, Appel $appel): Response
+    {
+        if ($this->isCsrfTokenValid('noreply'.$appel->getId(), $request->request->get('_token'))) {
+            $data = (new TemplatedEmail())
+                ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+                ->to(new Address($appel->getMail()))
+                ->bcc(new Address('contact@azertyfrance.fr'))
+                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
+                ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+                ->replyTo('contact@azertyfrance.fr')
+                ->subject("Vous n'avez pas décroché")
+                ->htmlTemplate('emails/appel/mail_no_reply.html.twig')
+                ->context([
+                    'nom' => $appel->getNom(),
+                    'prenom' => $appel->getPrenom(),
+                    'mail' => $appel->getMail(),
+                    'tel' => $appel->getTel(),
+                    'objet' => $appel->getObjet(),
+                    'message' => $appel->getMessage(),
+                    'date' => new \DateTime()
+                ])
+            ;
+            $mailer->send($data);
+            return $this->redirectToRoute('app_appel_checked', ['id'=>$appel->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
 }

@@ -1,0 +1,12 @@
+<p>Bonjour {{nom}} {{prenom}}, </p>
+<p>
+    Nous avons essayé de vous joindre par téléphone  à {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr')}} mais sans succès,
+</p>
+<p> 
+    Je vous invite à réitérer votre demande ou de nous rappeler au 01 34 15 52 32
+</p>
+<h6> Rappel de votre demande </h6>
+<p>{{objet}}</p>
+<p>{{message}}</p>
+
+{% include 'emails/layout/footer.html.twig' %}
