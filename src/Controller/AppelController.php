@@ -56,12 +56,13 @@ class AppelController extends AbstractController
                     'mail' => $appel->getMail(),
                     'tel' => $appel->getTel(),
                     'objet' => $appel->getObjet(),
-                    'message' => $appel->getMessage()
+                    'message' => $appel->getMessage(),
+                    'date' => $appel->getDate()
                 ])
             ;
             $mailer->send($data);
 
-            $appel->setDate(new \DateTime(new \DateTimeZone('Europe/Paris')));
+            $appel->setDate(new \DateTime());
             $appelRepository->add($appel);
             $this->addFlash('sucess', 'Nous avons bien reçu votre demande d\'appel et nous vous recontacterons le plus rapidement possible. Surveillé votre téléphone il se peut qu\'on vous appel avec un numéro masqué.');
            // return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);
