@@ -49,7 +49,7 @@ class AppelController extends AbstractController
                 ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
                 ->replyTo('contact@azertyfrance.fr')
                 ->subject('Demande à être rappelé')
-                ->htmlTemplate('emails/appel/rappel.html.twig')
+                ->htmlTemplate('emails/appel/mail_rappel.html.twig')
                 ->context([
                     'nom' => $appel->getNom(),
                     'prenom' => $appel->getPrenom(),
@@ -58,12 +58,10 @@ class AppelController extends AbstractController
                     'objet' => $appel->getObjet(),
                     'message' => $appel->getMessage()
                 ])
-                // Optionally add any attachments
-                ->attachFromPath($pdfFilepath)
             ;
             $mailer->send($data);
 
-            $appel->setDate(new \DateTime() );
+            $appel->setDate(new \DateTime(new \DateTimeZone('Europe/Paris')));
             $appelRepository->add($appel);
             $this->addFlash('sucess', 'Nous avons bien reçu votre demande d\'appel et nous vous recontacterons le plus rapidement possible. Surveillé votre téléphone il se peut qu\'on vous appel avec un numéro masqué.');
            // return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);

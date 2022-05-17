@@ -10,7 +10,7 @@
                 {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
                     {% if appel.do != 1 %}
                     <div class="zoom ">
-                        <div class="card cardCall">
+                        <div class="card cardCall mt-3">
                             <div class="card-body">
                                 {{ include('appel/check_form.html.twig') }}
                                 <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
@@ -25,6 +25,7 @@
                             {{  appel.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
                                 <div class="right"> {{ include('appel/_delete_form.html.twig') }} </div>
                                 <a class="btn btn-secondary right mr-1" href="{{ path('app_appel_edit', {'id': appel.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                <i class="bi bi-telephone-x-fill white"></i>
                             </div>
                         </div>
                     </div>

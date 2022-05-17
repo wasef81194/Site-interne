@@ -4,7 +4,7 @@
 
 {% block body %}
     {% include 'layout/navbar.html.twig' %}
-        <div class="container mb-100">
+        <div class="client-month container mb-100 ">
             <h1>Clients {{titleMonth}} {{year}} <i class="fa fa-whatsapp" aria-hidden="true"></i>
             </h1>
             <a  class="btn btn-outline-dark" href="{{ path('client_index',{'month': month, 'year':year, 'method' : 'precedent' }) }}"><img class="precedent" width='25px' src="{{asset('./images/icon-precedent.png')}}"/></a>
