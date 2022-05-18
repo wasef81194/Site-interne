@@ -1,4 +1,4 @@
 <form method="post" id="formCallCompleted" action="{{ path('app_appel_checked', {'id': appel.id}) }}" {#onsubmit="return confirm('Are you sure you want to delete this item?');"#}>
-    <input class="form-check-input right big-checkbox" type="checkbox" id="checkCompleted"  {% if appel.do %} checked {% endif %}>
+    <input class="form-check-input right big-checkbox" type="checkbox" id="checkCompleted">
     <input type="hidden" id="pathAppel" value="{{ path('app_appel_checked', {'id': appel.id}) }}">
 </form>

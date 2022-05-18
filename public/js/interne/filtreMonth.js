@@ -1,7 +1,6 @@
 
 $(document).ready(function(){	
     $('.formCall').ready(function () {
-        console.log('hide');
         $('.loaderAllClients').hide();
         $('.allClients').show();	
     });
