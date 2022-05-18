@@ -41,7 +41,7 @@
                 <div class="col">
                     <h1>Historique d'appel</h1>
                     <div class="historyCall">
-                        {% for appel in appels %}
+                        {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
                             {% if appel.do  %}
                             <div class="zoom">
                                 <div class="card cardCall mt-3" >

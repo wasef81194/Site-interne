@@ -12,11 +12,11 @@ $(document).ready(function(){
           form.submit();
           if(checkbox.checked) {
             // Si la case est cochée, on fait des traitements
-            console.log('check');
+            
             this.classList.add('completed');
           }else if(!checkbox.checked) {
             // Si la case  n'est pas cochée
-            console.log('not check');
+            
             this.classList.remove('completed');
           }
         })
