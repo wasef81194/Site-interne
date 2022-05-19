@@ -56,7 +56,6 @@ $(document).ready(function () {
     })
       .done(function (response) {
           //on recupere l'id du client
-          console.log(formData);
           var clientID = formData.split("clientId=")[1];
   
             //Etat
@@ -85,9 +84,8 @@ $(document).ready(function () {
               }
             }
             var editeurElements = document.querySelectorAll("#editeur-change"+clientID);
-            console.log(editeurElements);
+           
             for (element of editeurElements) {
-              console.log(element);
               //on change l'éditeur par le nouveau par le nouveau
               removeColoredStatut(element);
               element.innerText = edit;
@@ -103,7 +101,6 @@ $(document).ready(function () {
             date = date.toLocaleDateString("fr-FR", options).replaceAll(',', ' à')
             //on selectionne toute les endroit changer
             var dateElements = document.querySelectorAll("#edit-date"+clientID);
-            console.log(dateElements);
             for (element of dateElements) {
               //on change la date par la nouvelle
               element.innerText = date;
