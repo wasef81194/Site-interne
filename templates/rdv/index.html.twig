@@ -18,7 +18,7 @@
         {% set did = 1 %}
         {% set demande = 1 %}
         <div class="row mt-5">
-            <div class="col">
+            <div class="col all-rdv">
                 {% for rdv in rdvs| sort((a, b) => a.date <=> b.date) %}
                     {% if rdv.do != 1 %}
                         {% set annulation = '' %}
@@ -84,7 +84,7 @@
                     {% set demande = 0 %} 
                 {% endfor %}
             </div>
-            <div class="col">
+            <div class="col historyRdv">
             {% for rdv in rdvs| sort((a, b) => b.date <=> a.date) %}
                 {% if rdv.do %}
                     {% set annulation = '' %}   
