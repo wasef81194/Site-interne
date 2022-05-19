@@ -92,6 +92,22 @@ $(document).ready(function () {
               removeColoredStatut(element);
               element.innerText = edit;
             }
+            //Date
+            //format de la date
+            var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'}
+            var date = formData.split("date=")[1].split("&")[0];
+            date = date.replaceAll('%2F', ' ');
+            date = date.replaceAll('%20', ' ');
+            date = date.replaceAll('%3A', ':');
+            date = new Date(date);
+            date = date.toLocaleDateString("fr-FR", options).replaceAll(',', ' à')
+            //on selectionne toute les endroit changer
+            var dateElements = document.querySelectorAll("#edit-date"+clientID);
+            console.log(dateElements);
+            for (element of dateElements) {
+              //on change la date par la nouvelle
+              element.innerText = date;
+            }
             //enleve le loader
            document.querySelector('.body').classList.remove("cursor-loader");
       })
