@@ -62,7 +62,7 @@
                     
                       <p class="center"><span class="badge change-etat modal-statut"  id='change-statut{{client.id}}' style="font-size:16px">{{ client.appareil.editeur.etat.statut}}</span></p>
                       <p class="card-text change-date"><b>Dérniere modificaion : </b><span class="edit-date">{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</span></p>
-                      <p class="card-text change-user"><b>Par : </b>{{client.appareil.editeur.user.login}}</p>
+                      <p class="card-text change-user"><b>Par : </b><span id="editeur-change{{client.id}}">{{client.appareil.editeur.user.login}}</span></p>
                     {% endif %}
                     {{include('client/etat/etat_modal.html.twig') }}
                   </div>

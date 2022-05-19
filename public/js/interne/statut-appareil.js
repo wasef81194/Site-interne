@@ -56,6 +56,7 @@ $(document).ready(function () {
     })
       .done(function (response) {
           //on recupere l'id du client
+          console.log(formData);
           var clientID = formData.split("clientId=")[1];
   
             //Etat
@@ -67,12 +68,32 @@ $(document).ready(function () {
             var elements = document.querySelectorAll("#change-statut"+clientID);
             for (element of elements) {
               //on change le statut par le nouveau
-              document.querySelector('.body').classList.remove("cursor-loader");
               removeColoredStatut(element);
               element.innerText = statuts[statut-1].firstChild.textContent
               ColoredStatut(element);
             }
-           // colorStatut()
+
+            //User
+            //on recupere l'id de l'editeur selectionner
+            var user = formData.split("user=")[1].split("&")[0];
+            //on recupere le texte liées à l'id de tout les editeur
+            var editeurs = document.querySelector("#editeur-select"+clientID)
+            for (editeur of editeurs) {
+              // si l'id correspond a celui selectionner on le stock dans une variable
+              if(user==editeur.value){
+                var edit  = editeur.innerText
+              }
+            }
+            var editeurElements = document.querySelectorAll("#editeur-change"+clientID);
+            console.log(editeurElements);
+            for (element of editeurElements) {
+              console.log(element);
+              //on change l'éditeur par le nouveau par le nouveau
+              removeColoredStatut(element);
+              element.innerText = edit;
+            }
+            //enleve le loader
+           document.querySelector('.body').classList.remove("cursor-loader");
       })
       .fail(function (jxh, textmsg) {
         document.querySelector('.body').classList.remove("cursor-loader");
