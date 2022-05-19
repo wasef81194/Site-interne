@@ -23,20 +23,22 @@ function ajax_cardCompleted(url,checkbox,card) {
     url: url,
     dataType: "HTML",
   }).done( function(response) {
-    
-    //on efface la card de la div
-    if(checkbox.checked) {
-      // va dans historique
-      // Si la case est cochée, on fait des traitements
-      $(".historyCall").append(card.outerHTML);
-    }
-    else if(!checkbox.checked) {
-      // Si la case n'est pas cochée
-      $(".all-call").append(card.outerHTML);
-    }
+    ///on efface la card de la div
     $(card).fadeOut( "slow", function() {
       $( card ).remove();
     });
+    console.log(card.outerHTML)
+    
+    if(checkbox.checked) {
+      // va dans historique
+      // Si la case est cochée, la carte va dans historique
+      $(".historyCall").append('<div class="zoom">'+card.outerHTML+"</div>");
+    }
+    else if(!checkbox.checked) {
+      // Si la case n'est pas cochée, la carte va dans la liste d'appel00
+      $(".all-call").append('<div class="zoom">'+card.outerHTML+"</div>");
+    }
+    
     reloadCard()
   }).fail(function(jxh,textmsg,errorThrown){
     console.log(textmsg);
@@ -46,9 +48,8 @@ function ajax_cardCompleted(url,checkbox,card) {
 
 function reloadCard() {
   let history = document.querySelector(".historyCall");
-    let allCall = document.querySelector(".all-call");
-
-    if(history!== null){
+  let allCall = document.querySelector(".all-call");
+  if(history!== null){
     //toute les case de la div de droite sont cocher
       for(historyCall of history.children){
         let checkboxHistory = historyCall.querySelector("#checkCompleted");
@@ -57,15 +58,14 @@ function reloadCard() {
           checkboxHistory.checked = true;
         }
       }
-    }
-
-    if(allCall!== null){
-      //toute les case de la div de gauche sont décocher
+  }
+  if(allCall!== null){
+    //toute les case de la div de gauche sont décocher
       for( call of allCall.children){
         let checkboxCall = call.querySelector("#checkCompleted");
           if(checkboxCall !== null){
             checkboxCall.checked = false;
           }
       }
-    }  
+  }  
 }
