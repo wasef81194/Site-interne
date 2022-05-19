@@ -1,20 +1,6 @@
 $(document).ready(function(){
-    let cards = document.querySelectorAll(".cardCall");
     reloadCard()
-
-    //Boucle lorsqu'on click sur une checkbox d'une carte on fait un appel ajax
-    for(card of cards){
-      let form = card.querySelector('#formCallCompleted');
-      let checkbox = card.querySelector("#checkCompleted");
-      let path = card.querySelector("#pathAppel");
-      if(checkbox){
-        checkbox.addEventListener("click",function() {
-         this.card = this.parentNode.parentNode.parentNode;
-         // location.reload();
-         ajax_cardCompleted(path.value,this,this.card);
-        })
-      }
-    }
+    listenerCheckbox()
 });
 
 function ajax_cardCompleted(url,checkbox,card) {
@@ -27,7 +13,6 @@ function ajax_cardCompleted(url,checkbox,card) {
     $(card).fadeOut( "slow", function() {
       $( card ).remove();
     });
-    console.log(card.outerHTML)
     
     if(checkbox.checked) {
       // va dans historique
@@ -40,12 +25,61 @@ function ajax_cardCompleted(url,checkbox,card) {
     }
     
     reloadCard()
+    listenerCheckbox()
+    document.querySelector('.body').classList.remove("cursor-loader");
   }).fail(function(jxh,textmsg,errorThrown){
     console.log(textmsg);
     console.log(errorThrown);
   });
 }
-
+function ajax_noReply(url,form,card) {
+  $.ajax({
+    method: "POST",
+    url: url,
+    data: $(form).serialize(),
+  }).done( function(response) {
+    ///on efface la card de la liste 
+    $(card).fadeOut( "slow", function() {
+      $( card ).remove();
+    });
+    $(".historyCall").append('<div class="zoom">'+card.outerHTML+"</div>");
+    $(form).remove();
+    
+    reloadCard()
+    listenerCheckbox()
+    document.querySelector('.body').classList.remove("cursor-loader");
+  }).fail(function(jxh,textmsg,errorThrown){
+    console.log(textmsg);
+    console.log(errorThrown);
+  });
+}
+function listenerCheckbox(){
+  let cards = document.querySelectorAll(".cardCall");
+  
+    //Boucle lorsqu'on click sur une checkbox d'une carte on fait un appel ajax
+    for(card of cards){
+      let form = card.querySelector('#formCallCompleted');
+      let checkbox = card.querySelector("#checkCompleted");
+      let path = card.querySelector("#pathAppel");
+      let formNoReply = card.querySelector(".form-noreply");
+      if(formNoReply){
+        formNoReply.addEventListener("submit",function(e) {
+         this.card = this.parentNode.parentNode.parentNode;
+         e.preventDefault();
+         document.querySelector('.body').classList.add("cursor-loader");
+         ajax_noReply(this.action, this,this.card);
+        })
+      }
+      if(checkbox){
+        checkbox.addEventListener("click",function() {
+         this.card = this.parentNode.parentNode.parentNode;
+         // location.reload();
+         document.querySelector('.body').classList.add("cursor-loader");
+         ajax_cardCompleted(path.value,this,this.card);
+        })
+      }
+    }
+}
 function reloadCard() {
   let history = document.querySelector(".historyCall");
   let allCall = document.querySelector(".all-call");

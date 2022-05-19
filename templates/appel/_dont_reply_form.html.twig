@@ -1,4 +1,4 @@
-<form method="post" class="mr-1" action="{{ path('app_appel_no_reply', {'id': appel.id}) }}" onsubmit="return confirm('Vous avez appelez ce client et il n'as pa repondu ?');">
+<form method="post" class="mr-1 form-noreply" action="{{ path('app_appel_no_reply', {'id': appel.id}) }}" onsubmit="return confirm('Vous avez appelez ce client et il n'as pa repondu ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('noreply' ~ appel.id) }}">
-    <button class="btn btn-dark"><i class="bi bi-telephone-x-fill"></i></button>
+    <button type="submit" class="btn btn-dark"><i class="bi bi-telephone-x-fill"></i></button>
 </form>
