@@ -35,16 +35,38 @@ class RdvController extends AbstractController
     /**
      * @Route("/public/new", name="app_rdv_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, RdvRepository $rdvRepository): Response
+    public function new(Request $request, RdvRepository $rdvRepository,MailerInterface $mailer): Response
     {
         $rdv = new Rdv();
         $form = $this->createForm(RdvType::class, $rdv);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = (new TemplatedEmail())
+                ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+                ->to(new Address($rdv->getMail()))
+                ->bcc(new Address('contact@azertyfrance.fr'))
+                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
+                ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+                ->replyTo('contact@azertyfrance.fr')
+                //->cc(new Address('contact@azertyfrance.fr'))
+                ->subject('Intervention à domicile')
+                ->htmlTemplate('emails/rdv/mail_rdv_reception.html.twig')
+                ->context([
+                    'id' => $rdv->getId(),
+                    'nom' => $rdv->getNom(),
+                    'prenom' => $rdv->getPrenom(),
+                    'mail' => $rdv->getMail(),
+                    'tel' => $rdv->getTel(),
+                    'adresse' => $rdv->getAdresse(),
+                    'cp' => $rdv->getCp(),
+                    'date' => $rdv->getDate(),
+                    'message' => $rdv->getMessage(),
+            ])
+            ;
+            $mailer->send($data);
             $rdvRepository->add($rdv);
             $this->addFlash('sucessRdv', 'Nous avons bien reçu votre demande de rendez-vous à domicile et nous vous recontacterons le plus rapidement possible pour confirmez cette demande. Surveiller votre boite mail et votre téléphone !');
-           
         }
 
         return $this->renderForm('rdv/client/new.html.twig', [
@@ -122,16 +144,16 @@ class RdvController extends AbstractController
     public function mail(Request $request, Rdv $rdv,MailerInterface $mailer, RdvRepository $rdvRepository): Response
     {
         if($rdv->getConfirmer()==2){
-            $chemein = 'emails/redemande_rdv.html.twig';
+            $chemein = 'emails/rdv/redemande_rdv.html.twig';
         }
         elseif($rdv->getConfirmer()==4){
-            $chemein = 'emails/redemande_client_rdv.html.twig';
+            $chemein = 'emails/rdv/redemande_client_rdv.html.twig';
         }
         elseif($rdv->getConfirmer()==5){
-            $chemein = 'emails/annulation_client_rdv.html.twig';
+            $chemein = 'emails/rdv/annulation_client_rdv.html.twig';
         }
         else{
-            $chemein = 'emails/confirmation_rdv.html.twig';
+            $chemein = 'emails/rdv/confirmation_rdv.html.twig';
         }
         //Envoie un mail
         $data = (new TemplatedEmail())
