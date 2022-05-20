@@ -10,15 +10,17 @@ function ajax_cardCompleted(url,checkbox,card) {
     dataType: "HTML",
   }).done( function(response) {
     ///on efface la card de la div
-   
-    
+   var btnNoReply = card.querySelector('.btn-noreply')
+    console.log(btnNoReply);
     if(checkbox.checked) {
       // va dans historique
+      btnNoReply.classList.add("collapse");
       // Si la case est cochée, la carte va dans historique
       $(".historyCall").append('<div class="zoom">'+card.outerHTML+"</div>");
     }
     else if(!checkbox.checked) {
-      // Si la case n'est pas cochée, la carte va dans la liste d'appel00
+      // Si la case n'est pas cochée, la carte va dans la liste d'appel
+      btnNoReply.classList.remove("collapse");
       $(".all-call").append('<div class="zoom">'+card.outerHTML+"</div>");
     }
     $(card).fadeOut( "slow", function() {
