@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    reloadCard()
-    listenerCheckbox()
+    reloadCardCall()
+    listenerCheckboxCall()
 });
 
 function ajax_cardCompleted(url,checkbox,card) {
@@ -10,9 +10,7 @@ function ajax_cardCompleted(url,checkbox,card) {
     dataType: "HTML",
   }).done( function(response) {
     ///on efface la card de la div
-    $(card).fadeOut( "slow", function() {
-      $( card ).remove();
-    });
+   
     
     if(checkbox.checked) {
       // va dans historique
@@ -23,9 +21,11 @@ function ajax_cardCompleted(url,checkbox,card) {
       // Si la case n'est pas cochée, la carte va dans la liste d'appel00
       $(".all-call").append('<div class="zoom">'+card.outerHTML+"</div>");
     }
-    
-    reloadCard()
-    listenerCheckbox()
+    $(card).fadeOut( "slow", function() {
+      $( card ).remove();
+    });
+    reloadCardCall()
+    listenerCheckboxCall()
     document.querySelector('.body').classList.remove("cursor-loader");
   }).fail(function(jxh,textmsg,errorThrown){
     console.log(textmsg);
@@ -45,15 +45,15 @@ function ajax_noReply(url,form,card) {
     $(".historyCall").append('<div class="zoom">'+card.outerHTML+"</div>");
     $(form).remove();
     
-    reloadCard()
-    listenerCheckbox()
+    reloadCardCall()
+    listenerCheckboxCall()
     document.querySelector('.body').classList.remove("cursor-loader");
   }).fail(function(jxh,textmsg,errorThrown){
     console.log(textmsg);
     console.log(errorThrown);
   });
 }
-function listenerCheckbox(){
+function listenerCheckboxCall(){
   let cards = document.querySelectorAll(".cardCall");
   
     //Boucle lorsqu'on click sur une checkbox d'une carte on fait un appel ajax
@@ -80,7 +80,7 @@ function listenerCheckbox(){
       }
     }
 }
-function reloadCard() {
+function reloadCardCall() {
   let history = document.querySelector(".historyCall");
   let allCall = document.querySelector(".all-call");
   if(history!== null){

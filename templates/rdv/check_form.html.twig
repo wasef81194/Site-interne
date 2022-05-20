@@ -1,3 +1,4 @@
-<form method="post" id="formRdvCompleted" action="{{ path('app_rdv_checked', {'id': rdv.id}) }}">
+<form method="post" id="formRdvCompleted" action="{{ path('app_rdv_checked', {'id': rdv.id}) }}" rdv="{{rdv.id}}">
     <input class="form-check-input right big-checkbox" type="checkbox" id="checkCompleted"  {% if rdv.do %} checked {% endif %}>
+    <input type="hidden" id="pathRdv" value="{{ path('app_rdv_checked', {'id': rdv.id}) }}">
 </form>

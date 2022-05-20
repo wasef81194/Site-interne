@@ -61,11 +61,11 @@
                                 </div>
                                 <div class="card-footer text-muted">
                                     {% if "now"|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
-                                        <span class="badge bg-danger">Aujourd'hui</span>
+                                        <span class="badge bg-danger badge-date">Aujourd'hui</span>
                                     {% elseif "now"|date_modify("+1 day")|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
-                                        <span class="badge bg-primary">Demain</span>
+                                        <span class="badge bg-primary badge-date">Demain</span>
                                     {% elseif "now"|date("d-m-Y") > rdv.date|date('d-m-Y') %}
-                                        <span class="badge bg-secondary">Passé</span>
+                                        <span class="badge bg-secondary badge-date">Passé</span>
                                     {% endif %}
                                     {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
                                     {{ include('rdv/confirmation_form.html.twig') }}
@@ -107,15 +107,15 @@
                                 <p class="card-text">{{ rdv.message|capitalize }}</p>
                             </div>
                             <div class="card-footer text-muted">
-                                
                                 {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
-                                {#{{ include('rdv/confirmation_form.html.twig') }}
-                                <button type="button" class=" mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
-                                    <img  class='suggestion' width="20px" src="{{asset('/images/suggestion.png')}}"/>
-                                </button>
-                                <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('/images/icon-edit.png')}}"/></a>
-                                #}
-                                <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
+                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
+                                    <span class='button-hidden hidden'>
+                                        {{ include('rdv/confirmation_form.html.twig') }}
+                                        <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                            <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
+                                        </button>
+                                        <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                    </span>
                             </div>
                         </div>
                     </div>
