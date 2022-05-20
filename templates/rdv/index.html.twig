@@ -68,11 +68,13 @@
                                         <span class="badge bg-secondary badge-date">Passé</span>
                                     {% endif %}
                                     {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
-                                    {{ include('rdv/confirmation_form.html.twig') }}
-                                    <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
-                                        <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
-                                    </button>
-                                    <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                    <span class='button-hidden'>
+                                        {{ include('rdv/confirmation_form.html.twig') }}
+                                        <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                            <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
+                                        </button>
+                                        <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                    </span>
                                     <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
                                     
                                 </div>
@@ -108,14 +110,14 @@
                             </div>
                             <div class="card-footer text-muted">
                                 {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
-                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
-                                    <span class='button-hidden hidden'>
+                                    <span class='button-hidden collapse'>
                                         {{ include('rdv/confirmation_form.html.twig') }}
                                         <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
                                             <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
                                         </button>
                                         <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
                                     </span>
+                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
                             </div>
                         </div>
                     </div>
