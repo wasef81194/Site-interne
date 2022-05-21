@@ -53,3 +53,16 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
+    - { path: /client, roles: ROLE_USER }
+    - { path: /suivie, roles: ROLE_USER }
+    - { path: /appareil, roles: ROLE_USER }
+    - { path: /appel/interne, roles: ROLE_USER }
+    - { path: /appel/public, roles: PUBLIC_ACCESS }
+    - { path: /rdv/interne, roles: ROLE_USER }
+    - { path: /rdv/public/client, roles: PUBLIC_ACCESS }
+    - { path: /editeur, roles: ROLE_USER }
+    - { path: /prioritaire, roles: ROLE_USER }
+    - { path: /tache, roles: ROLE_USER }
+    - { path: /user, roles: ROLE_USER }
+    - { path: /pdf, roles: ROLE_NO_ACCESS }
+    - { path: /email, roles: ROLE_NO_ACCESS }
