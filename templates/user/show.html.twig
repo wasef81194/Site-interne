@@ -6,9 +6,9 @@
     {% include 'layout/navbar.html.twig' %}
     <div class="container-fluid mb-100">
         {% if is_granted('ROLE_ADMIN') %}
-        <a  href="{{ path('user_index') }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
+            <a  href="{{ path('user_index') }}"> <img class="retour" src="{{asset('../images/retour.png')}}"/> </a>
         {% else %}
-            <a  href="{{ path('client_index') }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
+            <a  href="{{ path('client_index') }}"> <img class="retour" src="{{asset('../images/retour.png')}}"/> </a>
         {% endif %}
         <h1 style="margin-top: 45px !important;">Profil</h1>
         <div class="card" style="width: 45%; margin:auto; padding : 30px;">
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
             <div style="padding-top: 50px !important; text-align:center" class="btns">
-                <a class="btn btn-primary btn-lg" href="{{ path('user_edit', {'id': user.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                <a class="btn btn-primary btn" href="{{ path('user_edit', {'id': user.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
             
                 {{ include('user/_delete_form.html.twig') }}
             

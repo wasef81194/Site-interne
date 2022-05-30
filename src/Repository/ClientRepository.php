@@ -37,9 +37,9 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findClientsMonth($year = null , $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
+    public function findClientsMonth( $year = null , $janvier = null ,$fevrier = null ,$mars = null ,$avril  = null ,$mai  = null ,$juin  = null ,$juillet  = null ,$aout  = null ,$septembre  = null , $octobre  = null,$novembre  = null ,$decembre  = null )
     {
-        
+
         return $this->createQueryBuilder('client')
             ->orWhere("MONTH(client.date) = :janvier")
             ->setParameter(':janvier', $janvier)
@@ -69,10 +69,18 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':year', $year)
             ->getQuery()
             ->getResult()
-        ;
-        
-        
-            
+        ;   
+    }
+    public function findClientsEtat($etat){
+       /* return $this->createQueryBuilder('client')
+            ->Join("client.appareil", "appareil")
+            ->Join("appareil.editeur", "editeur")
+            ->Join("editeur.etat", "etat")
+            ->orWhere("etat.statut = :etat")
+            ->setParameter(':etat', $etat)
+            ->getQuery()
+            ->getResult()
+        ;*/
     }
     //SELECT MAX(YEAR(`date`)) FROM `client`
     public function findMaxYears()
