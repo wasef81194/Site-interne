@@ -133,7 +133,7 @@ class AppelController extends AbstractController
     /**
      * @Route("/interne/noreply/{id}", name="app_appel_no_reply", methods={"POST"})
      */
-    public function noreply(Request $request,MailerInterface $mailer, Appel $appel): Response
+    public function noreply(Request $request,MailerInterface $mailer, Appel $appel,  AppelRepository $appelRepository): Response
     {
         if ($this->isCsrfTokenValid('noreply'.$appel->getId(), $request->request->get('_token'))) {
             $data = (new TemplatedEmail())
@@ -156,7 +156,8 @@ class AppelController extends AbstractController
                 ])
             ;
             $mailer->send($data);
-            return $this->redirectToRoute('app_appel_checked', ['id'=>$appel->getId()], Response::HTTP_SEE_OTHER);
+            $appel->setDo(1);
+            $appelRepository->add($appel);
         }
 
         return $this->redirectToRoute('app_appel_index', [], Response::HTTP_SEE_OTHER);

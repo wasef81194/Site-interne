@@ -154,12 +154,13 @@ class ClientController extends AbstractController
             }
         }
 
-        $etats = ["Livré"];
+        $etats = ["Livré", "Pris en charge"];
         dump($clients);
         foreach( $clients as $key => $client){
             foreach( $etats as $etat){
-                if($client->getAppareil()->getEditeur()->getEtat()->getStatut() == $etat){
+                if($client->getAppareil()->getEditeur()->getEtat()->getStatut() != $etat){
                     dump($key,$client);
+                    unset($clients[$key]);
                 }
             }
         }
