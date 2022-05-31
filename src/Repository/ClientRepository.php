@@ -72,7 +72,8 @@ class ClientRepository extends ServiceEntityRepository
         ;   
     }
     public function findClientsEtat($etat){
-       /* return $this->createQueryBuilder('client')
+        dump($this);
+        return $this->createQueryBuilder('client')
             ->Join("client.appareil", "appareil")
             ->Join("appareil.editeur", "editeur")
             ->Join("editeur.etat", "etat")
@@ -80,7 +81,7 @@ class ClientRepository extends ServiceEntityRepository
             ->setParameter(':etat', $etat)
             ->getQuery()
             ->getResult()
-        ;*/
+        ;
     }
     //SELECT MAX(YEAR(`date`)) FROM `client`
     public function findMaxYears()

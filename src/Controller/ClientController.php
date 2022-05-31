@@ -155,22 +155,13 @@ class ClientController extends AbstractController
         }
 
         $etats = ["Livré", "Pris en charge"];
-        dump($clients);
-        foreach( $clients as $key => $client){
-            foreach( $etats as $etat){
-                if($client->getAppareil()->getEditeur()->getEtat()->getStatut() != $etat){
-                    dump($key,$client);
-                    unset($clients[$key]);
-                }
-            }
-        }
+        dump($clientRepository->findClientsEtat('Livré'));
         $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
         $chekeds = [];
         foreach ($months as $key => $month) {
             $cheked =$months[$key]!=null ? 'checked' : '';
             $chekeds[$key] = $cheked;
         }
-        dump($clients);
         return $this->render('client/show_all.html.twig', [
             'clients' =>  $clients ,
             'appareils' => $appareilRepository->findAll(),
