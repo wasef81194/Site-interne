@@ -11,7 +11,7 @@ function ajax_cardCompleted(url,checkbox,card) {
   }).done( function(response) {
     ///on efface la card de la div
    var btnNoReply = card.querySelector('.btn-noreply')
-    console.log(btnNoReply);
+   // console.log(btnNoReply);
     if(checkbox.checked) {
       // va dans historique
       btnNoReply.classList.add("collapse");
