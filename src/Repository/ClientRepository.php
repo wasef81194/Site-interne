@@ -41,6 +41,9 @@ class ClientRepository extends ServiceEntityRepository
     {
 
         return $this->createQueryBuilder('client')
+            ->Join("client.appareil", "appareil")
+            ->Join("appareil.editeur", "editeur")
+            ->Join("editeur.etat", "etat")
             ->orWhere("MONTH(client.date) = :janvier")
             ->setParameter(':janvier', $janvier)
             ->orWhere("MONTH(client.date) = :fevrier")
@@ -72,16 +75,15 @@ class ClientRepository extends ServiceEntityRepository
         ;   
     }
     public function findClientsEtat($etat){
-        dump($this);
         return $this->createQueryBuilder('client')
-            ->Join("client.appareil", "appareil")
-            ->Join("appareil.editeur", "editeur")
-            ->Join("editeur.etat", "etat")
-            ->orWhere("etat.statut = :etat")
-            ->setParameter(':etat', $etat)
-            ->getQuery()
-            ->getResult()
-        ;
+        ->Join("client.appareil", "appareil")
+        ->Join("appareil.editeur", "editeur")
+        ->Join("editeur.etat", "etat")
+        ->andWhere("etat.statut = :etat")
+        ->setParameter(':etat', $etat)
+        ->getQuery()
+        ->getResult()
+    ;
     }
     //SELECT MAX(YEAR(`date`)) FROM `client`
     public function findMaxYears()
