@@ -125,7 +125,8 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-        $etats = ["Livré", "Devis envoyée"];
+        $etats = ["2", "1"];
+       
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
             if($request->request->get($i)){
@@ -133,44 +134,44 @@ class ClientController extends AbstractController
             }
         }
         //********************Mois && Years************ */
-        if(count($yearsRequest)==0){
-            if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
+        if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
                 
-                if (count($yearsRequest)==0 ) {
-                    $clients =  $clientRepository->findAll();
-                }
-                else{
-                    foreach ($yearsRequest as  $yearRequest) {
-                        $clients += $clientRepository->findClientsYear($yearRequest);
-                    }
-                }
+            if (count($yearsRequest)==0 ) {
+                $clients =  $clientRepository->findAll();
             }
             else{
-                if ( count($yearsRequest)==0) {
-                    $clients = $clientRepository->findClientsMonth(null,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
-                }
-                else {
-                    foreach ($yearsRequest as  $yearRequest) {
-                        $clients += $clientRepository->findClientsMonth($yearRequest,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
-                    }
+                foreach ($yearsRequest as  $yearRequest) {
+                    $clients += $clientRepository->findClientsYear($yearRequest);
                 }
             }
         }
         else{
-            $clients = [];
-            foreach( $etats as $etat ){
-                array_push($clients,$clientRepository->findClientsEtat($etat));
+            if ( count($yearsRequest)==0) {
+                $clients = $clientRepository->findClientsMonth(null,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+            }
+            else {
+                foreach ($yearsRequest as  $yearRequest) {
+                    $clients += $clientRepository->findClientsMonth($yearRequest,$janvier,$fevrier,$mars,$avril,$mai,$juin,$juillet,$aout,$septembre,$octobre,$novembre,$decembre);
+                }
             }
         }
+        
+        if (count($etats)!=0) {
+            $clients = [];
+            foreach ($etats as $key => $etat) {
+                dump($clientRepository->findClientsEtat($etat));
+               $clients += $clientRepository->findClientsEtat($etat)  ;
+            }
+        }
+        dump($clients);
         $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
         $chekeds = [];
         foreach ($months as $key => $month) {
             $cheked =$months[$key]!=null ? 'checked' : '';
             $chekeds[$key] = $cheked;
         }
-        dump($clients);
         return $this->render('client/show_all.html.twig', [
-            'clients' =>  $clients ,
+            'clients' =>  $clients,
             'appareils' => $appareilRepository->findAll(),
             'checkds' => $chekeds,
             'years' =>$years,
