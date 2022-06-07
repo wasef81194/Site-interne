@@ -132,7 +132,7 @@ class ClientController extends AbstractController
                 array_push($yearsRequest,$request->request->get($i));
             }
         }
-        //********************Mois************ */
+        //********************Mois && Years************ */
         if(count($yearsRequest)==0){
             if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
                 
