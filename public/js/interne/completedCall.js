@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  $('.formCall').ready(function () {
+      $('.loaderAllClients').hide();
+      $('.allClients').show();	
+  });
     reloadCardCall()
     listenerCheckboxCall()
 });

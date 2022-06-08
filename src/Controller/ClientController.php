@@ -125,16 +125,16 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-        dump($request->request->get('staut1'));
-        $etats = ["2", "1", "7"];
-       
+        $allEtats = $etatRepository->findAll();
+        $etats = [];
+        
+        //********************Mois && Years************ */
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
             if($request->request->get($i)){
                 array_push($yearsRequest,$request->request->get($i));
             }
         }
-        //********************Mois && Years************ */
         if (!$janvier && !$fevrier && !$mars && !$avril && !$mai && !$juin && !$juillet && !$aout && !$septembre && !$octobre && !$novembre && !$decembre){
                 
             if (count($yearsRequest)==0 ) {
@@ -156,7 +156,20 @@ class ClientController extends AbstractController
                 }
             }
         }
-        
+
+        $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
+        $chekeds = [];
+        foreach ($months as $key => $month) {
+            $cheked =$months[$key]!=null ? 'checked' : '';
+            $chekeds[$key] = $cheked;
+        }
+
+        /*********************ETAT ******************** */
+        foreach ($allEtats as  $etat) {
+            if($request->request->get('statut'.$etat->getId())){
+                array_push($etats,$etat->getId());
+            }
+        }
         if (count($etats)!=0) {
             $clients = [];
             foreach ($etats as  $key => $etat) {
@@ -165,20 +178,15 @@ class ClientController extends AbstractController
                 }
             }
         }
-        dump($clients);
-        $months = ['janvier'=>$janvier,'fevrier'=> $fevrier,'mars'=> $mars,'avril'=> $avril,'mai'=> $mai, 'juin'=>$juin, 'juillet'=>$juillet, 'aout'=>$aout, 'septembre'=>$septembre, 'octobre'=>$octobre, 'novembre'=>$novembre, 'decembre'=>$decembre];
-        $chekeds = [];
-        foreach ($months as $key => $month) {
-            $cheked =$months[$key]!=null ? 'checked' : '';
-            $chekeds[$key] = $cheked;
-        }
+       dump($etats);
         return $this->render('client/show_all.html.twig', [
             'clients' =>  $clients,
             'appareils' => $appareilRepository->findAll(),
             'checkds' => $chekeds,
+            'checkdsEtat' => $etats,
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
-            'etats' => $etatRepository->findAll()
+            'etats' => $allEtats
         ]);
     }
 
