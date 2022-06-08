@@ -105,7 +105,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository, EtatRepository $etatRepository)
+    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository, EtatRepository $etatRepository,  UserRepository $userRepository)
     {
         $years = [];
         $yearsRequest = [];
@@ -186,7 +186,8 @@ class ClientController extends AbstractController
             'checkdsEtat' => $etats,
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
-            'etats' => $allEtats
+            'etats' => $allEtats,
+            'users'=>$userRepository->findAll()
         ]);
     }
 

@@ -73,10 +73,13 @@
                                 
 
                                 <td class="td-button" style="min-width:150px">
-                                    <a class="btn btn-success" href="{{ path('client_show', {'id': client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardClient{{client.id}}">
+                                        <i  width='25%' class="bi bi-person-bounding-box show-info-client"></i>
+                                    </button>
                                     {{ include('client/_delete_form.html.twig') }}
                                 </td>
                             </tr>
+                            {{ include('client/modal/modal.html.twig') }}
                         {% else %}
                             <tr>
                                 <td colspan="12" class='white'>En attente de clients...</td>
