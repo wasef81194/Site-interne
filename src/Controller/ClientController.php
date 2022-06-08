@@ -105,7 +105,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository)
+    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository, EtatRepository $etatRepository)
     {
         $years = [];
         $yearsRequest = [];
@@ -125,7 +125,8 @@ class ClientController extends AbstractController
         $octobre = $request->request->get('octobre');
         $novembre = $request->request->get('novembre');
         $decembre = $request->request->get('decembre'); 
-        $etats = ["2", "1"];
+        dump($request->request->get('staut1'));
+        $etats = ["2", "1", "7"];
        
         for ($i=$minYear[0][1]-1; $i < $maxYear[0][1]+1 ; $i++) { 
             array_push($years,$i);
@@ -158,9 +159,10 @@ class ClientController extends AbstractController
         
         if (count($etats)!=0) {
             $clients = [];
-            foreach ($etats as $key => $etat) {
-                dump($clientRepository->findClientsEtat($etat));
-               $clients += $clientRepository->findClientsEtat($etat)  ;
+            foreach ($etats as  $key => $etat) {
+                foreach ($clientRepository->findClientsEtat($etat) as $client) {
+                    array_push($clients,$client);
+                }
             }
         }
         dump($clients);
@@ -176,6 +178,7 @@ class ClientController extends AbstractController
             'checkds' => $chekeds,
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
+            'etats' => $etatRepository->findAll()
         ]);
     }
 

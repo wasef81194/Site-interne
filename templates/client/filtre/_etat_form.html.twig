@@ -1,0 +1,28 @@
+<form method="post" action="{{ path('client_show_all')}}" id="filtreEtat">
+<div class="accordion accordion-flush" id="accordionEtat">
+<div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEtat" aria-expanded="false" aria-controls="flush-collapseOne">
+            Etat
+        </button>
+        </h2>
+        <div id="flush-collapseEtat" class="accordion-collapse collapse" aria-labelledby="flush-headingEtat" data-bs-parent="#accordionEtat">
+            <div class="accordion-body">
+                {% for etat in etats %}
+                    <div>
+                        <input type="checkbox" id="statut{{etat.id}}" name="{{etat.id}}"  value="{{etat.id}}" >
+                        <label for="{{etat.id}}">{{ (etat.statut == '') ? 'Sans statut' : etat.statut }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+    
+        <div class="center mt-4">
+            <button class="btn btn-primary m-auto"> Valider</button>
+        </div>
+        
+    </form>

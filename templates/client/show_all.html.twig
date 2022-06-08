@@ -8,12 +8,20 @@
             <h1 >Clients</h1>
             <div class="row mt-5">
                 <div class="col" style="max-width: 300px !important">
+                    <div class="card mb-5" >
+                        <div class="card-body">
+                            <h5 class="card-title">Filtrer par date</h5>
+                            {{ include('client/filtre/_date_form.html.twig') }}
+                        </div>
+                    </div>
                     <div class="card" >
                         <div class="card-body">
-                            <h5 class="card-title">Filtrer</h5>{{ include('client/filtre/_date_form.html.twig') }}
+                            <h5 class="card-title">Filtrer par etat</h5>
+                            {{ include('client/filtre/_etat_form.html.twig') }}
                     </div>
                 </div>
-                </div>
+                
+            </div>
                 <div class="col allClients" style="">
                     <table class="table">
                         <thead>
