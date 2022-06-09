@@ -5,4 +5,9 @@ $(document).ready(function(){
     $(".retour").mouseout(function(){
         $(this).attr('src', '../../images/retour.png');
     })
+    $('.retour').click(function(e){
+        console.log('retour');
+        e.preventDefault();
+        history.back();
+    });
 });
