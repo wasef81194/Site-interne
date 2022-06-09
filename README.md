@@ -9,7 +9,3 @@ Ce site tourne grâce au langage suivant :
 Symfony
 
 Twig
-
-Scss
-
-React JS
