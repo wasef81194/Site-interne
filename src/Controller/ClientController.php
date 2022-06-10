@@ -105,7 +105,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/show/all", name="client_show_all",methods={"GET","POST"})
      */
-    public function show_all(Request $request, ClientRepository $clientRepository, AppareilRepository $appareilRepository, EtatRepository $etatRepository,  UserRepository $userRepository)
+    public function show_all(Request $request,  UserRepository $userRepository, ClientRepository $clientRepository, AppareilRepository $appareilRepository, EtatRepository $etatRepository)
     {
         $years = [];
         $yearsRequest = [];
@@ -187,7 +187,7 @@ class ClientController extends AbstractController
             'years' =>$years,
             'yearsCheckds' =>$yearsRequest,
             'etats' => $allEtats,
-            'users'=>$userRepository->findAll()
+            'users' => $userRepository->findAll()
         ]);
     }
 
@@ -303,10 +303,12 @@ class ClientController extends AbstractController
         ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
         ->to(new Address($client->getMail()))
         ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
+        //->cc('cc@example.com')
         //->bcc('bcc@example.com')
         ->replyTo('contact@azertyfrance.fr')
+        //->priority(Email::PRIORITY_HIGH)
         ->embedFromPath('../public/images/mail/asi.png', 'asi')
-        ->embedFromPath('../public/images/mail/wathsapp.svg', 'whatsapp')
+        ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
         ->embedFromPath($path, 'etat')
         ->subject('Etat de votre appareil')
         ->htmlTemplate('emails/mailEtat.html.twig')
