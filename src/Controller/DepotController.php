@@ -189,11 +189,11 @@ class DepotController extends AbstractController
                
                 //Envoie un mail
                $data = (new TemplatedEmail())
-               ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+               ->from((new Address('noreply@azertypro.fr','AZERTY Solutions Informatiques')))
                ->to(new Address($client->getMail()))
                ->bcc(new Address('contact@azertyfrance.fr'))
                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
-               ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+               ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
                //->bcc('bcc@example.com')
                //->priority(Email::PRIORITY_HIGH)
                ->replyTo('contact@azertyfrance.fr')

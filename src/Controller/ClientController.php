@@ -300,7 +300,7 @@ class ClientController extends AbstractController
             $path = '../public/images/mail/livre.png';
         }
         $data = (new TemplatedEmail())
-        ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+        ->from((new Address('noreply@azertypro.fr','AZERTY Solutions Informatiques')))
         ->to(new Address($client->getMail()))
         ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
         //->cc('cc@example.com')
