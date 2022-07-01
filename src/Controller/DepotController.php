@@ -194,12 +194,15 @@ class DepotController extends AbstractController
                ->bcc(new Address('contact@azertyfrance.fr'))
                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
                ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
+               ->embedFromPath('../public/images/mail/location.png', 'location')
+               ->embedFromPath('../public/images/mail/phone.png', 'phone')
                //->bcc('bcc@example.com')
                //->priority(Email::PRIORITY_HIGH)
                ->replyTo('contact@azertyfrance.fr')
                ->subject('Dépot chez AZERTY Solutions Informatiques')
                ->htmlTemplate('emails/mailDepot.html.twig')
                ->context([
+                    'date' => $client->getDate(),
                    'personne' => $client->getPersonne(),
                    'nom' => $client->getNom(),
                    'prenom' => $client->getPrenom(),

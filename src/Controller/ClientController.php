@@ -178,7 +178,7 @@ class ClientController extends AbstractController
                 }
             }
         }
-       dump($etats);
+       //dump($etats);
         return $this->render('client/show_all.html.twig', [
             'clients' =>  $clients,
             'appareils' => $appareilRepository->findAll(),
@@ -309,10 +309,13 @@ class ClientController extends AbstractController
         //->priority(Email::PRIORITY_HIGH)
         ->embedFromPath('../public/images/mail/asi.png', 'asi')
         ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
+        ->embedFromPath('../public/images/mail/location.png', 'location')
+        ->embedFromPath('../public/images/mail/phone.png', 'phone')
         ->embedFromPath($path, 'etat')
         ->subject('Etat de votre appareil')
         ->htmlTemplate('emails/mailEtat.html.twig')
         ->context([
+            'date' =>  $client->getDate(),
             'personne' => $client->getPersonne(),
             'nom' => $client->getNom(),
             'prenom' => $client->getPrenom(),

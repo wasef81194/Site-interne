@@ -8,104 +8,85 @@
 </p>
 {% if etat == 'Pris en charge' %}
 	<p>
-		Votre appareil vient d'être pris en charge par nos techniciens.
-		        Nous vous informerons de chaque étape liés à la prise en charge de votre appareil.
+		Suite à votre dépôt le {{date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}.
+	</p>
+	<p>
+		Nous vous confirmons la prise en charge de votre appareil.
 	</p>
 	<img src="cid:etat">
+	</br>
+	<p>
+		Nos techniciens mettent tout en œuvre afin de vous apporter un diagnostic, et ceux dans les plus brefs délais.
+	</p>
+	<p>
+		Cordialement.
+	</p>
 {% elseif etat == 'Devis envoyée' %}
 	<p>
-		AZERTY Solutions Informatiques à diagnostiqué votre appareil et vous informent qu\'un devis vous a été envoyé par mail.
-		        Si vous n'avez pas reçu votre devis, veuillez consulter vos spams.
+		Suite à votre demande de diagnostic, en date du {{date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}, concernant l’appareil :
 	</p>
-	<h5>Le devis est gratuit si votre appareil est réparé dans nos locaux
-	</h5>
+	<ul>
+		<li><b>Marque </b> : {{marque}}</li>
+		<li><b>Modèle </b> : {{modele}}</li>
+		<li><b>N° de série</b> : {{ns}}</li>
+	</ul>
+	<img src="cid:etat">
+	</br>
 	<p>
-		En effet, si le devis vous convient vous payerez seulement la somme indiquée sur le devis.
-		        Toutefois, en cas de désaccord avec ce devis, vous avez la possibilité de refuser ce devis et vous payerez seulement la somme de 30 € liées au diagnostic de votre appareil.
+		Nous vous informons que notre proposition commerciale, tenant compte des éléments nécessaires au bon fonctionnement de votre appareil vous à été envoyer.
 	</p>
-	<img src="cid:etat">
+	<p>
+		Cordialement.
+	</p>
 {% elseif etat == 'En attente de pièce' %}
-	<p>AZERTY Solutions Informatiques est en attente d'une pièce commandée pour rendre votre appareil opérationnel.</p>
-	<p>Une fois reçue, nos techniciens pourrons commencer la réparation de votre appareil.
-		        Nous vous informerons de chaque étape liés à la prise en charge de votre appareil.</p>
+	<p>Afin de rendre votre appareil opérationnel, vous vous informons que nous sommes en attente d’une pièce commandée. Pour plus d'informations sur la livraisons veuillez nous contactez</p>
 	<img src="cid:etat">
+	</br>
+	<p>Dès réception, nos techniciens seront en mesure de débuter la réparation de votre appareil. </p>
+	<p>En vous remerciant de nous faire confiance.</p>
+	<p>Cordialement</p>
 {% elseif etat == 'En cours de réparation' %}
 	<p>
-		Votre appareil est en cours de réparation par nos techniciens.
-		        Nous vous informerons de chaque étape liés à la prise en charge de votre appareil.
+		Comme convenu, nous vous informons de chaque point d’acheminement.
 	</p>
 	<img src="cid:etat">
-{% elseif etat == 'Prêt à être récupéré' %}
+	</br>
 	<p>
-		AZERTY Solutions Informatiques est heureux de vous annoncer que votre appareil est prêt à être récuperé.
-		        Sans nouvelles de votre part à partir de 30 jours dès réception de ce mail, nous recyclons votre appareil.
+		C’est le moment de vous annoncer que votre appareil est en cours de réparation !
 	</p>
 	<p>
-		<b>Horaire d'ouverture :
-		</b>De 9h à 19h
+		Vous pourrez, prochainement, venir récupérer votre appareil.
+	</p>
+	<p>
+		Cordialement.
+	</p>
+{% elseif etat == 'Prêt à être récupéré' %}
+	<p>
+		AZERTY Solutions Informatiques, est heureux de vous annoncer que votre appareil est prêt à être récupéré, au sein de nos locaux, de 9h à 19h, au :
 	</p>
 	<p>
 		<b>
-			Adresse de récuperation de votre appareil :
 		</b>38 rue de la Station Interphone 17, 95130 Franconville
 	</p>
 	<img src="cid:etat">
+	</br>
+	<p>Dès réception de ce mail, sans retour de votre part au bout de 30 jours, nous recyclerons votre appareil.</p>
+	<p>Cordialement. </p>
 {% elseif etat == 'Livré' %}
 	<p>
-		Merci d'avoir fait confiance à AZERTY Solutions Informatiques. 
-		        Si vous avez bien reçu votre appareil et que vous êtes satisfait de notre travail n'hésitez pas à donner une note sur <a href="https://www.google.com/search?q=azerty+solutions+informatiques&sxsrf=ALeKk02eVJbX_tE7972gR-Cn4zFqWvNrAw%3A1620743094199&source=hp&ei=tpOaYKDwCcXggweK3IXYBA&iflsig=AINFCbYAAAAAYJqhxoCVe1FJpslRDtIC2cQWBa2dawvN&oq=azert&gs_lcp=Cgdnd3Mtd2l6EAMYATIECCMQJzIICAAQxwEQrwEyBQgAELEDMgIIADICCC4yAggAMgIIADICCAAyAggAMgIIADoHCCMQ6gIQJzoICAAQsQMQgwE6DggAELEDEIMBEMcBEKMCOgQILhBDOgQIABBDOgUILhCxAzoHCC4QsQMQQ1CGDFjBEmCDHmgBcAB4AIABzAGIAdwDkgEFNC4wLjGYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=gws-wiz#lrd=0x47e6670ec216aaab:0xab1a76ada69c8193,1,,,">Google</a>.
-			        Ainsi vous indiquerez aux autres membres ce que vous pensez d'AZERTY Solutions Informatiques.
+		L’équipe d’AZERTY Solutions Informatiques vous remercie de lui avoir fait confiance !
 	</p>
 	<img src="cid:etat">
+	</br>
+	<p>
+		En espérant que vous ayez apprécié nos services, nous vous invitons si vous le désiré, à nous faire part de votre avis sur 
+		<a href="https://www.google.com/search?q=azerty+solutions+informatiques&sxsrf=ALeKk02eVJbX_tE7972gR-Cn4zFqWvNrAw%3A1620743094199&source=hp&ei=tpOaYKDwCcXggweK3IXYBA&iflsig=AINFCbYAAAAAYJqhxoCVe1FJpslRDtIC2cQWBa2dawvN&oq=azert&gs_lcp=Cgdnd3Mtd2l6EAMYATIECCMQJzIICAAQxwEQrwEyBQgAELEDMgIIADICCC4yAggAMgIIADICCAAyAggAMgIIADoHCCMQ6gIQJzoICAAQsQMQgwE6DggAELEDEIMBEMcBEKMCOgQILhBDOgQIABBDOgUILhCxAzoHCC4QsQMQQ1CGDFjBEmCDHmgBcAB4AIABzAGIAdwDkgEFNC4wLjGYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=gws-wiz#lrd=0x47e6670ec216aaab:0xab1a76ada69c8193,1,,,">Google</a>.
+	</p>
+	
+	<p>En vous remerciant, </p>
+	<p>Cordialement. </p>
 {% endif %}
 
-{% if etat != 'Devis envoyée' %}
-	<h3 style='color:blue; margin-top : 10px' >Votre appareil est : {{etat}}</h3>
-{% else %}
-	<h3 style='color:blue;  margin-top : 10px'>Un devis vous à été envoyée</h3>
-{% endif %}
-
-<div>
-	<div>
-		<h4>
-			Information personnel</h4>
-		<p>
-			<b>Nom :
-			</b>
-			{{nom}}</p>
-		<p>
-			<b>Prénom :</b>
-			{{prenom}}</p>
-		<p>
-			<b>Mail :</b>
-			{{mail|raw}}</p>
-		<p>
-			<b>Téléphone :</b>
-			{{tel}}</p>
-		<p>
-			<b>Rue :</b>
-			{{rue}}</p>
-		<p>
-			<b>Code Postal :</b>
-			{{cp}}</p>
-		<p>
-			<b>Ville :</b>
-			{{ville}}</p>
-	</div>
-	<div>
-		<h4>Déscription de votre appareil
-		</h4>
-		<p>
-			<b>Marque :</b>
-			{{marque}}</p>
-		<p>
-			<b>Modele :</b>
-			{{modele}}</p>
-		<p>
-			<b>Numero de série :</b>
-			{{ns}}</p>
-	</div>
-</div>
 <div>
 	{% include 'emails/layout/footer.html.twig' %}
 </div>

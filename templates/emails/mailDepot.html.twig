@@ -1,22 +1,14 @@
 <h1>Dépot chez AZERTY Solutions Informatiques</h1>
 <p>Bonjour, {{personne}} {{nom}} {{prenom}} </p>
-<p>Merci d'avoir renseigné le formulaire de dépôt pour la prise en charge de votre 
-{{marque}} {{modele}}. Nous vous communiquerons
-chaque points d'avancements liés à votre appareil.
- </p>
+<p>Merci beaucoup de nous avoir contacté ! </p>
+<p>Nous accusons, ce jour le {{date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}, bonne réception du formulaire que vous avez renseigné, pour la prise en charge de votre appareil :</p>
+<ul>
+    <li><b>Marque </b> : {{marque}}</li>
+    <li><b>Modèle </b> : {{modele}}</li>
+    <li><b>N° de série</b> : {{ns}}</li>
+</ul>
 
-<h3> Information personnel</h3>
-<p>Nom : {{nom}}</p>
-<p>Prénom : {{prenom}}</p>
-<p>Mail : {{mail|raw}}</p>
-<p>Téléphone : {{tel}}</p>
-<p>Rue : {{rue}}</p>
-<p>Code Postal : {{cp}}</p>
-<p>Ville : {{ville}}</p>
-
-<h3>Déscription de votre appareil </h3> 
-<p>Marque : {{marque}}</p>
-<p>Modele : {{modele}}</p>
-<p>Numero de série : {{ns}}</p>
+<p>Désormais, chaque point d’acheminent vous sera communiqué.</p>
+<p>L’équipe d’AZERTY Solutions Informatiques vous remercie de votre confiance.</p>
 
 {% include 'emails/layout/footer.html.twig' %}
