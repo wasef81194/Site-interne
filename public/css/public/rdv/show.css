@@ -1,0 +1,41 @@
+@media screen and (max-width: 1000px)
+{
+    .h1CardRdv{
+        font-size: 65px !important;
+    }   
+    .card.cardRdv.cardRdvclient{
+        margin-top: 50px !important;
+        font-size: 35px !important;
+        margin-bottom: 100px !important;
+    }
+    .cardRdvclient .card-title{
+        font-size: 50px !important;
+    }
+    .cardRdvclient .card-footer{
+        font-size: 50px !important
+    }
+    .title-name {
+        margin-top: 100px;
+    }
+    .inline-button{
+       margin-top: 50px;
+    }
+    .responsive-btn, .responsive-btn.mr-2.btn.btn-warning.btn-change-date.btn-orange.right.white{
+        font-size: 50px !important;
+        float: none !important;
+    }
+    .modal-responsive, #staticBackdropLabel{
+        font-size: 35px !important;
+    }
+    .form-control {
+        font-size: 50px !important;
+    }
+    .btn-close {
+        margin-top: -70px !important;
+    }
+    .alert-responsive{
+        font-size: 35px !important;
+        padding: 20px;
+    }
+    
+}

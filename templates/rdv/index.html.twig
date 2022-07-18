@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de rendez-vous{% endblock %}
+{% block stylesheets %}
+            
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+    {#{{ encore_entry_link_tags('app') }}#}
+           
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./images/azerty.jpg')}}">
+{% endblock %}
+{% block body %}
+
+{% include 'layout/navbar.html.twig' %}
+    <div class="container">
+        <h1>Demande d'intervention à domicile</h1>
+        {% set did = 1 %}
+        {% set demande = 1 %}
+        <div class="row mt-5">
+            <div class="col all-rdv">
+                {% for rdv in rdvs| sort((a, b) => a.date <=> b.date) %}
+                    {% if rdv.do != 1 %}
+                        {% set annulation = '' %}
+                        {% set confirmer = '' %}
+                        {% set sugestion = '' %}
+                        <div class="zoom ">
+                            {% if  rdv.confirmer == 1 %}
+                                <div class="card cardRdv bg-green mb-3" >
+                                {% set confirmer = 'Confirmer par AZERTY' %}
+                            {% elseif rdv.confirmer == 2 %}
+                                <div class="card cardRdv mb-3 bg-orange" >
+                                {% set sugestion = 'Attente de confirmation' %}
+                            {% elseif rdv.confirmer == 3 %}
+                                <div class="card cardRdv mb-3 bg-green">
+                                {% set confirmer = 'Confirmer par le client' %}
+                            {% elseif rdv.confirmer == 4 %}
+                                <div class="card cardRdv mb-3 bg-orange" >
+                                {% set sugestion = 'Nouvelle suggestion client' %}
+                            {% elseif rdv.confirmer == 5 %}
+                                <div class="card cardRdv mb-3" >
+                                {% set annulation = 'Annuler' %}
+                            {% else %}
+                                <div class="card cardRdv mb-3" >
+                            {% endif %}
+                                <div class="card-body">
+                                
+                                    <h5 class="card-title">
+                                    {{ include('rdv/check_form.html.twig') }}
+                                        <span class="badge bg-success">{{confirmer}}</span> 
+                                        <span class="badge bg-warning" style="background-color: #c2820b;">{{sugestion}}</span> 
+                                        <span class="badge bg-secondary" >{{annulation}}</span> 
+                                    </h5>
+                                    <h5 class="card-title">
+                                        {{ rdv.nom|upper }} {{ rdv.prenom|capitalize }}
+                                    </h5>
+                                    <p class="card-text"><a class="none" href="tel:~{{ rdv.tel }}">{{ rdv.tel }}</a></p>
+                                    <p class="card-text"><a class="none" href="mailto:~{{ rdv.mail }}">{{ rdv.mail }}</a></p>
+                                    <p class="card-text">{{ rdv.adresse|capitalize }}</p>
+                                    <p class="card-text">{{ rdv.message|capitalize }}</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    {% if "now"|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
+                                        <span class="badge bg-danger badge-date">Aujourd'hui</span>
+                                    {% elseif "now"|date_modify("+1 day")|date("d-m-Y") ==  rdv.date|date('d-m-Y')  %}
+                                        <span class="badge bg-primary badge-date">Demain</span>
+                                    {% elseif "now"|date("d-m-Y") > rdv.date|date('d-m-Y') %}
+                                        <span class="badge bg-secondary badge-date">Passé</span>
+                                    {% endif %}
+                                    {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
+                                    <span class='button-hidden'>
+                                        {{ include('rdv/confirmation_form.html.twig') }}
+                                        <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                            <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
+                                        </button>
+                                        <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                    </span>
+                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{ include('rdv/edit_date.html.twig') }}
+                    {% endif %}
+                {% else %}
+                    {% set demande = 0 %} 
+                {% endfor %}
+            </div>
+            <div class="col historyRdv">
+            {% for rdv in rdvs| sort((a, b) => b.date <=> a.date) %}
+                {% if rdv.do %}
+                    {% set annulation = '' %}   
+                    <div class="zoom ">
+                        <div class="card cardRdv mb-3" >
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                {% if rdv.confirmer == 5 %}
+                                    {% set annulation = 'Annuler' %}
+                                {% endif %}
+                                {{ include('rdv/check_form.html.twig') }}
+                                    <span class="badge bg-secondary ">{{annulation}}</span> 
+                                </h5>
+                                <h5 class="card-title">
+                                    {{ rdv.nom|upper }} {{ rdv.prenom|capitalize }}
+                                </h5>
+                                <p class="card-text"><a class="none" href="tel:~{{ rdv.tel }}">{{ rdv.tel }}</a></p>
+                                <p class="card-text"><a class="none" href="mailto:~{{ rdv.mail }}">{{ rdv.mail }}</a></p>
+                                <p class="card-text">{{ rdv.adresse|capitalize }}</p>
+                                <p class="card-text">{{ rdv.message|capitalize }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                {{  rdv.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
+                                    <span class='button-hidden collapse'>
+                                        {{ include('rdv/confirmation_form.html.twig') }}
+                                        <button type="button" class="mr-2 btn btn-warning btn-orange right white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{rdv.id}}">
+                                            <img  width="20px"  class='suggestion' src="{{asset('./images/suggestion.png')}}"/>
+                                        </button>
+                                        <a class="btn btn-secondary right mr-2" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                    </span>
+                                    <div class="right"> {{ include('rdv/_delete_form.html.twig') }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ include('rdv/edit_date.html.twig') }}
+                {% endif %}
+            {% else %}
+                {% set did = 0 %}   
+            {% endfor %}
+            </div>
+        </div>
+        {% if did == 0 and demande == 0 %}
+            <div class="alert alert-secondary mt-3" style="text-align:center" role="alert">
+                En attente de demande ...
+            </div>
+        {% endif %}
+
+        {#<a href="{{ path('app_rdv_new') }}">Create new</a>#}
+        
+    </div>
+    
+    {% include 'layout/footer.html.twig' %}
+    
+
+
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+.client_livrate{
+     opacity: 0.33;
+}
+.td-date{
+   min-width: 110px;
+}
+.show-info-client{
+   font-size: 19px;  
+}
+.modal-img{
+   font-size: 60px; 
+   text-align: center;
+}
+/*.modal .client{
+   top: 30vh !important;
+}*/
+.modal-dialog .client{
+   max-width: 90% !important;
+ }
+.modal-dialog {
+   max-width: 90% !important;
+}
+.modal-text-client{
+   text-align: justify; 
+}
+.modal-title{
+   text-align: center;
+   font-weight: bold;
+}
+.jc{
+   justify-content: center;
+}
+.card-modal-header-client {
+   text-align: center;
+   color: white !important;
+ }
+ .check-modal {
+   font-size: 25px;
+   color: #2bf52b;
+  
+ }
+.cross-modal{
+   font-size: 25px;
+   color: #ffffff;
+  
+}
+.badge-statut-appareil{
+   display: inline-block;
+   color: #fff;
+   text-align: center;
+}
+.client-month{
+   max-width: 1421px !important;
+}

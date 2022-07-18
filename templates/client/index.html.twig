@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    {% include 'layout/navbar.html.twig' %}
+        <div class="client-month container mb-100 ">
+            <h1>Clients {{titleMonth}} {{year}} <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            </h1>
+            <a  class="btn btn-outline-dark" href="{{ path('client_index',{'month': month, 'year':year, 'method' : 'precedent' }) }}"><img class="precedent" width='25px' src="{{asset('./images/icon-precedent.png')}}"/></a>
+            <a  class="btn btn-outline-dark float-end" href="{{ path('client_index',{'month': month, 'year':year, 'method' : 'suivant' }) }}"><img class="suivant" width='25px' src="{{asset('./images/icon-suivant.png')}}"/></a>
+            <table class="table">
+                <thead>
+                    <tr class='table_head'>
+                        <th>Date</th>
+                        <th>Civilité</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Télephone</th>
+                        <th>Marque</th>
+                        <th>Modele</th>
+                        <th>Chargeur</th>
+                        <th>Etat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
+                {% for client in clients | sort((a, b) => b.date <=> a.date) %}
+                    {% set counter = ( counter | default(0) ) + 1 %}
+                    {% if counter % 2 %}
+                        <tr class='ligne_client tr_no_color select'>
+                    {% else %}
+                    {#client_livrate#}
+                        <tr class='ligne_client tr_color select'>
+                    {% endif %}
+                        <td class="td-date">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
+                        <td>{{ client.personne }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.tel }} </td>
+                        <td>{{ client.appareil.marque }} </td>
+                        <td>{{ client.appareil.modele }} </td>
+                        {% if client.appareil.chargeur == 1 %}
+                        <td> <img  class='check' src="{{asset('./images/check.png')}}" width="40px" /></td>
+                        {% else %}
+                        <td>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" /></td>
+                        {% endif %}
+                        {% if client.appareil.editeur.etat.statut is defined %}
+                            <td class='statutAppareil'> 
+                                <span class="badge" id='change-statut{{client.id}}' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
+                            </td>
+                        {% else %}
+                        <td>  </td>
+                        {% endif %}
+                        <td class="inline-button mw-250">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" title="Afficher les informations client"  data-bs-target="#cardClient{{client.id}}">
+                                <i  width='25%' class="bi bi-person-bounding-box show-info-client"></i>
+                            </button>
+                            <a title="Modifier les informations client" class="btn btn-secondary"href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                            {{ include('client/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                        {{ include('client/modal/modal.html.twig') }}
+                {% else %}
+                    <tr >
+                        <td colspan="12" class='white'>En attente de clients...</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a  class="btn btn-success btn-lg" href="{{ path('client_new') }}"><img class="delete" width='28px' src="{{asset('./images/icon-add.png')}}"/></a>
+        </div>
+
+    
+    {% include 'layout/footer.html.twig' %}
+{% endblock %}

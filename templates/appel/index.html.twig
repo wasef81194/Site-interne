@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À Rappeler{% endblock %}
+{% block body %}
+{% include 'layout/navbar.html.twig' %}
+    <div class="container mb-3">
+            <div class="row mt-5" >
+                <div class="col">
+                    <h1>À Rappeler</h1>
+                    <div class="all-call">
+                        {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
+                            {% if appel.do != 1 %}
+                            <div class="zoom ">
+                                <div class="card cardCall mt-3">
+                                    <div class="card-body">
+                                        {{ include('appel/check_form.html.twig') }}
+                                        <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
+                                        <p class="card-text"><a class="none" href="tel:~{{ appel.tel }}">{{ appel.tel }}</a></p>
+                                        {% if appel.mail %}
+                                            <p class="card-text"><a class="none" href="mailto:~{{ appel.mail }}">{{ appel.mail }}</a></p>
+                                        {% endif %}
+                                        <p class="card-text">{{ appel.objet|capitalize }}</p>
+                                        <p class="card-text">{{ appel.message|capitalize }}</p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    {{  appel.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
+                                        <div class="right"> {{ include('appel/_delete_form.html.twig') }} </div>
+                                        <a class="btn btn-secondary right mr-1" href="{{ path('app_appel_edit', {'id': appel.id}) }}"  ><img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/></a>
+                                        <div class="right btn-noreply"> {{ include('appel/_dont_reply_form.html.twig') }}  </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="alert alert-secondary mt-5" style="text-align:center" role="alert">
+                                En attente de demande d'appel...
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col">
+                    <h1>Historique d'appel</h1>
+                    <div class="historyCall">
+                        {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
+                            {% if appel.do  %}
+                            <div class="zoom">
+                                <div class="card cardCall mt-3" >
+                                    <div class="card-body">
+                                        {{ include('appel/check_form.html.twig') }}
+                                        <h5 class="card-title">{{ appel.nom|upper }} {{ appel.prenom }}</h5>
+                                        <p class="card-text"><a class="none" href="tel:~{{ appel.tel }}">{{ appel.tel }}</a></p>
+                                        {% if appel.mail %}
+                                            <p class="card-text"><a class="none" href="mailto:~{{ appel.mail }}">{{ appel.mail }}</a></p>
+                                        {% endif %}
+                                        <p class="card-text">{{ appel.objet|capitalize }}</p>
+                                        <p class="card-text">{{ appel.message|capitalize }}</p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                    {{  appel.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}
+                                    <div class="right"> {{ include('appel/_delete_form.html.twig') }} </div>
+                                    <a class="btn btn-secondary right mr-1" href="{{ path('app_appel_edit', {'id': appel.id}) }}"  >
+                                        <img class="edit" width='20px' src="{{asset('./images/icon-edit.png')}}"/>
+                                    </a>
+                                    <div class="right btn-noreply collapse"> {{ include('appel/_dont_reply_form.html.twig') }}  </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="alert alert-secondary mt-5" style="text-align:center" role="alert">
+                                Historique d'appel vide...
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+    {% include 'layout/footer.html.twig' %}
+{% endblock %}

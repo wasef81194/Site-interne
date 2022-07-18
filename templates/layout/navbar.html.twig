@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('client_index') }}">Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('client_show_all') }}">Historiques</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('prioritaire_index') }}">Prioritaires</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('tache_index') }}">Tâches à faire</a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('user_index') }}"> Utilisateurs </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_appel_index') }}">Rappel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ path('app_rdv_index') }}">Rendez-vous</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav  d-flex" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+        {% if app.user %}
+          <a class="nav-link"  style="font-size:25px"  href="{{ path('user_show', {'id':  app.user.id} )}}"><i class="bi bi-person-circle"></i></a>
+        {% endif %}
+        </li>
+        {% if app.user %}
+          <li class="nav-item">
+            <a class="nav-link" style="font-size:25px" href="{{ path('app_logout')}}"><i class="bi bi-box-arrow-right"></i></a>
+          </li>
+        {% endif %}
+      {#<li class="nav-item">
+          <a class="nav-link" href="{{ path('panier') }}"><img src="{{ asset('/images/navbar/icon-caddie.png') }}" width="20"/></a>
+        </li>#}
+      </ul>
+    
+    </div>
+  </div>
+</nav>

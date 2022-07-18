@@ -1,0 +1,79 @@
+<div class="modal modal-client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog client">
+    <div class="modal-content mt-5">
+      <div class="modal-header">
+        <h4 class="modal-title fs-s" id="staticBackdropLabel">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row ">
+            <div class="col-lg-4">
+                <div class="card text-white bg-primary mb-3">
+                  <div class="card-header card-modal-header-client">
+                    <div class="modal-img">
+                      <i class="bi bi-person-bounding-box "></i>
+                    </div>
+                    <h4 class="modal-title fs-s" id="staticBackdropLabel">Information client</h4>
+                  </div>
+                  <div class="card-body  mt-5 mb-5">
+                    <p class="card-text"><strong>Civilité : </strong>{{client.personne}} </p>
+                    <p class="card-text"><strong>Nom : </strong>{{client.nom}}</p>
+                    <p class="card-text"><strong>Prénom : </strong>{{client.prenom}}</p>
+                    <p class="card-text"><strong>Mail : </strong>{{client.mail}} </p>
+                    <p class="card-text"><strong>Télephone : </strong>{{client.tel}} </p>
+                    <p class="card-text"><strong>Adresse : </strong>{{client.rue}} {{client.ville}} {{client.cp}}</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card text-white bg-danger mb-3">
+                <div class="card-header card-modal-header-client">
+                  <div class="modal-img">
+                    <i class="bi bi-pc-display"></i>
+                  </div>
+                  <h4 class="modal-title fs-s" id="staticBackdropLabel">Information de l'appreil</h4>
+                </div>
+                <div class="card-body  mt-5 mb-5">
+                  <p class="card-text"><strong>Marque : </strong>{{client.appareil.marque}}</p>
+                  <p class="card-text"><strong>Modele : </strong>{{client.appareil.modele}}</p>
+                  <p class="card-text"><strong>Mot de passe : </strong>{{client.appareil.mdp}}</p>
+                  <p class="card-text"><strong>Numéro de serie : </strong>{{client.appareil.ns}}</p>
+                  <p class="card-text"><strong>Chargeur : </strong>
+                    {% if client.appareil.chargeur == 1 %}
+                        <i class="bi bi-check-lg check-modal"></i>
+                    {% else %}
+                        <i class="bi bi-x-lg cross-modal"></i>
+                    {% endif %}
+                  </p>
+                  <p class="card-text"><strong>Problème : </strong>{{client.appareil.prblm}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card text-white bg-success mb-3 card-statut">
+                  <div class="card-header card-modal-header-client">
+                    <div class="modal-img">
+                      <i class="bi bi-wrench-adjustable "></i>
+                    </div>
+                    <h4 class="modal-title  fs-s" id="staticBackdropLabel">Statut de l'appreil</h4>
+                  </div>
+                  <div class="card-body">
+                    {% if client.appareil.editeur.etat.statut is defined %}
+                    
+                      <p class="center"><span class="badge change-etat modal-statut"  id='change-statut{{client.id}}' style="font-size:16px">{{ client.appareil.editeur.etat.statut}}</span></p>
+                      <p class="card-text change-date"><b>Dérniere modificaion : </b><span id="edit-date{{client.id}}">{{ client.appareil.editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</span></p>
+                      <p class="card-text change-user"><b>Par : </b><span id="editeur-change{{client.id}}">{{client.appareil.editeur.user.login}}</span></p>
+                    {% endif %}
+                    {{include('client/etat/etat_modal.html.twig') }}
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="{{ path('client_show', {'id': client.id}) }}">Voir plus</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

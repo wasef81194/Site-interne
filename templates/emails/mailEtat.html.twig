@@ -1,0 +1,92 @@
+<img src="cid:asi">
+<h3>Merci de nous faire confiance</h3>
+
+<p>Bonjour
+	{{personne}}
+	{{prenom}}
+	{{nom}},
+</p>
+{% if etat == 'Pris en charge' %}
+	<p>
+		Suite à votre dépôt le {{date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}.
+	</p>
+	<p>
+		Nous vous confirmons la prise en charge de votre appareil.
+	</p>
+	<img src="cid:etat">
+	</br>
+	<p>
+		Nos techniciens mettent tout en œuvre afin de vous apporter un diagnostic, et ceux dans les plus brefs délais.
+	</p>
+	<p>
+		Cordialement.
+	</p>
+{% elseif etat == 'Devis envoyée' %}
+	<p>
+		Suite à votre demande de diagnostic, en date du {{date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}, concernant l’appareil :
+	</p>
+	<ul>
+		<li><b>Marque </b> : {{marque}}</li>
+		<li><b>Modèle </b> : {{modele}}</li>
+		<li><b>N° de série</b> : {{ns}}</li>
+	</ul>
+	<img src="cid:etat">
+	</br>
+	<p>
+		Nous vous informons que notre proposition commerciale, tenant compte des éléments nécessaires au bon fonctionnement de votre appareil vous à été envoyer.
+	</p>
+	<p>
+		Cordialement.
+	</p>
+{% elseif etat == 'En attente de pièce' %}
+	<p>Afin de rendre votre appareil opérationnel, vous vous informons que nous sommes en attente d’une pièce commandée. Pour plus d'informations sur la livraisons veuillez nous contactez</p>
+	<img src="cid:etat">
+	</br>
+	<p>Dès réception, nos techniciens seront en mesure de débuter la réparation de votre appareil. </p>
+	<p>En vous remerciant de nous faire confiance.</p>
+	<p>Cordialement</p>
+{% elseif etat == 'En cours de réparation' %}
+	<p>
+		Comme convenu, nous vous informons de chaque point d’acheminement.
+	</p>
+	<img src="cid:etat">
+	</br>
+	<p>
+		C’est le moment de vous annoncer que votre appareil est en cours de réparation !
+	</p>
+	<p>
+		Vous pourrez, prochainement, venir récupérer votre appareil.
+	</p>
+	<p>
+		Cordialement.
+	</p>
+{% elseif etat == 'Prêt à être récupéré' %}
+	<p>
+		AZERTY Solutions Informatiques, est heureux de vous annoncer que votre appareil est prêt à être récupéré, au sein de nos locaux, de 9h à 19h, au :
+	</p>
+	<p>
+		<b>
+		</b>38 rue de la Station Interphone 17, 95130 Franconville
+	</p>
+	<img src="cid:etat">
+	</br>
+	<p>Dès réception de ce mail, sans retour de votre part au bout de 30 jours, nous recyclerons votre appareil.</p>
+	<p>Cordialement. </p>
+{% elseif etat == 'Livré' %}
+	<p>
+		L’équipe d’AZERTY Solutions Informatiques vous remercie de lui avoir fait confiance !
+	</p>
+	<img src="cid:etat">
+	</br>
+	<p>
+		En espérant que vous ayez apprécié nos services, nous vous invitons si vous le désiré, à nous faire part de votre avis sur 
+		<a href="https://www.google.com/search?q=azerty+solutions+informatiques&sxsrf=ALeKk02eVJbX_tE7972gR-Cn4zFqWvNrAw%3A1620743094199&source=hp&ei=tpOaYKDwCcXggweK3IXYBA&iflsig=AINFCbYAAAAAYJqhxoCVe1FJpslRDtIC2cQWBa2dawvN&oq=azert&gs_lcp=Cgdnd3Mtd2l6EAMYATIECCMQJzIICAAQxwEQrwEyBQgAELEDMgIIADICCC4yAggAMgIIADICCAAyAggAMgIIADoHCCMQ6gIQJzoICAAQsQMQgwE6DggAELEDEIMBEMcBEKMCOgQILhBDOgQIABBDOgUILhCxAzoHCC4QsQMQQ1CGDFjBEmCDHmgBcAB4AIABzAGIAdwDkgEFNC4wLjGYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=gws-wiz#lrd=0x47e6670ec216aaab:0xab1a76ada69c8193,1,,,">Google</a>.
+	</p>
+	
+	<p>En vous remerciant, </p>
+	<p>Cordialement. </p>
+{% endif %}
+
+<div>
+	{% include 'emails/layout/footer.html.twig' %}
+</div>

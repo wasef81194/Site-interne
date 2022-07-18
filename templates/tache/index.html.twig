@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tâches à faire{% endblock %}
+
+{% block body %}
+   {% include 'layout/navbar.html.twig' %}
+   <div class="container mb-100 ">
+        <h1>Tâches à faire</h1>
+        <table class="table">
+            <thead>
+                <tr class='table_head'>
+                    <th>Client</th>
+                    <th>Appareil</th>
+                    <th>Description</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tache in taches %}
+                {% set counter = ( counter | default(0) ) + 1 %}
+                {% if counter % 2 %}
+                    <tr class='tr_no_color select'>
+                {% else %}
+                    <tr class='tr_color select'>
+                {% endif %}
+                    <td>{{ tache.appareil.client.nom }} {{ tache.appareil.client.prenom }}</td>
+                    <td>{{ tache.appareil.marque }} {{ tache.appareil.modele }}</td>
+                    <td>{{ tache.description|striptags|length > 30 ? tache.description|striptags|slice(0, 30) ~ '....' : tache.description|striptags }}</td>
+                    <td>
+                        <a href="{{ path('tache_show', {'id': tache.id}) }}">show</a>
+                        <a href="{{ path('tache_edit', {'id': tache.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="white">En attente de nouvelles tâches...</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<p>Bonjour {{nom}} {{prenom}}, </p>
+<p>
+    Nous accusons réception de votre demande de rappel à la date suivante {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr')}}.
+</p>
+<p> 
+    Nous vous contacterons dans les plus brefs délais, surveillez votre téléphone il se peut qu’on vous appelle avec un numéro masqué.
+</p>
+<h3> Rappel de votre demande </h3>
+<p>{{objet}}</p>
+<p>{{message}}</p>
+
+{% include 'emails/layout/footer.html.twig' %}

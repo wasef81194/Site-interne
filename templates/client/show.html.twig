@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations client{% endblock %}
+
+{% block body %}
+{% include 'layout/navbar.html.twig' %}
+    {% for message in app.flashes('error')%}
+        <div class="alert close_alert container alert-warning alert-dismissible fade show inline" style='margin-bottom:-55px;' role="alert">
+            <strong> Attention !</strong> {{message}}
+        </div>
+    {% endfor %}
+     {% for message in app.flashes('sucess')%}
+        <div class="alert close_alert container alert-success alert-dismissible fade show inline" style='margin-bottom:-55px;' role="alert">
+            <strong> Bravo !</strong> {{message}}
+        </div>
+    {% endfor %}
+<div class="container-fluid mb-100"> 
+    <a href="{{ path('client_index') }}"> <img class="retour" src="{{asset('./images/retour.png')}}"/> </a>
+    {% for message in app.flashes('error')%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> Attention !</strong> {{message}}
+        </div>
+    {% endfor %}
+    <h1 style="margin-top: 45px !important;" >Informations client</h1>
+
+    <div style="text-align:center">
+        <table class="table inline" >
+            <thead>
+                <tr class='table_head'>
+                    <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-user.png')}}"/> Client</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class=' tr_no_color select' >
+                    <th>Date</th>
+                    <td>{{ client.date|date('d-m-Y H:i:s ') }}</td>
+                </tr>
+                <tr  class=' tr_color select'>
+                    <th>Personne</th>
+                    <td>{{ client.personne }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Nom</th>
+                    <td>{{ client.nom }}</td>
+                </tr>
+                <tr class=' tr_color select'>
+                    <th>Prenom</th>
+                    <td>{{ client.prenom }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Mail</th>
+                    <td>{{ client.mail }}</td>
+                </tr>
+                <tr class=' tr_color select'>
+                    <th>Tel</th>
+                    <td>{{ client.tel }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Rue</th>
+                    <td>{{ client.rue }}</td>
+                </tr>
+                <tr class=' tr_color select'>
+                    <th>Ville</th>
+                    <td>{{ client.ville }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Cp</th>
+                    <td>{{ client.cp }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table inline" >
+            <thead>
+                <tr class='table_head thead_red'>
+                    <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('./images/icon-pc.png')}}"/> Appareil</th>
+                </tr>
+            </thead>
+            <tbody class='appareil'>
+                <tr class=' tr_no_color select' >
+                    <th>Marque</th>
+                    <td>{{ appareil.marque }}</td>
+                </tr>
+                <tr class=' tr_color  select'>
+                     <th>Modele</th>
+                    <td>{{ appareil.modele }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Numéro de série</th>
+                    <td>{{ appareil.ns }}</td>
+                </tr>
+                <tr class=' tr_color  select'>
+                   <th>Mot de passe</th>
+                    <td>{{ appareil.mdp }}</td>
+                </tr>
+                <tr class=' tr_no_color select'>
+                    <th>Chargeur</th>
+                    {% if appareil.chargeur == 1 %}
+                        <td> <img  class='width-s'  class='check' src="{{asset('./images/check.png')}}"/></td>
+                    {% else %}
+                        <td>  <img  class='cross width-s' src="{{asset('./images/cross.png')}}"/></td>
+                    {% endif %}
+                </tr>
+                <tr class=' tr_color  select'>
+                    <th>Problème</th>
+                    <td>{{ appareil.prblm }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="table inline"  >
+            <thead>
+            <tr class='table_head thead_dark_green '>
+                <th style="text-align:center" colspan='2' > <img  class='pc-icon' src="{{asset('./images/icon-statut.png')}}"/> Statut</th>
+            </tr>
+            </thead>
+                <tbody class='etat'>
+                <tr class='tr_no_color select'>
+                    <th>Date</th>
+                    {% if editeur.date is defined %}
+                        <td>{{ editeur.date|date('d-m-Y H:i:s ') }}</td>
+                    {% else %}
+                         <td> Non définie </td>
+                    {% endif %}
+                </tr>
+                <tr class='tr_color select'>
+                    <th>Etat</th>
+                    {% if (etat.statut is defined) and (etat.statut is not empty) %}
+                        <td>{{ etat.statut }}</td>
+                    {% else %}
+                        <td> Non définie </td>
+                        {% endif %}
+                </tr>
+                <tr class='tr_no_color select'>
+                    <th>Editeur</th>
+                    {% if (user.id is defined) and (user.login is not empty)  %}
+                        <td>{{ user.login }}</td>
+                    {% else %}
+                        <td> Non définie </td>
+                        {% endif %}
+                </tr>
+                </tbody>
+
+                <thead>
+                    <tr class='table_head thead_green' style='background-color:green'>
+                        <th style="text-align:center" colspan='2' > <img  class='form-icon' src="{{asset('./images/icon-form.png')}}"/> Formulaire</th>
+                    </tr>
+                </thead>
+                <tbody class='form'>
+                    {{ include('client/etat/etat.html.twig') }}
+                </tbody>
+            </table>
+
+            <table class="table inline" >
+                <thead>
+                    <tr class='table_head thead_black'>
+                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-entretien.png')}}"/> Procédure</th>
+                    </tr>
+                </thead>
+                {% if taches is not empty %}
+                    {% for tache in taches | sort((a, b) => b.date <=> a.date) %}
+                    <tbody class='tache' style=' border-color:black;'>
+                        <tr class='tr_color select'>
+                            <th>Date</th>
+                            <td>{{tache.date|date('d-m-Y H:i:s ')}}</td>
+                        </tr>
+                        <tr class='tr_no_color  select'>
+                            <th>Personne</th>
+                            {% if tache.user is not null %}
+                                <td>{{tache.user.login}}</td>
+                            {% else %}
+                                 <td>Non definie</td>
+                            {% endif %}
+                        </tr>
+                        <tr  class=' tr_no_color select'>
+                            <th>Desctiption</th>
+                            <td>{{tache.description}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                {% else %}
+                <tbody class='tache' style=' border-color:black;'>
+                        <tr class='tr_color select'>
+                            <th></th>
+                            <td>En attente d'ajout de tache...</td>
+                        </tr>
+                        
+                    </tbody>
+                   
+                {% endif %}
+            </table>
+
+    </div>
+    <div style="padding-top: 80px !important; text-align:center" class="btns">
+        <a title="Rendre un client prioritaire" class="btn btn-warning" href="{{ path('prioritaire_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-important.png')}}"/></a>
+        <a title="Modifier les informations clients" class="btn btn-primary " href="{{ path('client_edit', {'id': client.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-edit.png')}}"/></a>
+        <a title="Ajouter une nouvelle tache" class="btn btn-dark " href="{{ path('tache_new', {'id': appareil.id}) }}"><img class="edit" width='25px' src="{{asset('./images/icon-add-entretien.png')}}"/></a>
+        <a title="Cloner" class="btn  btn-info" href="{{ path('client_clone', {'id': client.id}) }}"><img class="cloner" width='25px' src="{{asset('./images/icon-cloner.png')}}"/></a>
+        {{ include('client/_delete_form.html.twig') }}
+    </div>
+    
+    </div>
+
+{% include 'layout/footer.html.twig' %}
+
+{% endblock %}

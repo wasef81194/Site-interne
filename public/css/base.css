@@ -1,0 +1,36 @@
+.bold{
+    font-weight: bold !important;
+}
+td {
+    font-weight: 600 !important;
+} 
+.center{
+    text-align:center !important;
+}
+.right{
+    float: right !important;
+}
+.white{
+    color: white !important;
+}
+.table td, th{
+    text-align: center !important;
+}
+.p-50{
+    padding: 50px;
+}
+.none{
+    text-decoration: none;
+}
+.mr-2{
+    margin-right: 2px !important;
+}
+.gray{
+    color: gray;
+}
+.mt-5{
+    margin-top: 5%;
+}
+.cursor-loader{
+    cursor: wait;
+}

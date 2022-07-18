@@ -1,0 +1,12 @@
+<p> Bonjour {{nom|upper}} {{prenom}}, </p>
+<p>
+    Nous accusons réception de votre demande de rendez-vous à la date suivante {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr')}}.
+</p>
+<p> 
+    Vous recevrez un mail sous peu de confirmation de ce rendez-vous de notre part ou une nouvelle suggestion de date. 
+</p>
+<p>
+    Si vous souhaitez annuler ou modifier cette intervention merci de vous rendre sur ce  {% include 'emails/layout/link.html.twig' %} lien</a> ou nous contacter le plus rapidement possible au 01.34.15.52.32
+</p>
+    
+{% include 'emails/layout/footer.html.twig' %}

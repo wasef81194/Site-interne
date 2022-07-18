@@ -1,0 +1,20 @@
+{{ form_start(form)}}
+<tr class='tr_no_color  select'>
+    <th><label for="user">Editeur</label></th>
+    <td>{{form_widget(form.user, { 'attr': { 'class' : 'form-select form-select-sm', 'id':'user' } })}}</td>
+    </tr>
+    <tr class='tr_color select'>
+    <th><label for="etat">Etat</label></th>
+    <td>{{form_widget(form.etat, { 'attr': { 'class' : 'form-select form-select-sm', 'id':'etat' } })}}</td>
+    </tr>
+    <tr class='tr_no_color select'>
+        <th><label for="mail">Informer le client</label></th>
+        <td> {{form_widget(form.mail,{'attr':{'class' :'switch-custom' ,'id':'mail'} })}}</td>
+    </tr>
+    <tr class='tr_color select'> 
+    <th></th>
+    <td><button class='btn btn-success btn-form'>
+        <img class="edit" width='25px' src="{{asset('./images/icon-check.png')}}"/>
+    </button></td>
+    </tr>
+ {{ form_end(form) }}

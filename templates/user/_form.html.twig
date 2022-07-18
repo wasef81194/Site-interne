@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    <h2>Ajouter un membre</h2>
+    <div class="grix xs1 sm2">
+        <div class="form-field">
+            {{form_widget(form.role , { 'attr': { 'class' : 'form-control rounded-1' } })}}
+            
+        </div>
+        <div class="form-field ">
+            
+        </div>
+    </div>
+    <div class="form-field">
+        {{form_label(form.login)}}
+         {{form_widget(form.login , { 'attr': { 'class' : 'form-control rounded-1' } })}}
+            
+    </div>
+    <div class="form-field ">
+        {{form_widget(form.password)}}
+    </div>
+    <div class="mb-3 text-center" style='margin-top:50px;' >
+        <button class="btn btn-primary">
+            <img class="delete" width='28px' src="{{asset('/images/icon-add.png')}}"/>
+        </button>
+    </div>
+</div>
+   
+{{ form_end(form) }}

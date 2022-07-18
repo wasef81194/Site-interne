@@ -1,0 +1,18 @@
+.gray{
+    color: gray;
+}
+.bg-green{
+    background-color: #cee7ce !important;
+}
+.white{
+    color: white;
+}
+.btn-orange:hover{
+    background-color: #ac7510 !important;
+}
+.btn-orange{
+    background-color: rgb(226, 148, 4) !important;
+}
+.bg-orange{
+    background-color: #f9dfb1 !important;
+}

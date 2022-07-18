@@ -1,0 +1,18 @@
+<div class="modal fade modal-responsive" id="staticBackdrop{{rdv.id}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="staticBackdropLabel">Sélectionner une nouvelle date de rendez vous</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    <form method="post" class ='form-material formRdvEditDateClient' action="{{ path('app_rdv_edit_date_client', {'id': rdv.id}) }}">
+        <input  class="form-control" type="datetime-local" name="datetime">
+        <div class="mb-3 mt-5 text-center">
+        <button class="btn responsive-btn btn-dark btn-depot submit shadow-4">valider</button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>

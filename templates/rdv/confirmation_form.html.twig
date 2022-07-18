@@ -1,0 +1,3 @@
+<form method="post" class="right" id="formRdvConfirmation" action="{{ path('app_rdv_confirmer', {'id': rdv.id}) }}" {#onsubmit="return confirm('Are you sure you want to delete this item?');"#}>
+    <button class="btn btn-success" name="confirmer"><img  class='suggestion' width="20px" src="{{asset('./images/check.svg')}}"/></button>
+</form>

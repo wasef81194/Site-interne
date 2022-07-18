@@ -1,0 +1,16 @@
+<h3>Confirmation de votre demande d'intervention à domicile</h3>
+<p>Bonjour, {{nom}} {{prenom}} </p>
+<p>
+    Nous vous remercions de faire appel à notre équipe, nous confirmons votre demande d'intervention à domicile à l'adresse suivante : 
+</p>
+<p>   
+{{ adresse }} {{cp}}
+</p>
+<p style="display: inline;">
+ Le : <div style="font-size : 21 ; font-weight : bold; color : red;  display: inline;"> {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr') }}</div>  
+</p>
+
+<p>
+    Si vous souhaitez annuler ou modifier cette intervention merci de vous rendre sur ce  {% include 'emails/layout/link.html.twig' %} lien</a> ou nous contacter le plus rapidement possible au 01.34.15.52.32
+</p>
+{% include 'emails/layout/footer.html.twig' %}

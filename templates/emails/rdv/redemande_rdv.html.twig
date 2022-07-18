@@ -1,0 +1,12 @@
+<h3>Changement de date d'intervention à domicile</h3>
+<p>Bonjour, {{nom}} {{prenom}} </p>
+<p>
+    Nous avons bien reçu votre demande d'intervention à l'adresse : {{ adresse }} , toutefois nous vous suggérons une nouvelle date d'intervention : 
+</p>
+<p>
+ <div style="font-size : 21 ; font-weight : bold; color : red;"> {{date|date('D d M Y H:i')|format_datetime('long','short',locale='fr')}}</div>  
+</p>
+<p>
+   Si cette date vous convient merci de nous confirmer en cliquant {% include 'emails/layout/link.html.twig' %} ici</a> ou nous contacter le plus rapidement possible au 01.34.15.52.32
+</p>
+{% include 'emails/layout/footer.html.twig' %}
