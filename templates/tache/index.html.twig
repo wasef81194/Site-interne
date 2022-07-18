@@ -9,6 +9,7 @@
         <table class="table">
             <thead>
                 <tr class='table_head'>
+                    <th>Pour</th>
                     <th>Client</th>
                     <th>Appareil</th>
                     <th>Description</th>
@@ -23,12 +24,14 @@
                 {% else %}
                     <tr class='tr_color select'>
                 {% endif %}
+                    <td>{{ tache.user.login }}</td>
                     <td>{{ tache.appareil.client.nom }} {{ tache.appareil.client.prenom }}</td>
                     <td>{{ tache.appareil.marque }} {{ tache.appareil.modele }}</td>
                     <td>{{ tache.description|striptags|length > 30 ? tache.description|striptags|slice(0, 30) ~ '....' : tache.description|striptags }}</td>
                     <td>
                         <a href="{{ path('tache_show', {'id': tache.id}) }}">show</a>
                         <a href="{{ path('tache_edit', {'id': tache.id}) }}">edit</a>
+                        {{ include('tache/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

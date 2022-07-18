@@ -21,7 +21,6 @@ class TacheType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'login',
             ])
-            ->add('appareil',HiddenType::class)
         ;
     }
 
