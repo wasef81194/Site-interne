@@ -17,6 +17,9 @@
 		@import url("interne/client/show.css");
 		/*index*/
 		@import url("interne/client/index.css");
+	/*tache*/
+		/*index*/
+		@import url("interne/tache/index.css");
 /*public*/
 @import url("public/index.css");
 	/*loader*/

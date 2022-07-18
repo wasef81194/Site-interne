@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Appareil;
 use App\Entity\User;
-
+use App\Repository\UserRepository;
+use App\Repository\EtatRepository;
 /**
  * @Route("/tache")
  */
@@ -20,10 +21,12 @@ class TacheController extends AbstractController
     /**
      * @Route("/", name="tache_index", methods={"GET"})
      */
-    public function index(TacheRepository $tacheRepository): Response
+    public function index(TacheRepository $tacheRepository,  UserRepository $userRepository,  EtatRepository $etatRepository): Response
     {
         return $this->render('tache/index.html.twig', [
             'taches' => $tacheRepository->findAll(),
+            'users'=>$userRepository->findAll(),
+            'etats'=>$etatRepository->findAll()
         ]);
     }
 
@@ -94,6 +97,21 @@ class TacheController extends AbstractController
             $entityManager->remove($tache);
             $entityManager->flush();
         }
+
+        return $this->redirectToRoute('tache_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/do/{id}", name="tache_do", methods={"POST","GET"})
+     */
+    public function executed(Request $request, Tache $tache, TacheRepository $tacheRepository): Response
+    {
+        if($tache->getDo()){
+            $tache->setDo(0);
+        }
+        else{
+            $tache->setDo(1);
+        }
+        $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('tache_index', [], Response::HTTP_SEE_OTHER);
     }

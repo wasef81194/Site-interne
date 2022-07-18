@@ -37,6 +37,11 @@ class Tache
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $do;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Tache
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDo(): ?bool
+    {
+        return $this->do;
+    }
+
+    public function setDo(?bool $do): self
+    {
+        $this->do = $do;
 
         return $this;
     }

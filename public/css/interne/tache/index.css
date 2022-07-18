@@ -1,0 +1,19 @@
+.btn.btn-success.tache-fait{
+    font-size : 18px;
+    background-color: #20c678;
+    border-color: #20c678;
+}
+
+.btn.btn-success.tache-fait:hover{
+    background-color: #14a561;
+    border-color: #14a561;
+}
+.btn.btn-warning.tache-non-fait{
+    font-size : 18px;
+    background-color: #e79c11;
+    border-color: #e79c11;
+}
+.btn.btn-warning.tache-non-fait:hover{
+    background-color: #d18e12;
+    border-color: #d18e12;
+}
