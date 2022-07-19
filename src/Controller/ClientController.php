@@ -45,7 +45,7 @@ class ClientController extends AbstractController
    /**
      * @Route("/index/{month?null}/{year?null}/{method?null}", name="client_index", methods={"GET","POST"})
      */
-    public function index( string $month = null, string $year = null , string $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository, UserRepository $userRepository, EtatRepository $etatRepository): Response
+    public function index( string $month = 'null', string $year = 'null' , string $method ='null' ,ClientRepository $clientRepository, AppareilRepository $appareilRepository, UserRepository $userRepository, EtatRepository $etatRepository): Response
     {
         
         if($month != 'null' && $year != 'null' ){
