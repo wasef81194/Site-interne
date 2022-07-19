@@ -45,9 +45,13 @@ button.btn.btn-success.btn-form{
 	padding:5px;
 }
 .table td,.table th{
-	max-width: 300px !important;
+	max-width: 250px !important;
 }
 .mw-250{
 	min-width: 260px !important;
 }
+.tab-filtre{
+	min-width: 300px ;
+}
 
+@media (max-width: 640px) {}

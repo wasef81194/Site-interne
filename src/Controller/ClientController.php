@@ -42,13 +42,13 @@ date_default_timezone_set('Europe/Paris');
  */
 class ClientController extends AbstractController
 {
-    /**
-     * @Route("/index/{month}/{year}/{method}", name="client_index", methods={"GET","POST"})
+   /**
+     * @Route("/index/{month?null}/{year?null}/{method?null}", name="client_index", methods={"GET","POST"})
      */
-    public function index( $month = null, $year = null , $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository, UserRepository $userRepository, EtatRepository $etatRepository): Response
+    public function index( string $month = null, string $year = null , string $method = null ,ClientRepository $clientRepository, AppareilRepository $appareilRepository, UserRepository $userRepository, EtatRepository $etatRepository): Response
     {
         
-        if($month != null && $year != null ){
+        if($month != 'null' && $year != 'null' ){
             $date = new \DateTime($year.'-'.$month.'-01' );
             $month = $date->format('m');
             $year =  $date->format('Y');   

@@ -7,7 +7,7 @@
     <div class="container-fluid mb-100">
             <h1 >Clients</h1>
             <div class="row mt-5">
-                <div class="col" style="max-width: 300px !important">
+                <div class="col tab-filtre">
                     <div class="card mb-5" >
                         <div class="card-body">
                             <h5 class="card-title">Filtrer par date</h5>
@@ -26,17 +26,17 @@
                     <table class="table">
                         <thead>
                             <tr class='table_head'>
-                                <th>Date</th>
-                                <th>Personne</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Télephone</th>
-                                <th>Marque</th>
-                                <th>Modele</th>
-                                <th>Numero de serie</th>
-                                <th>Mot de passe</th>
-                                <th>Chargeur</th>
-                                <th>Etat</th>
+                                <th class='h-date'>Date</th>
+                                <th class='h-civil'>Personne</th>
+                                <th class='h-nom' >Nom</th>
+                                <th class='h-prenom' >Prenom</th>
+                                <th class='h-telephone' >Télephone</th>
+                                <th class='h-maque' >Marque</th>
+                                <th class='h-modele'>Modele</th>
+                                <th class='h-ns' >Numero de serie</th>
+                                <th class='h-mdp' >Mot de passe</th>
+                                <th class='h-chargeur' >Chargeur</th>
+                                <th class='h-etat' >Etat</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,22 +49,22 @@
                             {% else %}
                                 <tr class='tr_color  select'>
                             {% endif %}
-                                <td class="td-date">{{ client.date|date('D d M')|format_datetime('medium','none',locale='fr') }}</td>
-                                <td>{{ client.personne }}</td>
-                                <td>{{ client.nom }}</td>
-                                <td>{{ client.prenom }}</td>
-                                <td>{{ client.tel }} </td>
-                                <td>{{ client.appareil.marque }} </td>
-                                <td>{{ client.appareil.modele }} </td>
-                                <td>{{ client.appareil.ns }} </td>
-                                <td>{{ client.appareil.mdp }} </td>
+                                <td class="td-date h-date">{{ client.date|date('D d M')|format_datetime('medium','none',locale='fr') }}</td>
+                                <td class='h-civil' >{{ client.personne }}</td>
+                                <td class='h-nom' >{{ client.nom }}</td>
+                                <td class='h-prenom' >{{ client.prenom }}</td>
+                                <td class='h-telephone' >{{ client.tel }} </td>
+                                <td class='h-maque' >{{ client.appareil.marque }} </td>
+                                <td class='h-modele'>{{ client.appareil.modele }} </td>
+                                <td class='h-ns' >{{ client.appareil.ns }} </td>
+                                <td class='h-msp'>{{ client.appareil.mdp }} </td>
                                 {% if client.appareil.chargeur == 1 %}
-                                <td> <img  class='check' src="{{asset('./images/check.png')}}" width="40px"/></td>
+                                <td class='h-chargeur'> <img  class='check' src="{{asset('./images/check.png')}}" width="40px"/></td>
                                 {% else %}
-                                <td>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px"/></td>
+                                <td  class='h-chargeur'>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px"/></td>
                                 {% endif %}
                                 {% if client.appareil.editeur.etat.statut is defined %}
-                                <td class='statutAppareilAll'> 
+                                <td class='statutAppareilAll h-etat'> 
                                     <span class="badge badge-statut-appareil" style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
                                 </td>
                                 {% else %}
