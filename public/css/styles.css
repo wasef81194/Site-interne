@@ -20,6 +20,8 @@
 	/*tache*/
 		/*index*/
 		@import url("interne/tache/index.css");
+		/*edit*/
+		@import url("interne/tache/edit.css");
 /*public*/
 @import url("public/index.css");
 	/*loader*/
