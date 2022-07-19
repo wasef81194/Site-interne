@@ -50,8 +50,47 @@ button.btn.btn-success.btn-form{
 .mw-250{
 	min-width: 260px !important;
 }
+
 .tab-filtre{
-	min-width: 300px ;
+	margin: auto;
+	min-width: 250px ;
+	max-width: 800px !important;
+	margin-bottom: 50px;
 }
 
-@media (max-width: 640px) {}
+/*Responsive*/
+@media (max-width: 1575px) {
+	tr > td.h-ns, tr > th.h-ns{
+		display:none;
+	}
+}
+@media (max-width: 1345px) {
+	tr > td.h-mdp, tr > th.h-mdp{
+		display:none;
+	}
+}
+@media (max-width: 1235px) {
+	tr > td.h-modele, tr > th.h-modele{
+		display:none;
+	}
+}
+@media (max-width: 1135px) {
+	tr > td.h-civil, tr > th.h-civil{
+		display:none;
+	}
+}
+@media (max-width: 1135px) {
+	tr > td.h-civil, tr > th.h-civil{
+		display:none;
+	}
+}
+@media (max-width: 1045px) {
+	tr > td.h-date, tr > th.h-date{
+		display:none;
+	}
+}
+@media (max-width: 938px) {
+	tr > td.h-chargeur, tr > th.h-chargeur{
+		display:none;
+	}
+}
