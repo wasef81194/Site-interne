@@ -4,7 +4,7 @@
 
 {% block body %}
     {% include 'layout/navbar.html.twig' %}
-    <div class="container-fluid mb-100">
+    <div class="container-fluid container-clients mb-100">
             <h1 >Clients</h1>
             <div class="row mt-5">
                 <div class="col tab-filtre">
@@ -91,7 +91,7 @@
                     <a  class="btn btn-success" href="{{ path('client_new') }}"><img class="delete" width='28px' src="{{asset('./images/icon-add.png')}}"/></a>
                 </div>
                 </div>
-                <div class='loaderAllClients'> {{ include('layout/loader.html.twig') }} </div>
+                <div class='loaderAllClients'> <div class='black-h'>{{ include('layout/loader.html.twig') }} </div></div>
             </div>
     {% include 'layout/footer.html.twig' %}
 {% endblock %}

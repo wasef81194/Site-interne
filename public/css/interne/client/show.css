@@ -59,17 +59,17 @@ button.btn.btn-success.btn-form{
 }
 
 /*Responsive*/
-@media (max-width: 1575px) {
+@media (max-width: 1585px) {
 	tr > td.h-ns, tr > th.h-ns{
 		display:none;
 	}
 }
-@media (max-width: 1345px) {
+@media (max-width: 1355px) {
 	tr > td.h-mdp, tr > th.h-mdp{
 		display:none;
 	}
 }
-@media (max-width: 1235px) {
+@media (max-width: 1240px) {
 	tr > td.h-modele, tr > th.h-modele{
 		display:none;
 	}

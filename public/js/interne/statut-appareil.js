@@ -135,7 +135,7 @@ function ColoredStatut(statut){
     statut.classList.add("bg-yellow-dark");
   } else if (statut.innerText == "En attente de pièce") {
     statut.classList.add("bg-purple-dark");
-  } else if (statut.innerText == "Devis envoyée") {
+  } else if (statut.innerText == "Devis envoyé") {
     statut.classList.add("bg-blue-light");
   } else if (statut.innerText == "En cours de réparation") {
     statut.classList.add("bg-red-light");
@@ -151,7 +151,7 @@ function removeColoredStatut(statut){
     statut.classList.remove("bg-yellow-dark");
   } else if (statut.innerText == "En attente de pièce") {
     statut.classList.remove("bg-purple-dark");
-  } else if (statut.innerText == "Devis envoyée") {
+  } else if (statut.innerText == "Devis envoyé") {
     statut.classList.remove("bg-blue-light");
   } else if (statut.innerText == "En cours de réparation") {
     statut.classList.remove("bg-red-light");

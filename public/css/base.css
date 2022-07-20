@@ -34,3 +34,6 @@ td {
 .cursor-loader{
     cursor: wait;
 }
+.black-h{
+	background-color: #413f3f8a;
+}
