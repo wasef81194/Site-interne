@@ -11,7 +11,7 @@
     {% endfor %}
      {% for message in app.flashes('sucess')%}
         <div class="alert close_alert container alert-success alert-dismissible fade show inline" style='margin-bottom:-55px;' role="alert">
-            <strong> Bravo !</strong> {{message}}
+            <strong> Ajouté !</strong> {{message}}
         </div>
     {% endfor %}
 <div class="container-fluid mb-100"> 
@@ -33,7 +33,7 @@
             <tbody>
                 <tr class=' tr_no_color select' >
                     <th>Date</th>
-                    <td>{{ client.date|date('d-m-Y H:i:s ') }}</td>
+                    <td>{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}</td>
                 </tr>
                 <tr  class=' tr_color select'>
                     <th>Personne</th>
@@ -118,7 +118,7 @@
                 <tr class='tr_no_color select'>
                     <th>Date</th>
                     {% if editeur.date is defined %}
-                        <td>{{ editeur.date|date('d-m-Y H:i:s ') }}</td>
+                        <td>{{ editeur.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}</td>
                     {% else %}
                          <td> Non définie </td>
                     {% endif %}
@@ -154,15 +154,16 @@
             <table class="table inline" >
                 <thead>
                     <tr class='table_head thead_black'>
-                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-entretien.png')}}"/> Procédure</th>
+                        <th style="text-align:center" colspan='2' ><img class='user-icon' src="{{asset('./images/icon-entretien.png')}}"/> <a href="{{ path('tache_index')}}" class="white t-tache" title="Voir les liste des tâches"> Procédure </a> </th>
                     </tr>
                 </thead>
                 {% if taches is not empty %}
                     {% for tache in taches | sort((a, b) => b.date <=> a.date) %}
-                    <tbody class='tache' style=' border-color:black;'>
-                        <tr class='tr_color select'>
+                    <tbody class='tache tache-border tableau-tache'>
+                        <input type='hidden' class='tache-faire' value="{{tache.do}}" name="tache-faite"/>
+                        <tr class='tr_color  select'>
                             <th>Date</th>
-                            <td>{{tache.date|date('d-m-Y H:i:s ')}}</td>
+                            <td>{{tache.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
                         </tr>
                         <tr class='tr_no_color  select'>
                             <th>Personne</th>
@@ -172,14 +173,14 @@
                                  <td>Non definie</td>
                             {% endif %}
                         </tr>
-                        <tr  class=' tr_no_color select'>
+                        <tr  class=' tr_no_color  select'>
                             <th>Desctiption</th>
                             <td>{{tache.description}}</td>
                         </tr>
                     </tbody>
                     {% endfor %}
                 {% else %}
-                <tbody class='tache' style=' border-color:black;'>
+                <tbody class='tache tache-border'>
                         <tr class='tr_color select'>
                             <th></th>
                             <td>En attente d'ajout de tache...</td>

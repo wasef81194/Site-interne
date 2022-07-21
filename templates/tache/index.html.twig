@@ -9,10 +9,10 @@
         <table class="table">
             <thead>
                 <tr class='table_head'>
-                    <th>Pour</th>
-                    <th>Client</th>
-                    <th>Appareil</th>
-                    <th>Description</th>
+                    <th class='h-user' >Pour</th>
+                    <th class='h-client' >Client</th>
+                    <th class='h-appareil' >Appareil</th>
+                    <th  class='h-description' >Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,10 +25,10 @@
                 {% else %}
                     <tr class='ligne_tache tr_color select'>
                 {% endif %}
-                    <td>{{ tache.user.login }}</td>
-                    <td>{{ tache.appareil.client.nom }} {{ tache.appareil.client.prenom }}</td>
-                    <td>{{ tache.appareil.marque }} {{ tache.appareil.modele }}</td>
-                    <td>{{ tache.description|striptags|length > 30 ? tache.description|striptags|slice(0, 30) ~ '....' : tache.description|striptags }}</td>
+                    <td class='h-user' >{{ tache.user.login }}</td>
+                    <td class='h-client' >{{ tache.appareil.client.nom }} {{ tache.appareil.client.prenom }}</td>
+                    <td class='h-appareil' >{{ tache.appareil.marque }} {{ tache.appareil.modele }}</td>
+                    <td class='h-description' >{{ tache.description|striptags|length > 30 ? tache.description|striptags|slice(0, 30) ~ '....' : tache.description|striptags }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" title="Afficher les informations client"  data-bs-target="#cardClient{{tache.appareil.client.id}}">
                             <i  width='25%' class="bi bi-person-bounding-box show-info-client"></i>

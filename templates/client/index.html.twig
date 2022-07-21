@@ -12,15 +12,15 @@
             <table class="table">
                 <thead>
                     <tr class='table_head'>
-                        <th>Date</th>
-                        <th>Civilité</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Télephone</th>
-                        <th>Marque</th>
-                        <th>Modele</th>
-                        <th>Chargeur</th>
-                        <th>Etat</th>
+                        <th class="h-date-c ">Date</th>
+                        <th class="h-civil-c">Civilité</th>
+                        <th class='h-nom-c' >Nom</th>
+                        <th class='h-prenom-c'>Prenom</th>
+                        <th class='h-telephone-c' >Télephone</th>
+                        <th class='h-maque-c' >Marque</th>
+                        <th class='h-modele-c' >Modele</th>
+                        <th class='h-chargeur-c'>Chargeur</th>
+                        <th class='h-etat-c' >Etat</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,20 +34,20 @@
                     {#client_livrate#}
                         <tr class='ligne_client tr_color select'>
                     {% endif %}
-                        <td class="td-date">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
-                        <td>{{ client.personne }}</td>
-                        <td>{{ client.nom }}</td>
-                        <td>{{ client.prenom }}</td>
-                        <td>{{ client.tel }} </td>
-                        <td>{{ client.appareil.marque }} </td>
-                        <td>{{ client.appareil.modele }} </td>
+                        <td class="td-date h-date-c">{{ client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr')}}</td>
+                        <td  class='h-civil-c' >{{ client.personne }}</td>
+                        <td class='h-nom-c' >{{ client.nom }}</td>
+                        <td class='h-prenom-c'>{{ client.prenom }}</td>
+                        <td class='h-telephone-c'>{{ client.tel }} </td>
+                        <td class='h-maque-c'>{{ client.appareil.marque }} </td>
+                        <td  class='h-modele-c' >{{ client.appareil.modele }} </td>
                         {% if client.appareil.chargeur == 1 %}
                         <td> <img  class='check' src="{{asset('./images/check.png')}}" width="40px" /></td>
                         {% else %}
-                        <td>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" /></td>
+                        <td class='h-chargeur-c' >  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" /></td>
                         {% endif %}
                         {% if client.appareil.editeur.etat.statut is defined %}
-                            <td class='statutAppareil'> 
+                            <td class='statutAppareilAll h-etat-c' > 
                                 <span class="badge" id='change-statut{{client.id}}' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
                             </td>
                         {% else %}

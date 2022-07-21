@@ -6,7 +6,7 @@
     <div class="container mb-3">
             <div class="row mt-5" >
                 <div class="col">
-                    <h1>À Rappeler</h1>
+                    <h1>À Rappeler <a href="{{ path('app_appel_new') }}" title='Nouvelle appel'><i class="bi bi-telephone-fill white"></i></a></h1>
                     <div class="all-call">
                         {% for appel in appels | sort((a, b) => b.date <=> a.date) %}
                             {% if appel.do != 1 %}

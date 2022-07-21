@@ -57,7 +57,9 @@ button.btn.btn-success.btn-form{
 	max-width: 800px !important;
 	margin-bottom: 50px;
 }
-
+.tache-border{
+	border-color:black;
+}
 /*Responsive*/
 @media (max-width: 1585px) {
 	tr > td.h-ns, tr > th.h-ns{

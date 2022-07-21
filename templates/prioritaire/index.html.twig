@@ -10,15 +10,15 @@
             <table class="table">
                 <thead>
                     <tr class='table_head'>
-                        <th>Date</th>
-                        <th>Personne</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Télephone</th>
-                        <th>Marque</th>
-                        <th>Modele</th>
-                        <th>Chargeur</th>
-                        <th>Etat</th>
+                        <th class="h-date-c ">Date</th>
+                        <th class="h-civil-c">Personne</th>
+                        <th class='h-nom-c' >Nom</th>
+                        <th class='h-prenom-c'>Prenom</th>
+                        <th class='h-telephone-c' >Télephone</th>
+                        <th class='h-maque-c' >Marque</th>
+                        <th class='h-modele-c'>Modele</th>
+                        <th class='h-chargeur-c'>Chargeur</th>
+                        <th class='h-etat-c'>Etat</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,20 +31,20 @@
                     {% else %}
                         <tr class='tr_color  select'>
                     {% endif %}
-                         <td>{{ prioritaire.appareil.client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}</td>
-                         <td>{{ prioritaire.appareil.client.personne }}</td>
-                        <td>{{ prioritaire.appareil.client.nom }}</td>
-                        <td>{{ prioritaire.appareil.client.prenom }}</td>
-                        <td>{{ prioritaire.appareil.client.tel }} </td>
-                        <td>{{ prioritaire.appareil.marque }} </td>
-                        <td>{{ prioritaire.appareil.modele }} </td>
+                         <td class="h-date-c ">{{ prioritaire.appareil.client.date|date('d M Y H:i')|format_datetime('medium','short',locale='fr') }}</td>
+                         <td class="h-civil-c" >{{ prioritaire.appareil.client.personne }}</td>
+                        <td class='h-nom-c' >{{ prioritaire.appareil.client.nom }}</td>
+                        <td class='h-prenom-c'>{{ prioritaire.appareil.client.prenom }}</td>
+                        <td  class='h-telephone-c' >{{ prioritaire.appareil.client.tel }} </td>
+                        <td class='h-maque-c' >{{ prioritaire.appareil.marque }} </td>
+                        <td class='h-modele-c'>{{ prioritaire.appareil.modele }} </td>
                         {% if prioritaire.appareil.chargeur == 1 %}
-                        <td> <img  class='check' src="{{asset('./images/check.png')}}"/></td>
+                        <td class='h-chargeur-c'> <img  class='check' src="{{asset('./images/check.png')}}"/></td>
                         {% else %}
-                        <td>  <img  class='cross' src="{{asset('./images/cross.png')}}"/></td>
+                        <td class='h-chargeur-c'>  <img  class='cross' src="{{asset('./images/cross.png')}}"/></td>
                         {% endif %}
                         {% if prioritaire.appareil.editeur.etat.statut is defined %}
-                        <td>{{ prioritaire.appareil.editeur.etat.statut}}</td>
+                            <td class='h-etat-c statutAppareilAll'> <span class="badge" id='change-statut{{prioritaire.appareil.client.id}}' style="font-size:16px"> {{ prioritaire.appareil.editeur.etat.statut}} </span> </td>
                         {% else %}
                         <td>  </td>
                         {% endif %}

@@ -17,3 +17,15 @@
     background-color: #d18e12;
     border-color: #d18e12;
 }
+/*Responsive*/
+
+@media (max-width: 990px) {
+   tr > td.h-client, tr > th.h-client{
+		display:none;
+	}
+}
+@media (max-width: 765px) {
+    tr > td.h-appareil, tr > th.h-appareil{
+		display:none;
+    }
+}

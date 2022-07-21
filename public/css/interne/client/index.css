@@ -49,3 +49,27 @@
    color: #fff;
    text-align: center;
 }
+/*Responsive*/
+@media (max-width: 1585px) {
+	tr > td.h-modele-c, tr > th.h-modele-c{
+		display:none;
+	}
+}
+@media (max-width: 1200px) {
+   tr > td.h-chargeur-c, tr > th.h-chargeur-c{
+		display:none;
+	}
+}
+@media (max-width: 990px) {
+   tr > td.h-civil-c, tr > th.h-civil-c, 
+   tr > td.h-date-c, tr > th.h-date-c,
+   tr > td.h-etat-c, tr > th.h-etat-c{
+      
+		display:none;
+	}
+}
+@media (max-width: 765px) {
+   tr > td.h-telephone-c, tr > th.h-telephone-c{
+		display:none;
+	}
+}

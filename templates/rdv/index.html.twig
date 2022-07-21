@@ -14,7 +14,7 @@
 
 {% include 'layout/navbar.html.twig' %}
     <div class="container">
-        <h1>Demande d'intervention à domicile</h1>
+        <h1>Demande d'intervention à domicile  <a href="{{ path('app_rdv_new') }}" title='Nouveau rendez-vous'><i class="bi bi-calendar-event white"></i></a></h1>
         {% set did = 1 %}
         {% set demande = 1 %}
         <div class="row mt-5">
@@ -134,7 +134,7 @@
             </div>
         {% endif %}
 
-        {#<a href="{{ path('app_rdv_new') }}">Create new</a>#}
+       
         
     </div>
     
