@@ -90,7 +90,6 @@ class ClientController extends AbstractController
             'November'=>'Novembre', 
             'December'=>'Décembre',
         ], 'fr_FR');
-        
 
         return $this->renderForm('client/index.html.twig', [
             'clients' => $clientRepository->findClientsFromThisDate($month,$year),
@@ -112,7 +111,7 @@ class ClientController extends AbstractController
         $maxYear = $clientRepository->findMaxYears();
         $minYear = $clientRepository->findMaxYears();
         $clients = []; 
-
+        $recherche = $request->request->get('recherche');
         $janvier = $request->request->get('janvier');
         $fevrier = $request->request->get('fevrier');
         $mars = $request->request->get('mars');
@@ -178,7 +177,10 @@ class ClientController extends AbstractController
                 }
             }
         }
-       //dump($etats);
+        /*********************Recherche ******************** */
+        if ($recherche) {
+            $clients = $clientRepository->findClients($recherche);
+        }
         return $this->render('client/show_all.html.twig', [
             'clients' =>  $clients,
             'appareils' => $appareilRepository->findAll(),

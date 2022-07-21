@@ -10,6 +10,12 @@
                 <div class="col tab-filtre">
                     <div class="card mb-5" >
                         <div class="card-body">
+                            <h5 class="card-title">Rechercher</h5>
+                            {{ include('client/filtre/_recherche_form.html.twig') }}
+                        </div>
+                    </div>
+                    <div class="card mb-5" >
+                        <div class="card-body">
                             <h5 class="card-title">Filtrer par date</h5>
                             {{ include('client/filtre/_date_form.html.twig') }}
                         </div>

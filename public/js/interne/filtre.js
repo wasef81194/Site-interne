@@ -13,5 +13,10 @@ $(document).ready(function(){
             $('.allClients').hide();
             $('.loaderAllClients').show();
         });
+        $("#recherche-client").submit(function(){
+            $('.tab-filtre').hide();
+            $('.allClients').hide();
+            $('.loaderAllClients').show();
+        });
     //})
 })

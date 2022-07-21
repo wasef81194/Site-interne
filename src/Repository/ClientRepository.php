@@ -112,6 +112,32 @@ class ClientRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    /*SELECT * FROM client WHERE nom LIKE '%al%' OR prenom LIKE '%al%';*/
+    public function findClients($recherche)
+    {
+        $recherche ='%'.$recherche.'%';
+        return $this->createQueryBuilder('client')
+            ->Join("client.appareil", "appareil")
+            ->Where("client.nom  LIKE :recherche")
+            ->OrWhere("client.prenom LIKE :recherche")
+            ->OrWhere("client.mail LIKE :recherche")
+            ->OrWhere("client.tel LIKE :recherche")
+            ->OrWhere("client.rue LIKE :recherche")
+            ->OrWhere("client.ville LIKE :recherche")
+            ->OrWhere("client.cp LIKE :recherche")
+
+            ->OrWhere("appareil.marque LIKE :recherche")
+            ->OrWhere("appareil.modele LIKE :recherche")
+            ->OrWhere("appareil.ns LIKE :recherche")
+            ->OrWhere("appareil.mdp LIKE :recherche")
+            ->OrWhere("appareil.prblm LIKE :recherche")
+            ->setParameter(':recherche', $recherche)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     /*public function getCommentPaginator(Client $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')

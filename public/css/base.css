@@ -37,3 +37,14 @@ td {
 .black-h{
 	background-color: #413f3f8a;
 }
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin: auto;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}

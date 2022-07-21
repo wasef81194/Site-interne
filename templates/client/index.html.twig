@@ -7,8 +7,13 @@
         <div class="client-month container mb-100 ">
             <h1>Clients {{titleMonth}} {{year}} <i class="fa fa-whatsapp" aria-hidden="true"></i>
             </h1>
+            <div class="center">
+                {{ include('client/filtre/_recherche_form.html.twig') }}
+            </div>
+            
             <a  class="btn btn-outline-dark" href="{{ path('client_index',{'month': month, 'year':year, 'method' : 'precedent' }) }}"><img class="precedent" width='25px' src="{{asset('./images/icon-precedent.png')}}"/></a>
             <a  class="btn btn-outline-dark float-end" href="{{ path('client_index',{'month': month, 'year':year, 'method' : 'suivant' }) }}"><img class="suivant" width='25px' src="{{asset('./images/icon-suivant.png')}}"/></a>
+            
             <table class="table">
                 <thead>
                     <tr class='table_head'>
