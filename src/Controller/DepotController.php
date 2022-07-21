@@ -239,5 +239,12 @@ class DepotController extends AbstractController
         public function condition(){
             return $this->render('depot/condition.html.twig', []);
         }
+        /**
+        * @Route("/legal", name="mention_legal", methods={"GET"})
+        */
+    
+        public function legal(){
+            return $this->render('depot/mention_legal.html.twig', []);
+        }
    
 }
