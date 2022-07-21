@@ -1,51 +1,3 @@
-{#<nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('client_index') }}">Clients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('client_show_all') }}">Historiques</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('prioritaire_index') }}">Prioritaires</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('tache_index') }}">Tâches à faire</a>
-        </li>
-        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('user_index') }}"> Utilisateurs </a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('app_appel_index') }}">Rappel</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('app_rdv_index') }}">Rendez-vous</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav  d-flex" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-        {% if app.user %}
-          <a class="nav-link"  style="font-size:25px"  href="{{ path('user_show', {'id':  app.user.id} )}}"><i class="bi bi-person-circle"></i></a>
-        {% endif %}
-        </li>
-        {% if app.user %}
-          <li class="nav-item">
-            <a class="nav-link" style="font-size:25px" href="{{ path('app_logout')}}"><i class="bi bi-box-arrow-right"></i></a>
-          </li>
-        {% endif %}
-      {#<li class="nav-item">
-          <a class="nav-link" href="{{ path('panier') }}"><img src="{{ asset('/images/navbar/icon-caddie.png') }}" width="20"/></a>
-        </li>
-      </ul>
-    
-    </div>
-  </div>
-</nav>#}
-
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ path('client_index') }}"><img src="{{ asset('./images/azerty.jpg') }}" width="30px"></a>
@@ -55,8 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle white"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             <i class="bi bi-people-fill white mr-2"></i> Clients
+          <a class="nav-link dropdown-toggle color-white"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <i class="bi bi-people-fill color-white mr-2"></i> Clients
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ path('client_index') }}" > <i class="bi bi-people-fill mr-2"></i> Clients par mois</a></li>
@@ -65,17 +17,17 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link white" aria-current="page" href="{{ path('tache_index') }}"><i class="bi bi-list-ul mr-2"></i></i> Tâches à faire</a>
+          <a class="nav-link color-white" aria-current="page" href="{{ path('tache_index') }}"><i class="bi bi-list-ul mr-2"></i></i> Tâches à faire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link white" aria-current="page" href="{{ path('app_appel_index') }}"> <i class="bi bi-telephone-fill mr-2"></i> Rappel</a>
+          <a class="nav-link color-white" aria-current="page" href="{{ path('app_appel_index') }}"> <i class="bi bi-telephone-fill mr-2"></i> Rappel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link white" aria-current="page" href="{{ path('app_rdv_index') }}"><i class="bi bi-calendar-event-fill mr-2"></i>Rendez-vous</a>
+          <a class="nav-link color-white" aria-current="page" href="{{ path('app_rdv_index') }}"><i class="bi bi-calendar-event-fill mr-2"></i>Rendez-vous</a>
         </li>
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
           <li class="nav-item">
-            <a class="nav-link white" aria-current="page" href="{{ path('user_index') }}"> <i class="bi bi-person-workspace mr-2"></i> Utilisateurs </a>
+            <a class="nav-link color-white" aria-current="page" href="{{ path('user_index') }}"> <i class="bi bi-person-workspace mr-2"></i> Utilisateurs </a>
           </li>
         {% endif %}
       </ul>
@@ -83,12 +35,13 @@
 
         {% if app.user %}
         <li class="nav-item">
-          <a class="nav-link white"  href="{{ path('user_show', {'id':  app.user.id} )}}"><i class="bi bi-person-circle mr-2"></i> Mon compte </a>
+          <a class="nav-link color-white"  href="{{ path('user_show', {'id':  app.user.id} )}}"><i class="bi bi-person-circle mr-2"></i> Mon compte </a>
         </li>
           <li class="nav-item">
-            <a class="nav-link white" href="{{ path('app_logout')}}"><i class="bi bi-box-arrow-right mr-2"></i>  Déconnexion </a>
+            <a class="nav-link color-white" href="{{ path('app_logout')}}"><i class="bi bi-box-arrow-right mr-2"></i>  Déconnexion </a>
           </li>
         {% endif %}
       </ul>
+  </div>
   </div>
 </nav>
