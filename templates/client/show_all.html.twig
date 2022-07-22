@@ -70,7 +70,7 @@
                                 <td  class='h-chargeur'>  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px"/></td>
                                 {% endif %}
                                 {% if client.appareil.editeur.etat.statut is defined %}
-                                    <td class='statutAppareilAll h-etat-c' > 
+                                    <td class='statutAppareilAll h-etat' > 
                                         <span class="badge" id='change-statut{{client.id}}' style="font-size:16px"> {{ client.appareil.editeur.etat.statut}} </span>
                                     </td>
                                 {% else %}

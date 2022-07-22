@@ -47,7 +47,7 @@
                         <td class='h-maque-c'>{{ client.appareil.marque }} </td>
                         <td  class='h-modele-c' >{{ client.appareil.modele }} </td>
                         {% if client.appareil.chargeur == 1 %}
-                        <td> <img  class='check' src="{{asset('./images/check.png')}}" width="40px" /></td>
+                        <td class='h-chargeur-c'> <img  class='check' src="{{asset('./images/check.png')}}" width="40px" /></td>
                         {% else %}
                         <td class='h-chargeur-c' >  <img  class='cross' src="{{asset('./images/cross.png')}}" width="40px" /></td>
                         {% endif %}
