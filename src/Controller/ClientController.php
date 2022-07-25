@@ -203,7 +203,7 @@ class ClientController extends AbstractController
         $form = $this->createForm(FormDepot::class, ['client' => $client, 'appareil' => $appareil]);
          //$form = $this->createForm(FormClientType::class,$client);
         $editeur = new Editeur();
-        $form -> handleRequest($request);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
           //  $client->setDate(new \DateTime() );
             $appareil->setClient($client);

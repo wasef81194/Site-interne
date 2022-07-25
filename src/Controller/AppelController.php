@@ -42,11 +42,12 @@ class AppelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //Envoie un mail
             $data = (new TemplatedEmail())
-                ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+                ->from((new Address('noreply@azertypro.fr','AZERTY Solutions Informatiques')))
                 ->to(new Address($appel->getMail()))
-                ->bcc(new Address('contact@azertyfrance.fr'))
-                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
-                ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr', 'dinformatique95@gmail.com')
+                ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
+                ->embedFromPath('../public/images/mail/location.png', 'location')
+                ->embedFromPath('../public/images/mail/phone.png', 'phone')
                 ->replyTo('contact@azertyfrance.fr')
                 ->subject('Demande à être rappelé')
                 ->htmlTemplate('emails/appel/mail_rappel.html.twig')

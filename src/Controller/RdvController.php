@@ -42,12 +42,14 @@ class RdvController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $rdvRepository->add($rdv);
             $data = (new TemplatedEmail())
-                ->from((new Address('noreplyazertyfrance@gmail.com','AZERTY Solutions Informatiques')))
+                ->from((new Address('noreply@azertypro.fr','AZERTY Solutions Informatiques')))
                 ->to(new Address($rdv->getMail()))
-                ->bcc(new Address('contact@azertyfrance.fr'))
-                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr')
-                ->embedFromPath('../public/images/mail/wathsapp.svg.png', 'whatsapp')
+                ->cc('noreplyazertyfrance@gmail.com','contact@azertyfrance.fr', 'dinformatique95@gmail.com')
+                ->embedFromPath('../public/images/mail/whatsapp.png', 'whatsapp')
+                ->embedFromPath('../public/images/mail/location.png', 'location')
+                ->embedFromPath('../public/images/mail/phone.png', 'phone')
                 ->replyTo('contact@azertyfrance.fr')
                 //->cc(new Address('contact@azertyfrance.fr'))
                 ->subject('Intervention à domicile')
@@ -65,7 +67,6 @@ class RdvController extends AbstractController
             ])
             ;
             $mailer->send($data);
-            $rdvRepository->add($rdv);
             $this->addFlash('sucessRdv', 'Nous avons bien reçu votre demande de rendez-vous à domicile et nous vous recontacterons le plus rapidement possible pour confirmez cette demande. Surveiller votre boite mail et votre téléphone !');
         }
 
