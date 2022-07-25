@@ -90,7 +90,7 @@ class ClientController extends AbstractController
             'November'=>'Novembre', 
             'December'=>'Décembre',
         ], 'fr_FR');
-
+        
         return $this->renderForm('client/index.html.twig', [
             'clients' => $clientRepository->findClientsFromThisDate($month,$year),
             'appareils' => $appareilRepository->findAll(),
@@ -222,6 +222,20 @@ class ClientController extends AbstractController
             $entityManager->persist($client);
             $entityManager->persist($editeur);
             $entityManager->flush(); 
+            $entityManager->flush(); 
+            // enregistre dans axonaut 
+            $curl = curl_init();
+            curl_setopt_array($curl,[
+                CURLOPT_URL => 'https://axonaut.com/api/v2/employees',
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_HTTPHEADER => ['userApiKey: a4df1357607aac071de4a6b49e458398', "content-type:application/json;charset=utf-8", 'accept: application/json'],
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => '{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "company_id": 977441, "custom_fields": [] }'
+            ]);
+            $data = curl_exec($curl);
+            curl_close($curl);
+            //******************* */
             return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);
         }
 

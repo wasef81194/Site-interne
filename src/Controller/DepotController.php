@@ -224,9 +224,51 @@ class DepotController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($client);
                 $entityManager->persist($appareil);
-               
+                
                 $entityManager->persist($editeur);
                 $entityManager->flush(); 
+                if ($client->getPersonne()=='Mme') {
+                    $civil = 2;
+                }
+                else {
+                    $civil = 1;
+                }
+                // enregistre dans axonaut 
+                $curl2 = curl_init();
+                curl_setopt_array($curl2,[
+                    CURLOPT_URL => 'https://axonaut.com/api/v2/companies',
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_HTTPHEADER => ['userApiKey: a4df1357607aac071de4a6b49e458398', "content-type:application/json;charset=utf-8", 'accept: application/json'],
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_POST => true,
+                    CURLOPT_RETURNTRANSFER => 1,
+                    CURLOPT_POSTFIELDS => '{ "name": "'.$client->getPrenom().' '.$client->getNom().'", "address_contact_name":"'.$client->getNom().'", "address_city":"'.$client->getRue().'", "address_country": "'.$client->getRue().' '.$client->getVille().'", "is_prospect": true, "is_customer": true, "comments":" Marque : '.$appareil->getMarque().' Modele : '.$appareil->getModele().' Numero de série : '.$appareil->getNs().'" , "custom_fields": {}, "categories": [ "string" ], "internal_id": '.$id.', "employees" :{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "company_id": '.$id.', "custom_fields": [] } }'
+                ]);
+                $data2 = curl_exec($curl2);
+                if (!$data2) {
+                    echo curl_error($curl2);
+                }
+                $explode = explode(":", $data2);
+                $id = explode(",",$explode[1])[0];
+                
+                curl_close($curl2);
+                dump('test', $id);
+                $curl1 = curl_init();
+                curl_setopt_array($curl1,[
+                    CURLOPT_URL => 'https://axonaut.com/api/v2/employees',
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_HTTPHEADER => ['userApiKey: a4df1357607aac071de4a6b49e458398', "content-type:application/json;charset=utf-8", 'accept: application/json'],
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => '{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "company_id": '.$id.', "custom_fields": [] }'
+                ]);
+                
+                $data1 = curl_exec($curl1);
+                if (!$data1) {
+                    echo curl_error($curl1);
+                }
+                curl_close($curl1);
+                //******************* */
                 $this->addFlash('message', 'Votre appareil à bien été deposer chez AZERTY Solutions Informatiques, nous vous tiendrons au courant des point d\'avencement de votre appareil.');
             }
             return $this->render('depot/index.html.twig', [ 'client'=>$client, 'appareil'=>$appareil,'form' => $form->createView()]);
