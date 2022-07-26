@@ -1,22 +1,19 @@
 {{ form_start(form,{ 'attr': { 'class' : 'form-material inline' } })}}
 <h2>Informations client</h2>
+<div class=" form-group">
+	{% for child in form.client.personne %}
+		<div class="form-check">
+			{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
+			<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
+		</div>
+	{% endfor %}
+</div>
 <div class="grix xs1 sm2">
-	<div class=" form-group">
-		{% for child in form.client.personne %}
-			<div class="form-check">
-				{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
-				<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
-			</div>
-
-		{% endfor %}
-	</div>
-	<div class=" form-group">
-		{{form_widget(form.entreprise)}}
-		{{form_label(form.entreprise,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required  label-lg'} })}}
+	<div class="form-field">
+		{{form_widget(form.entreprise,{ 'attr': { 'class' : 'form-control rounded-1 required ', 'id':'entreprise'} })}}
+		<label for="entreprise">Entreprise (optionnel)</label>
 	</div>
 </div>
-
-
 <div class="grix xs1 sm2">
 	<div class="form-field">
 		{{form_widget(form.client.nom , { 'attr': { 'class' : 'form-control rounded-1', 'id':'nom' } })}}

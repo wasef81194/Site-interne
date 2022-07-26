@@ -231,9 +231,11 @@ class DepotController extends AbstractController
                 // enregistre dans axonaut 
                 if($form->get("entreprise")->getData()){
                     $clientForm = 'Entreprise';
+                    $nom = $form->get("entreprise")->getData();
                 }
                 else {
                     $clientForm = 'Particulier';
+                    $nom = $client->getPrenom().' '.$client->getNom();
                 }
 
                  if ($client->getPersonne()=='Mme') {
@@ -250,7 +252,7 @@ class DepotController extends AbstractController
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_POST => true,
                     CURLOPT_RETURNTRANSFER => 1,
-                    CURLOPT_POSTFIELDS => '{ "name": "'.$client->getPrenom().' '.$client->getNom().'", "address_contact_name":"'.$client->getNom().'", "address_city":"'.$client->getRue().'", "address_country": "'.$client->getRue().' '.$client->getVille().'", "is_prospect": true, "is_customer": true, "comments":" Marque : '.$appareil->getMarque().' Modele : '.$appareil->getModele().' Numero de série : '.$appareil->getNs().'" , "custom_fields": {}, "categories": [ "'.$clientForm.'" ], "employees" :{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "custom_fields": [] } }'
+                    CURLOPT_POSTFIELDS => '{ "name": "'.$nom.'", "address_contact_name":"'.$client->getNom().'", "address_city":"'.$client->getRue().'", "address_country": "'.$client->getRue().' '.$client->getVille().'", "is_prospect": true, "is_customer": true, "comments":" Marque : '.$appareil->getMarque().' Modele : '.$appareil->getModele().' Numero de série : '.$appareil->getNs().'" , "custom_fields": {}, "categories": [ "'.$clientForm.'" ], "employees" :{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "custom_fields": [] } }'
                 ]);
                 $data2 = curl_exec($curl2);
                 if (!$data2) {
