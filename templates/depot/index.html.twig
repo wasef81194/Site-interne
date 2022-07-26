@@ -51,16 +51,23 @@
 			
 		{{ form_start(form,{ 'attr': { 'class' : 'form-material form cacher ' } })}}
 		<h2>Informations clients</h2>
-			<div class="form-group">
-				{% for child in form.client.personne %}
+			<div class="grix xs1 sm2">
+				<div class=" form-group">
+						{% for child in form.client.personne %}
 
-					<div class="form-check">
-						{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
-						<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
-					</div>
+							<div class="form-check">
+								{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
+								<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
+							</div>
 
-				{% endfor %}
+						{% endfor %}
+				</div>
+				<div class=" form-group">
+						{{form_widget(form.entreprise)}}
+						{{form_label(form.entreprise,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required  label-lg'} })}}
+				</div>
 			</div>
+				
 
 
 			<div class="grix xs1 sm2">

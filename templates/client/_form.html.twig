@@ -1,14 +1,19 @@
 {{ form_start(form,{ 'attr': { 'class' : 'form-material inline' } })}}
 <h2>Informations client</h2>
-<div class="form-group">
-	{% for child in form.client.personne %}
+<div class="grix xs1 sm2">
+	<div class=" form-group">
+		{% for child in form.client.personne %}
+			<div class="form-check">
+				{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
+				<label class="form-check-label label-lg" style='margin-right : 10px !important'>{{form_label(child)}}</span>
+			</div>
 
-		<div class="form-check">
-			{{form_widget(child , { 'attr': { 'class' : 'form-check-input'} })}}
-			<label class="form-check-label" style='margin-right : 10px !important'>{{form_label(child)}}</span>
-		</div>
-
-	{% endfor %}
+		{% endfor %}
+	</div>
+	<div class=" form-group">
+		{{form_widget(form.entreprise)}}
+		{{form_label(form.entreprise,null,{ 'attr': {  'class' : 'form-control rounded-1 cu inline required  label-lg'} })}}
+	</div>
 </div>
 
 
@@ -88,9 +93,10 @@
 	<div class="form-check">
 
 		{{form_widget(form.cu,{'attr':  {'checked': 'checked'} }) }}
-		{{form_label(form.cu,null,{ 'label': 'Accepter les conditions de prise en charge' })}}
+		{{form_label(form.cu,null)}}
 
 	</div>
+	&nbsp; <a class="inline" href="{{path('condition')}}">conditions de prise en charge</a>*
 </div>
 <div class="mb-3 text-center" >
     <button class="btn btn-primary btn-lg">

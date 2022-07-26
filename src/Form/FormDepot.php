@@ -27,6 +27,11 @@ class FormDepot extends AbstractType
                 'required' => true, 
                 'mapped'=>false, 
                 'label'=>'Acceptez les '
+            ])
+            ->add('entreprise', CheckboxType::class,[
+                'required' => false,   
+                'mapped'=>false, 
+                'label'=>'Entreprise'
             ]);
             ;
             
