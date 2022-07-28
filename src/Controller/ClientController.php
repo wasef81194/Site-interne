@@ -247,7 +247,7 @@ class ClientController extends AbstractController
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_POST => true,
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_POSTFIELDS => '{ "name": "'.$nom.'", "address_contact_name":"'.$client->getNom().'", "address_city":"'.$client->getRue().'", "address_country": "'.$client->getRue().' '.$client->getVille().'", "is_prospect": true, "is_customer": true, "comments":" Marque : '.$appareil->getMarque().' Modele : '.$appareil->getModele().' Numero de série : '.$appareil->getNs().'" , "custom_fields": {}, "categories": [ "'.$clientForm.'" ], "employees" :{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "custom_fields": [] } }'
+                CURLOPT_POSTFIELDS => '{ "name": "'.$nom.'", "address_contact_name":"'.$client->getNom().'", "address_city":"'.$client->getRue().' '.$client->getVille().'", "address_country": "France", "is_prospect": true, "is_customer": true, "comments":" Marque : '.$appareil->getMarque().' Modele : '.$appareil->getModele().' Numero de série : '.$appareil->getNs().'" , "custom_fields": {}, "categories": [ "'.$clientForm.'" ], "employees" :{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "custom_fields": [] } }'
             ]);
             $data2 = curl_exec($curl2);
             if (!$data2) {
@@ -265,7 +265,7 @@ class ClientController extends AbstractController
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_POST => true,
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_POSTFIELDS => '{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "gender" : '.$civil.', "email":"'. $client->getMail().'", "phone_number":"'.$client->getTel().'",  "cellphone_number":"'. $client->getTel().'", "job": null,  "is_billing_contact": false, "company_id": '.$id.', "custom_fields": [] }'
+                CURLOPT_POSTFIELDS => '{ "firstname":"'.$client->getPrenom().'",  "lastname":"'.$client->getNom().'" , "gender" : '.$civil.', "email":"'. $client->getMail().'", "phone_number":"",  "cellphone_number":"'.$client->getTel().'", "job": null,  "is_billing_contact": false, "company_id": '.$id.', "custom_fields": [] }'
             ]);
             
             $data1 = curl_exec($curl1);
@@ -338,7 +338,7 @@ class ClientController extends AbstractController
         if($etat->getStatut() == 'Pris en charge'){
             $path = '../public/images/mail/encharge.png';
         }
-        elseif($etat->getStatut() == 'Devis envoyée'){
+        elseif($etat->getStatut() == 'Devis envoyé'){
             $path = '../public/images/mail/devis.png';
         }
         elseif($etat->getStatut() == 'En attente de pièce'){
