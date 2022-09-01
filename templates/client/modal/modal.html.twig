@@ -1,5 +1,10 @@
 {% if client.id is not defined %}
-  {% set client = tache.appareil.client %}
+  {% if tache.appareil.client is defined %}
+    {% set client = tache.appareil.client %}
+  {% endif %}
+  {% if prioritaire.appareil.client is defined %}
+    {% set client = prioritaire.appareil.client %}
+  {% endif %}
 {% endif %}
 <div class="modal modal-client fade" id="cardClient{{client.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog client">
