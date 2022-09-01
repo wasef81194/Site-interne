@@ -51,9 +51,12 @@
                         <td class="td-button">
                             {{ include('prioritaire/_delete_form.html.twig') }}
                             
-                            <a class="btn btn-success btn"href="{{ path('client_show', {'id': prioritaire.appareil.client.id}) }}"><img class="show" width='25px' src="{{asset('./images/icon-afficher.png')}}"/></a>
+                           <button type="button" title="Afficher les informations client" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardClient{{  prioritaire.appareil.client.id}}">
+                                <i  width='25%' class="bi bi-person-bounding-box show-info-client"></i>
+                            </button>
                         </td>
                     </tr>
+                    {{ include('client/modal/modal.html.twig') }}
                 {% else %}
                     <tr>
                         <td colspan="12" class='white'>En attente de clients prioritaire...</td>
